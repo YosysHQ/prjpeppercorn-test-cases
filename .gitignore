@@ -1,0 +1,24 @@
+# Files produced by p_r
+*.log
+*_synth.v
+*.history
+lut*.txt
+*.refwire
+*.refparam
+*.refcomp
+*.pos
+*.pathes
+*.path_struc
+*.net
+*.id
+*.prn
+*_00.v
+*.used
+*.sdf
+*.place
+*.pin
+*.cfg
+*.bit
+*.cdf
+# Setup file
+environment.sh

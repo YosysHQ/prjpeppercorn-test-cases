@@ -1,0 +1,2 @@
+Pin_in   "rst"  Loc = "IO_SB_B7" | PULLUP=true; # FPGA_BUT
+Pin_out  "led"  Loc = "IO_SB_B6"; # LED D1

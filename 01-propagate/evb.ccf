@@ -1,0 +1,2 @@
+Pin_in   "rst"  Loc = "IO_EB_B0"; # SW3
+Pin_out  "led"  Loc = "IO_EB_B1"; # D1
