@@ -38,7 +38,7 @@ $(TEST_CASE)_synth.v: $(VERILOG_FILES)
 
 $(TEST_CASE)_$(BOARD)_00.cfg: $(TEST_CASE)_synth.v $(BOARD).ccf
 	@echo "Running P_R for '$(BOARD)' board"
-	@$(P_R) -i $(TEST_CASE)_synth.v -ccf $(BOARD).ccf -o $(TEST_CASE)_$(BOARD) > $@.log
+	@$(P_R) -i $(TEST_CASE)_synth.v -cCP -ccf $(BOARD).ccf -o $(TEST_CASE)_$(BOARD) > $@.log
 
 pr: $(TEST_CASE)_$(BOARD)_00.cfg
 
