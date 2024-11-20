@@ -31,7 +31,7 @@ vga_core #(
 	.vsync_o(o_vsync), .hsync_o(o_hsync)
 );
 
-wire [11:0] color = 12'b000000001111;
+wire [11:0] color = { x[7:4], y[7:4], 4'b0110 };
 
 assign o_r = ~de_s ? 4'b0000 : color[11:8];
 assign o_g = ~de_s ? 4'b0000 : color[7:4];
