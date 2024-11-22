@@ -1,4 +1,4 @@
-# prjpeppercorn-test-cases
+# Project Peppercorn Test Cases
 
 Test cases to validate NextPnR implementation for GateMate FPGAs and compare results with 
 Cologne Chip Place and Route tool
