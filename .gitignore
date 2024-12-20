@@ -18,7 +18,12 @@ lut*.txt
 *.place
 *.pin
 *.cfg
+*.min
 *.bit
 *.cdf
+*.idh
+# nextpnr
+*.txt
+*.json
 # Setup file
 environment.sh

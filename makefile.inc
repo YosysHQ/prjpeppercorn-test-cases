@@ -6,6 +6,7 @@ ROOT_DIR=$(dir $(lastword $(MAKEFILE_LIST)))
 OFL   = openFPGALoader
 CC_TOOL_DIR=$(CC_TOOL)
 P_R   = $(CC_TOOL)/bin/p_r/p_r
+NEXTPNR = nextpnr-himbaechel
 YOSYS = yosys
 
 ifndef CC_TOOL
@@ -26,28 +27,46 @@ all:
 	@echo " - synth - running Yosys synthesys only"
 	@echo " - pr - Yosys + p_r"
 	@echo " - jtag_pr - programming bitstream produced by p_r"
-#	@echo " - nextpnr - Yosys + nextpnr"
-#	@echo " - jtag - programming bitstream produced by nextpnr"
+	@echo " - json - Yosys for nextpnr"
+	@echo " - nextpnr - Yosys + nextpnr"
+	@echo " - jtag - programming bitstream produced by nextpnr"
 	@exit
 
 synth: $(TEST_CASE)_synth.v
+json: $(TEST_CASE).json
 
 $(TEST_CASE)_synth.v: $(VERILOG_FILES)
 	@echo "Running Yosys"
 	@$(YOSYS) -ql synth.log $(YS_OPTS) -p 'read_verilog -sv $^; synth_gatemate $(YOSYS_PARAM) -top $(TOP) -vlog $(TEST_CASE)_synth.v'
 
+$(TEST_CASE).json: $(VERILOG_FILES)
+	@echo "Running Yosys"
+	@$(YOSYS) -ql synth.log $(YS_OPTS) -p 'read_verilog -sv $^; synth_gatemate $(YOSYS_PARAM) -top $(TOP) -json $(TEST_CASE).json'
+
 $(TEST_CASE)_$(BOARD)_00.cfg: $(TEST_CASE)_synth.v $(BOARD).ccf
 	@echo "Running P_R for '$(BOARD)' board"
-	@$(P_R) -i $(TEST_CASE)_synth.v -cCP -ccf $(BOARD).ccf -o $(TEST_CASE)_$(BOARD) > $@.log
+	@$(P_R) -i $(TEST_CASE)_synth.v -cCP -pr -ccf $(BOARD).ccf -o $(TEST_CASE)_$(BOARD) > $@.log
+
+$(TEST_CASE)_$(BOARD).txt: $(TEST_CASE).json $(BOARD).ccf
+	@echo "Running nextpnr for '$(BOARD)' board"
+	@$(NEXTPNR) --device CCGM1A1 --json $(TEST_CASE).json --vopt ccf=$(BOARD).ccf --vopt out=$(TEST_CASE)_$(BOARD).txt > $@.log
 
 pr: $(TEST_CASE)_$(BOARD)_00.cfg
+
+nextpnr: $(TEST_CASE)_$(BOARD).txt
 
 jtag_pr: $(TEST_CASE)_$(BOARD)_00.cfg
 	@echo "Running openFPGALoader for '$(BOARD)' board"
 	@$(OFL) -b $(OFL_BOARD) $^
 
+jtag: $(TEST_CASE)_$(BOARD).txt
+	@echo "Running openFPGALoader for '$(BOARD)' board"
+	@gmpack $(TEST_CASE)_$(BOARD).txt $(TEST_CASE)_$(BOARD).bit
+	@$(OFL) -b $(OFL_BOARD) $(TEST_CASE)_$(BOARD).bit
+
 clean:
 	@rm -rf *.log *_synth.v *.history *.txt *.refwire *.refparam
 	@rm -rf *.refcomp *.pos *.pathes *.path_struc *.net *.id *.prn
-	@rm -rf *_00.v *.used *.sdf *.place *.pin *.cfg *.bit  *.cdf
+	@rm -rf *_00.v *.used *.sdf *.place *.pin *.cfg *.bit  *.cdf *.idh *.min
 
+.PHONY: synth json pr nextpnr jtag_pr jtag
