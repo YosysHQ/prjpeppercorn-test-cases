@@ -8,6 +8,8 @@ CC_TOOL_DIR=$(CC_TOOL)
 P_R   = $(CC_TOOL)/bin/p_r/p_r
 NEXTPNR = nextpnr-himbaechel
 YOSYS = yosys
+GMPACK = gmpack
+GMUNPACK = gmunpack
 
 ifndef CC_TOOL
 $(error CC_TOOL variable is not set)
@@ -26,6 +28,7 @@ all:
 	@echo "Use one of targets for '$(BOARD)' board:"
 	@echo " - synth - running Yosys synthesys only"
 	@echo " - pr - Yosys + p_r"
+	@echo " - unpack - Unpack p_r bitstream"
 	@echo " - jtag_pr - programming bitstream produced by p_r"
 	@echo " - json - Yosys for nextpnr"
 	@echo " - nextpnr - Yosys + nextpnr"
@@ -49,9 +52,15 @@ $(TEST_CASE)_$(BOARD)_00.cfg: $(TEST_CASE)_synth.v $(BOARD).ccf
 
 $(TEST_CASE)_$(BOARD).txt: $(TEST_CASE).json $(BOARD).ccf
 	@echo "Running nextpnr for '$(BOARD)' board"
-	@$(NEXTPNR) --device CCGM1A1 --json $(TEST_CASE).json --vopt ccf=$(BOARD).ccf --vopt out=$(TEST_CASE)_$(BOARD).txt > $@.log
+	@$(NEXTPNR) --device CCGM1A1 --json $(TEST_CASE).json --vopt ccf=$(BOARD).ccf --vopt out=$(TEST_CASE)_$(BOARD).txt
+
+$(TEST_CASE)_$(BOARD)_00.txt: $(TEST_CASE)_$(BOARD)_00.cfg
+	@echo "Running unpack for '$(BOARD)' board"
+	@$(GMUNPACK) $(TEST_CASE)_$(BOARD)_00.cfg.bit $(TEST_CASE)_$(BOARD)_00.txt
 
 pr: $(TEST_CASE)_$(BOARD)_00.cfg
+
+unpack: $(TEST_CASE)_$(BOARD)_00.txt
 
 nextpnr: $(TEST_CASE)_$(BOARD).txt
 
@@ -61,7 +70,7 @@ jtag_pr: $(TEST_CASE)_$(BOARD)_00.cfg
 
 jtag: $(TEST_CASE)_$(BOARD).txt
 	@echo "Running openFPGALoader for '$(BOARD)' board"
-	@gmpack $(TEST_CASE)_$(BOARD).txt $(TEST_CASE)_$(BOARD).bit
+	@$(GMPACK) $(TEST_CASE)_$(BOARD).txt $(TEST_CASE)_$(BOARD).bit
 	@$(OFL) -b $(OFL_BOARD) $(TEST_CASE)_$(BOARD).bit
 
 clean:
@@ -69,4 +78,4 @@ clean:
 	@rm -rf *.refcomp *.pos *.pathes *.path_struc *.net *.id *.prn
 	@rm -rf *_00.v *.used *.sdf *.place *.pin *.cfg *.bit  *.cdf *.idh *.min *.json
 
-.PHONY: synth json pr nextpnr jtag_pr jtag
+.PHONY: synth json pr nextpnr jtag_pr jtag unpack
