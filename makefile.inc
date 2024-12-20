@@ -67,6 +67,6 @@ jtag: $(TEST_CASE)_$(BOARD).txt
 clean:
 	@rm -rf *.log *_synth.v *.history *.txt *.refwire *.refparam
 	@rm -rf *.refcomp *.pos *.pathes *.path_struc *.net *.id *.prn
-	@rm -rf *_00.v *.used *.sdf *.place *.pin *.cfg *.bit  *.cdf *.idh *.min
+	@rm -rf *_00.v *.used *.sdf *.place *.pin *.cfg *.bit  *.cdf *.idh *.min *.json
 
 .PHONY: synth json pr nextpnr jtag_pr jtag
