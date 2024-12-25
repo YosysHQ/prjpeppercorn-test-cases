@@ -1,2 +1,3 @@
-TEST_CASE := propagate
+TEST_CASE := dff
+YOSYS_PARAM := -noclkbuf
 include ../makefile.inc

@@ -1,3 +1,2 @@
-Pin_in   "clk"  Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
 Pin_in   "rst"  Loc = "IO_SB_B7" | PULLUP=true | SCHMITT_TRIGGER=true; # FPGA_BUT
 Pin_out  "led"  Loc = "IO_SB_B6"; # LED D1
