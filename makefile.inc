@@ -40,7 +40,7 @@ json: $(TEST_CASE).json
 
 $(TEST_CASE)_synth.v: $(VERILOG_FILES)
 	@echo "Running Yosys"
-	@$(YOSYS) -ql synth.log $(YS_OPTS) -p 'read_verilog -sv $^; synth_gatemate $(YOSYS_PARAM) -top $(TOP) -vlog $(TEST_CASE)_synth.v'
+	@$(YOSYS) -ql synth.log $(YS_OPTS) -p 'read_verilog -sv $^; synth_gatemate $(YOSYS_PARAM) -top $(TOP) -nomx8 -vlog $(TEST_CASE)_synth.v'
 
 $(TEST_CASE).json: $(VERILOG_FILES)
 	@echo "Running Yosys"
