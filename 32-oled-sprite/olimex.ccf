@@ -1,0 +1,11 @@
+Pin_in   "clk"  Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+Pin_in   "rst"  Loc = "IO_SB_B7" | PULLUP=true; # FPGA_BUT
+
+# leds
+Pin_out   "oled_clk"   Loc = "IO_EA_B4"; # LED D0
+Pin_out   "audio_l"   Loc = "IO_EA_B6"; # LED D2
+Pin_out   "audio_r"   Loc = "IO_EA_B7"; # LED D3
+Pin_out   "oled_mosi"   Loc = "IO_EA_A4"; # LED D4
+Pin_out   "oled_resn"   Loc = "IO_EA_A5"; # LED D5
+Pin_out   "oled_dc"   Loc = "IO_EA_A6"; # LED D6
+Pin_out   "oled_csn"   Loc = "IO_EA_A7"; # LED D7
