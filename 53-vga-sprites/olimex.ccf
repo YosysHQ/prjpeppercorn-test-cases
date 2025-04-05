@@ -1,0 +1,22 @@
+Pin_in  "clk_10m"  Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+
+Pin_in  "btn_rst_n" Loc = "IO_SB_B7" | PULLUP=true; # FPGA_BUT
+
+#J1
+Pin_out "vga_r[0]" Loc = "IO_WB_B3";
+Pin_out "vga_r[1]" Loc = "IO_WB_A3";
+Pin_out "vga_r[2]" Loc = "IO_WB_B2";
+Pin_out "vga_r[3]" Loc = "IO_WB_A2";
+
+Pin_out "vga_g[0]" Loc = "IO_WB_B5";
+Pin_out "vga_g[1]" Loc = "IO_WB_A5";
+Pin_out "vga_g[2]" Loc = "IO_WB_B4";
+Pin_out "vga_g[3]" Loc = "IO_WB_A4";
+
+#J2
+Pin_out "vga_b[0]"  Loc = "IO_WB_B7";
+Pin_out "vga_b[1]"  Loc = "IO_WB_A7";
+Pin_out "vga_b[2]"  Loc = "IO_WB_B6";
+Pin_out "vga_b[3]"  Loc = "IO_WB_A6";
+Pin_out "vga_hsync" Loc = "IO_WB_A1";
+Pin_out "vga_vsync" Loc = "IO_WB_B1";
