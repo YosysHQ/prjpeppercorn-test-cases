@@ -1,0 +1,12 @@
+Pin_in   "pclk"  Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+Pin_in   "RESET"  Loc = "IO_SB_B7" | PULLUP=true; # FPGA_BUT
+
+Net  "RXD"  Loc = "IO_SA_A6";
+Net  "TXD"  Loc = "IO_SA_B6";
+
+# leds
+Pin_out   "D1"   Loc = "IO_EA_B4"; # LED D0
+Pin_out   "D2"   Loc = "IO_EA_B5"; # LED D1
+Pin_out   "D3"   Loc = "IO_EA_B6"; # LED D2
+Pin_out   "D4"   Loc = "IO_EA_B7"; # LED D3
+Pin_out   "D5"   Loc = "IO_EA_A4"; # LED D4
