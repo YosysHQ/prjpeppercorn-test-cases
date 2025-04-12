@@ -3,7 +3,7 @@ TOP := top_colour
 #TOP := top_flag_ethiopia
 #TOP := top_flag_sweden
 #TOP := top_square
-YOSYS_PARAM := -nomx8
+YOSYS_PARAM := -nomx8 -nomult
 VERILOG_FILES := \
 	top_colour.sv \
 	top_flag_ethiopia.sv \

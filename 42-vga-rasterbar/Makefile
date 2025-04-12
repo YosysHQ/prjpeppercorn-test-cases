@@ -1,5 +1,5 @@
 TEST_CASE := vga-rasterbar
-YOSYS_PARAM := -noaddf -noclkbuf -nomult -nomx8
+YOSYS_PARAM := -nomx8 -nomult
 VERILOG_FILES := \
 	top_rasterbars.sv  \
 	render_rasterbars.sv \

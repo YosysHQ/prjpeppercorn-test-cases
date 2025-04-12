@@ -1,6 +1,6 @@
 TEST_CASE := vga-2dshapes
 TOP := top_demo
-YOSYS_PARAM := -nomx8
+YOSYS_PARAM := -nomx8 -nomult
 VERILOG_FILES := \
 	top_demo.sv \
 	render_circles_fill.sv \

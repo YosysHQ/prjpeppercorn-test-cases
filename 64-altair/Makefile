@@ -1,6 +1,6 @@
 TEST_CASE := altair
 TOP := top
-YOSYS_PARAM := -nomx8 -nomult -noaddf
+YOSYS_PARAM := -nomx8 -nomult
 VERILOG_FILES := \
 	top_altair.v \
 	altair.v \

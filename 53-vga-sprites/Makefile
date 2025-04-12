@@ -5,7 +5,7 @@ TOP := top_hedgehog
 #TOP := top_tinyf_move
 #TOP := top_tinyf_rom
 #TOP := top_tinyf_scale
-YOSYS_PARAM := -nomx8
+YOSYS_PARAM := -nomx8 -nomult
 VERILOG_FILES := \
 	top_hedgehog.sv \
 	top_hourglass.sv \

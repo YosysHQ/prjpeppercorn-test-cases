@@ -1,5 +1,5 @@
 TEST_CASE := vga-castle
-YOSYS_PARAM := -noaddf -noclkbuf -nomult -nomx8
+YOSYS_PARAM := -nomult -nomx8
 TOP := top_castle
 VERILOG_FILES := \
 	top_castle.sv \

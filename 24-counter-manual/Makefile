@@ -1,3 +1,3 @@
 TEST_CASE := counter-manual
-YOSYS_PARAM := -noaddf -noclkbuf
+YOSYS_PARAM := -noclkbuf
 include ../makefile.inc

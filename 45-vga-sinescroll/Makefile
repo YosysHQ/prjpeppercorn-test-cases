@@ -1,6 +1,6 @@
 TEST_CASE := vga-sinescroll
 TOP := top_sinescroll
-YOSYS_PARAM := -nomx8
+YOSYS_PARAM := -nomx8 -nomult
 VERILOG_FILES := \
 	top_sinescroll.sv \
 	render_sinescroll.sv \
