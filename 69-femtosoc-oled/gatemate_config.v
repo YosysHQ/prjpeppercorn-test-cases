@@ -1,4 +1,4 @@
-// Default femtosoc configuration file for ULX3S
+// Default femtosoc configuration file for GateMate
 
 /************************* Devices **********************************************************************************/
 
@@ -26,8 +26,8 @@
 
 /************************* RAM (in bytes, needs to be a multiple of 4)***********************************************/
 
-//`define NRV_RAM 393216 // bigger config for ULX3S
-`define NRV_RAM 16384 // default for ULX3S
+//`define NRV_RAM 393216 // bigger config for GateMate
+`define NRV_RAM 16384 // default for GateMate
 
 /************************* Advanced processor configuration *********************************************************/
 
