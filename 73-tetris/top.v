@@ -33,16 +33,16 @@ module top (
    input  btnL,
    input  btnR,
    
-   input  [15:0] sw,
-   output [15:0] led,
-   output [7:0] cathodes,
-   output [3:0] anodes,
+   //input  [15:0] sw,
+   //output [15:0] led,
+   //output [7:0] cathodes,
+   //output [3:0] anodes,
 
    output hsync,       // to VGA connector
    output vsync,       // to VGA connector
    output [11:0] rgb,  // to DAC, to VGA connector
 
-    output [7:0] jb
+   //output [7:0] jb
 );
    
    // command protocol constants:
@@ -101,16 +101,16 @@ module top (
       .locked(lock)
    );
 	
-	   reg sw_dl1, sw_dl2;
+	//reg sw_dl1, sw_dl2;
    always @(posedge clk) 
    begin
-      sw_dl1 <= sw[15];
-      sw_dl2 <= sw_dl1;
-      if(sw_dl2 && !sw[15]) begin
-         reset_cnt <= 0;
-      end else begin
+     // sw_dl1 <= sw[15];
+      //sw_dl2 <= sw_dl1;
+      //if(sw_dl2 && !sw[15]) begin
+         //reset_cnt <= 0;
+      //end else begin
          reset_cnt <= reset_cnt + !resetn;
-      end
+      //end
     end 
    
    wire btnC_out;
@@ -168,13 +168,13 @@ module top (
     wire gpio_en    = (iomem_addr[31:24] == 8'h03); /* GPIO mapped to 0x03xx_xxxx */
     wire video_en   = (iomem_addr[31:24] == 8'h05); /* Video device mapped to 0x05xx_xxxx */
    
-   assign led[5:0] = leds[5:0];
+   //assign led[5:0] = leds[5:0];
    //assign led[10:6] = buttons;
-   assign led[11] = w_video_on;  
-   assign led[12] = allow_next;
-   assign led[13] = ram_wen;
-   assign led[14] = r_CLK_1HZ;   
-   assign led[15] = sw[15];   
+   //assign led[11] = w_video_on;  
+   //assign led[12] = allow_next;
+   //assign led[13] = ram_wen;
+   //assign led[14] = r_CLK_1HZ;   
+   //assign led[15] = sw[15];   
 
    assign iomem_ready = gpio_en ? gpio_iomem_ready : ( video_en ? vga_iomem_ready : 1'b0);      
    assign iomem_rdata = gpio_en ? gpio_iomem_rdata : 32'h00000000;   
@@ -197,19 +197,19 @@ module top (
       end
    end
    
-   wire tx_uc, rx_uc, tx_prog, rx_prog;
+   //wire tx_uc, rx_uc, tx_prog, rx_prog;
    
-   assign tx = sw[15] ? tx_prog : tx_uc;  
-   assign rx_uc = sw[15] ? 1'bz : rx;
-   assign rx_prog = sw[15] ? rx : 1'bz;
+   //assign tx = sw[15] ? tx_prog : tx_uc;  
+   //assign rx_uc = sw[15] ? 1'bz : rx;
+   //assign rx_prog = sw[15] ? rx : 1'bz;
    
    // uC Circuit     
    picosoc_noflash soc (
       .clk  (clk),    
       .resetn  (resetn),
 
-      .ser_tx  (tx_uc),
-      .ser_rx  (rx_uc),
+      .ser_tx  (tx),
+      .ser_rx  (rx),
 
       .irq_5   (1'b0),
       .irq_6   (1'b0),
