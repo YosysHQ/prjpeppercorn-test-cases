@@ -11,7 +11,7 @@ module top_mandel (
     input  wire logic btn_fire,     // fire button
     input  wire logic btn_up,       // up button
     input  wire logic btn_dn,       // down button
-    output      logic [3:0] led,    // four green LEDs
+    //output      logic [3:0] led,    // four green LEDs
     output      logic vga_hsync,    // horizontal sync
     output      logic vga_vsync,    // vertical sync
     output      logic [3:0] vga_r,  // 4-bit VGA red
@@ -392,10 +392,10 @@ module top_mandel (
     end
 
     // show status with LEDs
-    always_ff @(posedge clk_sys) begin
-        led[3] <= render_busy;
-        led[2] <= (state == HORIZONTAL);
-        led[1] <= (state == VERTICAL);
-        led[0] <= (state == ZOOM);
-    end
+    //always_ff @(posedge clk_sys) begin
+    //    led[3] <= render_busy;
+    //    led[2] <= (state == HORIZONTAL);
+    //    led[1] <= (state == VERTICAL);
+    //    led[0] <= (state == ZOOM);
+    //end
 endmodule
