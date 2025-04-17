@@ -27,7 +27,7 @@
 
 module tv80n (/*AUTOARG*/
   // Outputs
-  m1_n, mreq_n, iorq_n, rd_n, wr_n, rfsh_n, halt_n, busak_n, A, do, 
+  m1_n, mreq_n, iorq_n, rd_n, wr_n, rfsh_n, halt_n, busak_n, A, do, pc,
   // Inputs
   reset_n, clk, wait_n, int_n, nmi_n, busrq_n, di
   );
@@ -54,6 +54,7 @@ module tv80n (/*AUTOARG*/
   output [15:0] A;
   input [7:0]   di;
   output [7:0]  do;
+  output [15:0] pc;
 
   reg           mreq_n; 
   reg           iorq_n; 
@@ -99,7 +100,8 @@ module tv80n (/*AUTOARG*/
      .do (do),
      .mc (mcycle),
      .ts (tstate),
-     .intcycle_n (intcycle_n)
+     .intcycle_n (intcycle_n),
+     .pc(pc)
      );  
 
   always @*

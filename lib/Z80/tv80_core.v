@@ -26,7 +26,7 @@
 module tv80_core (/*AUTOARG*/
   // Outputs
   m1_n, iorq, no_read, write, rfsh_n, halt_n, busak_n, A, do, mc, ts, 
-  intcycle_n, IntE, stop, 
+  intcycle_n, IntE, stop, pc, 
   // Inputs
   reset_n, clk, cen, wait_n, int_n, nmi_n, busrq_n, dinst, di
   );
@@ -66,7 +66,8 @@ module tv80_core (/*AUTOARG*/
   output [6:0]  ts;     
   output        intcycle_n;     
   output        IntE;           
-  output        stop;           
+  output        stop;        
+  output [15:0] pc;  
 
   reg    m1_n;          
   reg    iorq;          
@@ -212,7 +213,9 @@ module tv80_core (/*AUTOARG*/
   reg [15:0]     SP16, SP16_A, SP16_B;
   reg [15:0]     ID16_B;
   reg            Oldnmi_n;
-  
+ 
+  assign pc = PC16;
+
   tv80_mcode #(Mode, Flag_C, Flag_N, Flag_P, Flag_X, Flag_H, Flag_Y, Flag_Z, Flag_S) i_mcode
     (
      .IR                   (IR),
