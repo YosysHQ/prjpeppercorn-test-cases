@@ -68,8 +68,3 @@ Pin_out  "VGA_B[1]"	Loc = "IO_WB_A7";
 Pin_out  "VGA_B[0]"	Loc = "IO_WB_B7";
 Pin_in	 "PS2_CLK"  Loc = "IO_WB_A0";
 Pin_in	 "PS2_DATA"	Loc = "IO_WB_B0";
-Pin_in	 "DIP1"	Loc = "IO_WA_A0";
-Pin_in	 "DIP2"	Loc = "IO_WA_B0";
-Pin_in	 "DIP3"	Loc = "IO_WA_A1";
-Pin_in	 "DIP4"	Loc = "IO_WA_B1";
-

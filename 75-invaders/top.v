@@ -9,11 +9,7 @@ module top(
    output [3:0] VGA_G,
    output [3:0] VGA_B,
    input PS2_DATA,
-   input PS2_CLK,
-   input DIP1,
-   input DIP2,
-   input DIP3,
-   input DIP4
+   input PS2_CLK
 );
 	wire clk270, clk180, clk90, usr_ref_out,clk10;
 	wire usr_pll_lock_stdy, usr_pll_lock;
@@ -55,10 +51,10 @@ soc SOC(
 	.o_vga_g(VGA_G),
 	.o_vga_b(VGA_B),
 	.isR(isR),
-	.i_dip1(DIP1),
-	.i_dip2(DIP2),
-	.i_dip3(DIP3),
-	.i_dip4(DIP4)
+	.i_dip1(1'b0),
+	.i_dip2(1'b0),
+	.i_dip3(1'b0),
+	.i_dip4(1'b0)
 );
    
 endmodule
