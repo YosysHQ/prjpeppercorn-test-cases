@@ -180,7 +180,7 @@ hex_decoder_v
     .c_data_len(C_disp_bits),
     .c_row_bits(4), // 2**n digits per row (4*2**n bits/row) 3->32, 4->64, 5->128, 6->256 
     .c_grid_6x8(0), // NOTE: TRELLIS needs -abc9 option to compile
-    .c_font_file("hex_font.mem"),
+    .c_font_file("../lib/fpgalibs/hex/hex_font.mem"),
     .c_x_bits(8),
     .c_y_bits(4),
     .c_color_bits(C_color_bits)
