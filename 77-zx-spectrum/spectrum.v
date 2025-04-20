@@ -86,6 +86,7 @@ module spectrum
     .m1_n(n_M1),
     .iorq_n(n_IORQ),
     .wr_n(n_WR),
+    .rd_n(n_RD),
     .A(cpuAddress),
     .di(cpuDataIn),
     .do(cpuDataOut),
