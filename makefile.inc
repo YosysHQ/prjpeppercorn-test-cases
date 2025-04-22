@@ -52,7 +52,7 @@ $(TEST_CASE)_$(BOARD)_00.cfg: $(TEST_CASE)_synth.v $(BOARD).ccf
 
 $(TEST_CASE)_$(BOARD).txt: $(TEST_CASE).json $(BOARD).ccf
 	@echo "Running nextpnr for '$(BOARD)' board"
-	@$(NEXTPNR) --device CCGM1A1 --json $(TEST_CASE).json --vopt ccf=$(BOARD).ccf --vopt out=$(TEST_CASE)_$(BOARD).txt --router router2
+	@$(NEXTPNR) --device CCGM1A1 --json $(TEST_CASE).json --vopt ccf=$(BOARD).ccf --vopt out=$(TEST_CASE)_$(BOARD).txt --router router2 --freq 10
 
 $(TEST_CASE)_$(BOARD)_00.txt: $(TEST_CASE)_$(BOARD)_00.cfg
 	@echo "Running unpack for '$(BOARD)' board"
