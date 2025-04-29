@@ -11,9 +11,11 @@ YOSYS = yosys
 GMPACK = gmpack
 GMUNPACK = gmunpack
 
-ifndef CC_TOOL
-$(error CC_TOOL variable is not set)
-endif
+check_cc_tool = \
+	ifndef CC_TOOL \
+	$(error CC_TOOL variable is not set) \
+	endif
+
 ifndef BOARD
 $(error BOARD variable is not set)
 endif
@@ -47,6 +49,7 @@ $(TEST_CASE).json: $(VERILOG_FILES)
 	@$(YOSYS) -ql synth.log $(YS_OPTS) -p 'read_verilog -defer -sv $^; synth_gatemate $(YOSYS_PARAM) -luttree -top $(TOP) -json $(TEST_CASE).json'
 
 $(TEST_CASE)_$(BOARD)_00.cfg: $(TEST_CASE)_synth.v $(BOARD).ccf
+	$(call check_cc_tool)
 	@echo "Running P_R for '$(BOARD)' board"
 	@$(P_R) -i $(TEST_CASE)_synth.v -cCP -pr -ccf $(BOARD).ccf -o $(TEST_CASE)_$(BOARD) > $@.log
 
