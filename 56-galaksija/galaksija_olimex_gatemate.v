@@ -8,9 +8,6 @@
 module galaksija_olimex_gatemate(
 input wire clk_i,
 input wire rstn_i,
-// I/O interface to computer
-input  i_uart_rx,         // asynchronous serial data input from computer
-output o_uart_tx,         // asynchronous serial data output to computer
 
 // I/O interface to keyboard
 input ps2clk,          // PS/2 keyboard serial clock input
@@ -59,11 +56,12 @@ pll pll_inst (
     .clk(clk_pixel),
     .pixclk(clk_pixel),
     .reset_n(reset_n),
-    .ser_rx(i_uart_rx),
     .LCD_DAT(S_LCD_DAT),
     .LCD_HS(o_hsync),
     .LCD_VS(o_vsync),
-    .LCD_DEN(S_vga_blank)
+    .LCD_DEN(S_vga_blank),
+    .ps2Clk(ps2clk),
+    .ps2Data(ps2data)
   );
 
   assign o_r = { S_LCD_DAT, S_LCD_DAT, S_LCD_DAT, S_LCD_DAT };

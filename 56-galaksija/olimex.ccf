@@ -2,9 +2,6 @@ Net  "clk_i"  Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
 
 Net  "rstn_i" Loc = "IO_SB_B7" | PULLUP=true;
 
-Net "o_clk" Loc = "IO_NB_B6"; #JB9
-Net "o_rst" Loc = "IO_NB_B7"; #JB10
-
 Net  "ps2clk" Loc = "IO_WB_A0";
 Net  "ps2data" Loc = "IO_WB_B0";
 
@@ -26,9 +23,6 @@ Net "o_b[2]"  Loc = "IO_WB_B6";
 Net "o_b[3]"  Loc = "IO_WB_A6";
 Net "o_hsync" Loc = "IO_WB_A1";
 Net "o_vsync" Loc = "IO_WB_B1";
-
-Net  "i_uart_rx"  Loc = "IO_SA_A6";
-Net "o_uart_tx"  Loc = "IO_SA_B6";
 
 # leds
 Net   "o_led"   Loc = "IO_SB_B6"; # LED D1

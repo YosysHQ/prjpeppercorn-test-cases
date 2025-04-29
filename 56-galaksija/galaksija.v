@@ -4,7 +4,6 @@ module galaksija
     input clk, // 12 MHz (now 25 MHz)
     input pixclk, // 19.2 MHz (now 25 MHz)
     input reset_n, // 1 when clocks are ready to be used
-    input ser_rx, // serial keyboard
     output LCD_DAT,
     output LCD_CLK,
     output LCD_HS,
@@ -12,19 +11,16 @@ module galaksija
     output LCD_DEN,
     output LCD_RST,
     output LCD_PWM,
-    output mreq_n
+	input ps2Clk,
+	input ps2Data,
 );
 
 parameter integer f_clk = 25000000;
-parameter integer baud = 115200; // serial keyboard baud rate
 
 /* ------------------------
        Clock generator 
    ------------------------*/
 
-wire clk;
-wire reset_n;
-wire pixclk;
 wire cpu_resetn;
 
 reg [6:0] reset_cnt = 0;
@@ -100,34 +96,6 @@ video
 	wire nmi_n = 1'b1;
 	wire busrq_n = 1'b1;
 		
-	reg keys[63:0];
-
-	wire rx_valid;
-	wire [7:0] uart_out;
-	wire starting;
-	uart_rx uart(
-		.clk(clk),
-		.resetn(reset_n),
-
-		.ser_rx(ser_rx),
-
-		.cfg_divider(f_clk/baud),
-
-		.data(uart_out),
-		.valid(rx_valid),
-
-		.starting(starting)
-	);
-
-	integer num;
-	initial 
-	begin
-		for(num=0;num<63;num=num+1)
-		begin
-			keys[num] <= 0;
-		end
-	end
-
 	reg[31:0] int_cnt = 0;
 
 	always @(posedge clk) begin
@@ -151,8 +119,24 @@ video
 	wire [7:0] ram10_out;
 	wire [7:0] ram11_out;
 
-	reg [7:0] key_out;
+	reg key_out;
+	wire [10:0] ps2_key;
 	
+	// Get PS/2 keyboard events
+	ps2 ps2_kbd (
+		.clk(clk),
+		.ps2_clk(ps2Clk),
+		.ps2_data(ps2Data),
+		.ps2_key(ps2_key)
+	);
+
+	galaksija_keyboard galaksija_keyboard(
+		.clk(clk),
+		.addr(addr[5:0]),
+		.ps2_key(ps2_key),
+		.key_out(key_out)
+	);
+
 	reg rd_rom1;
 	reg rd_rom2;
 
@@ -204,63 +188,6 @@ video
 			
 			//{3'b100,16'b11xxxxxxxxxxxxxx}: wr_ram2= 1; // 0x3000-0x37ff
 		endcase
-	end
-	
-	reg prev_starting = 0;
-	always @(posedge clk) 
-	begin	
-		prev_starting	<= starting;
-		if (starting==1 && prev_starting==0)
-		begin
-			for(num=0;num<63;num=num+1)
-			begin
-				keys[num] <= 0;
-			end
-		end
-		if (rd_key)
-		begin
-			key_out <= (keys[addr[5:0]]==1) ? 8'hfe : 8'hff;
-		end			
-
-		if(rx_valid)
-		begin
-			for(num=0;num<63;num=num+1)
-			begin
-				keys[num] <= 0;
-			end
-			if (uart_out>="A" && uart_out<="Z")  keys[uart_out-8'd64] <= 1;
-			if (uart_out>="a" && uart_out<="z") keys[uart_out-8'd96] <= 1;
-			if (uart_out>="0" && uart_out<="9")  keys[uart_out-8'd48+8'd32] <= 1;
-			if (uart_out==8'd10 || uart_out==8'd13)  keys[8'd48] <= 1; // ENTER
-			if (uart_out==8'd8 || uart_out==8'd127)  keys[8'd29] <= 1; // BACKSPACE to CURSOR LEFT
-			if (uart_out==8'd27)  keys[8'd49] <= 1; // ESC to BREAK
-
-			if (uart_out==" ")  keys[8'd31] <= 1;
-			if (uart_out=="_") begin keys[8'd32] <= 1; keys[8'd53] <= 1; end
-			if (uart_out=="!") begin keys[8'd33] <= 1; keys[8'd53] <= 1; end
-			if (uart_out=="\"") begin keys[8'd34] <= 1; keys[8'd53] <= 1; end
-			if (uart_out=="#") begin keys[8'd35] <= 1; keys[8'd53] <= 1; end
-			if (uart_out=="$") begin keys[8'd36] <= 1; keys[8'd53] <= 1; end
-			if (uart_out=="%") begin keys[8'd37] <= 1; keys[8'd53] <= 1; end
-			if (uart_out=="&") begin keys[8'd38] <= 1; keys[8'd53] <= 1; end
-			if (uart_out=="\\") begin keys[8'd39] <= 1; keys[8'd53] <= 1; end
-
-			if (uart_out=="(") begin keys[8'd40] <= 1; keys[8'd53] <= 1; end
-			if (uart_out==")") begin keys[8'd41] <= 1; keys[8'd53] <= 1; end
-			if (uart_out=="+") begin keys[8'd42] <= 1; keys[8'd53] <= 1; end
-			if (uart_out=="*") begin keys[8'd43] <= 1; keys[8'd53] <= 1; end
-			if (uart_out=="<") begin keys[8'd44] <= 1; keys[8'd53] <= 1; end
-			if (uart_out=="-") begin keys[8'd45] <= 1; keys[8'd53] <= 1; end
-			if (uart_out==">") begin keys[8'd46] <= 1; keys[8'd53] <= 1; end
-			if (uart_out=="?") begin keys[8'd47] <= 1; keys[8'd53] <= 1; end
-
-			if (uart_out==";") begin keys[8'd42] <= 1; end
-			if (uart_out==":") begin keys[8'd43] <= 1; end
-			if (uart_out==",") begin keys[8'd44] <= 1; end
-			if (uart_out=="=") begin keys[8'd45] <= 1; end
-			if (uart_out==".") begin keys[8'd46] <= 1; end
-			if (uart_out=="/") begin keys[8'd47] <= 1; end
-		end
 	end
 	
 	tv80n cpu (
