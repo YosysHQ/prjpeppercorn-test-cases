@@ -4,17 +4,16 @@ VERILOG_FILES ?= top.v
 TOP ?= top
 ROOT_DIR=$(dir $(lastword $(MAKEFILE_LIST)))
 OFL   = openFPGALoader
-CC_TOOL_DIR=$(CC_TOOL)
-P_R   = $(CC_TOOL)/bin/p_r/p_r
 NEXTPNR = nextpnr-himbaechel
 YOSYS = yosys
 GMPACK = gmpack
 GMUNPACK = gmunpack
 
-check_cc_tool = \
-	ifndef CC_TOOL \
-	$(error CC_TOOL variable is not set) \
-	endif
+define check_cc_tool
+  $(if $(CC_TOOL), \
+    $(eval P_R := $(CC_TOOL)/bin/p_r/p_r), \
+    $(error CC_TOOL variable is not set))
+endef
 
 ifndef BOARD
 $(error BOARD variable is not set)
