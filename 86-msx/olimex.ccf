@@ -1,0 +1,19 @@
+Pin_in   "clk10_mhz"     Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+Pin_in   "btn"  Loc = "IO_SB_B7" | PULLUP=true; # FPGA_BUT
+Pin_out  "hSync"	Loc = "IO_WB_A1";
+Pin_out  "vSync"	Loc = "IO_WB_B1";
+Pin_out  "vga_red[3]"	Loc = "IO_WB_A2";
+Pin_out  "vga_red[2]"	Loc = "IO_WB_B2";
+Pin_out  "vga_red[1]"	Loc = "IO_WB_A3";
+Pin_out  "vga_red[0]"	Loc = "IO_WB_B3";
+Pin_out  "vga_green[3]"	Loc = "IO_WB_A4";
+Pin_out  "vga_green[2]"	Loc = "IO_WB_B4";
+Pin_out  "vga_green[1]"	Loc = "IO_WB_A5";
+Pin_out  "vga_green[0]"	Loc = "IO_WB_B5";
+Pin_out  "vga_blue[3]"	Loc = "IO_WB_A6";
+Pin_out  "vga_blue[2]"	Loc = "IO_WB_B6";
+Pin_out  "vga_blue[1]"	Loc = "IO_WB_A7";
+Pin_out  "vga_blue[0]"	Loc = "IO_WB_B7";
+Pin_in	 "ps2Clk"  Loc = "IO_WB_A0";
+Pin_in	 "ps2Data"	Loc = "IO_WB_B0";
+
