@@ -16,11 +16,11 @@ module keyboard (
   output [7:0] diag
 );
 
-  reg [2:0]  mtx_state = 0;
+  reg [2:0]  mtx_state;
   reg        r_pause;
   reg        r_scroll;
   reg        r_reso;
-  reg [7:0]  o_f_keys = 0;
+  reg [7:0]  o_f_keys;
   reg        ps2_shift;
   reg        ps2_ctrl;
   wire [7:0]  o_key_col;
@@ -35,11 +35,11 @@ module keyboard (
   wire ps2_brk = ps2_key[9];
   wire [7:0] ps2_dat = ps2_key[7:0];
   wire [8:0] key_id = ps2_key[8:0];
-  reg ps2_chg;
-  reg [10:0] mtx_idx;
-  reg [7:0]  mtx_ptr;
-  reg [7:0] key_row;
-  reg       key_we;
+  reg ps2_chg = 0;
+  reg [10:0] mtx_idx = 0;
+  wire [7:0]  mtx_ptr;
+  reg [7:0] key_row = 0;
+  reg       key_we = 0;
 
   assign diag = o_key_col;
 
@@ -54,6 +54,18 @@ module keyboard (
 
   always @(posedge clk) begin
     if (reset) begin
+      mtx_state <= Mtx_Idle;
+      r_pause <= 1'b0;
+      r_scroll <= 1'b0;
+      r_reso <= 1'b0;
+      o_f_keys <= 8'd0;
+      ps2_shift <= 1'b0;
+      ps2_ctrl <= 1'b0;
+      i_key_col <= 8'd0;
+      ps2_chg <= 1'b0;
+      mtx_idx <= 11'd0;
+      key_row <= 8'd0;
+      key_we <= 1'b0;
       p_key_x <= 8'hff;
     end else if (clk_ena) begin
       // Key matrix state machine

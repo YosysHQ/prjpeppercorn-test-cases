@@ -262,7 +262,7 @@ module coleco
   reg  r_status_read;
   wire [7:0] status = {r_interrupt_flag, too_many_sprites, r_sprite_collision, (too_many_sprites ? sprite5 : 5'b11111)};
   wire [7:0] key_data = {4'b0010, ~key};
-  wire [7:0] joy_data = {8'd0 };
+  wire [7:0] joy_data = {1'b0, 1'b1, 2'b0, 4'b1111 };
 
   assign cpuDataIn =  cpuAddress[7:0] == vdp_data_port && n_ioRD == 1'b0 ? vga_dout :
                       cpuAddress[7:0] == vdp_ctrl_port && n_ioRD == 1'b0 ? status :
