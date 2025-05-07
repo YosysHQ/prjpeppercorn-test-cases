@@ -1,0 +1,3868 @@
+{
+  "creator": "Next Generation Place and Route (Version nextpnr-0.8-7-g30e26151)",
+  "modules": {
+    "top": {
+      "settings": {
+        "place": "00000000000000000000000000000001",
+        "placer1/startTemp": "1.000000",
+        "placer1/minBelsForGridPick": "64",
+        "placer1/netShareWeight": "0.000000",
+        "placer1/constraintWeight": "10.000000",
+        "placerHeap/cellPlacementTimeout": "8",
+        "placerHeap/netShareWeight": "0.000000",
+        "placerHeap/parallelRefine": "0 ",
+        "pack": "00000000000000000000000000000001",
+        "synth": "00000000000000000000000000000001",
+        "placerHeap/timingWeight": "10 ",
+        "placerHeap/criticalityExponent": "2",
+        "placerHeap/beta": "0.900000",
+        "placerHeap/alpha": "0.100000",
+        "seed": "1000001011000101101010111001100110001100001100100110110101111110",
+        "arch.type": " ",
+        "arch.name": "ARCHNAME",
+        "placer": "heap",
+        "auto_freq": "00000000000000000000000000000000",
+        "slack_redist_iter": "00000000000000000000000000000000",
+        "timing_driven": "00000000000000000000000000000001",
+        "target_freq": "10000000.000000",
+        "router": "router2"
+      },
+      "attributes": {
+        "top": "00000000000000000000000000000001",
+        "src": "top.v:1.1-21.10",
+        "hdlname": "top",
+        "dynports": "00000000000000000000000000000001"
+      },
+      "ports": {
+        "rst": {
+          "direction": "input",
+          "bits": [ 26669 ]
+        },
+        "led": {
+          "direction": "output",
+          "bits": [ 26959, 26961, 26963, 26965, 26967, 26969, 26971, 26973 ]
+        },
+        "clk": {
+          "direction": "input",
+          "bits": [ 26667 ]
+        }
+      },
+      "cells": {
+        "$abc$683$auto$blifparse.cc:396:parse_blif$696$upper": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "INIT_L10": "1010",
+            "INIT_L00": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X114Y127/CPE_HALF_U"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26708 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [  ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$iopadmap$top.led_6$OUT1_cpe_half": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "C_RAM_O1": "1",
+            "C_O1": "11",
+            "INIT_L11": "1010",
+            "INIT_L02": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000100",
+            "NEXTPNR_BEL": "X133Y130/CPE_HALF_L"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26694 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [ 26989 ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$iopadmap$top.led_4$OUT1_cpe_half": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "C_RAM_O1": "1",
+            "C_O1": "11",
+            "INIT_L11": "1010",
+            "INIT_L02": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000100",
+            "NEXTPNR_BEL": "X125Y130/CPE_HALF_L"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26688 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [ 26993 ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$iopadmap$top.led$OUT1_cpe_half": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "C_RAM_O1": "1",
+            "C_O1": "11",
+            "INIT_L11": "1010",
+            "INIT_L02": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000100",
+            "NEXTPNR_BEL": "X109Y130/CPE_HALF_L"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26675 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [ 27001 ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$iopadmap$top.led_5$OUT1_cpe_half": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "C_RAM_O1": "1",
+            "C_O1": "11",
+            "INIT_L11": "1010",
+            "INIT_L02": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000100",
+            "NEXTPNR_BEL": "X129Y130/CPE_HALF_L"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26691 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [ 26991 ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$iopadmap$top.led_1$OUT1_cpe_half": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "C_RAM_O1": "1",
+            "C_O1": "11",
+            "INIT_L11": "1010",
+            "INIT_L02": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000100",
+            "NEXTPNR_BEL": "X113Y130/CPE_HALF_L"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26679 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [ 26999 ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$iopadmap$top.led_3$OUT1_cpe_half": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "C_RAM_O1": "1",
+            "C_O1": "11",
+            "INIT_L11": "1010",
+            "INIT_L02": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000100",
+            "NEXTPNR_BEL": "X121Y130/CPE_HALF_L"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26685 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [ 26995 ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$734$upper": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "INIT_L10": "1010",
+            "INIT_L00": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X116Y125/CPE_HALF_U"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26729 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [  ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$732$upper": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "INIT_L10": "1010",
+            "INIT_L00": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X115Y129/CPE_HALF_U"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26729 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [  ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$iopadmap$top.rst": {
+          "hide_name": 1,
+          "type": "CC_IBUF",
+          "parameters": {
+            "INPUT_ENABLE": "1",
+            "DELAY_IBF": "0000000000000001"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000100",
+            "NEXTPNR_BEL": "X105Y133/GPIO",
+            "src": "top.v:3.12-3.15",
+            "keep": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "DI": "output",
+            "I": "input"
+          },
+          "connections": {
+            "DI": [ 26729 ],
+            "I": [  ]
+          }
+        },
+        "$iopadmap$top.led_7": {
+          "hide_name": 1,
+          "type": "CC_OBUF",
+          "parameters": {
+            "OUT_SIGNAL": "1",
+            "OE_ENABLE": "1",
+            "DELAY_OBF": "0000000000000001",
+            "SLEW": "1"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000100",
+            "NEXTPNR_BEL": "X137Y133/GPIO",
+            "src": "top.v:5.25-5.28",
+            "keep": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT1": "input",
+            "O": "output"
+          },
+          "connections": {
+            "OUT1": [ 26987 ],
+            "O": [  ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$724$upper": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "INIT_L10": "1010",
+            "INIT_L00": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X113Y128/CPE_HALF_U"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26729 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [  ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$731$upper": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "INIT_L10": "1010",
+            "INIT_L00": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X118Y130/CPE_HALF_U"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26729 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [  ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$iopadmap$top.led_6": {
+          "hide_name": 1,
+          "type": "CC_OBUF",
+          "parameters": {
+            "OUT_SIGNAL": "1",
+            "OE_ENABLE": "1",
+            "DELAY_OBF": "0000000000000001",
+            "SLEW": "1"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000100",
+            "NEXTPNR_BEL": "X133Y133/GPIO",
+            "src": "top.v:5.25-5.28",
+            "keep": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT1": "input",
+            "O": "output"
+          },
+          "connections": {
+            "OUT1": [ 26989 ],
+            "O": [  ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$719$upper": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "INIT_L10": "1010",
+            "INIT_L00": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X119Y129/CPE_HALF_U"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26729 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [  ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$iopadmap$top.led_5": {
+          "hide_name": 1,
+          "type": "CC_OBUF",
+          "parameters": {
+            "OUT_SIGNAL": "1",
+            "OE_ENABLE": "1",
+            "DELAY_OBF": "0000000000000001",
+            "SLEW": "1"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000100",
+            "NEXTPNR_BEL": "X129Y133/GPIO",
+            "src": "top.v:5.25-5.28",
+            "keep": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT1": "input",
+            "O": "output"
+          },
+          "connections": {
+            "OUT1": [ 26991 ],
+            "O": [  ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$726$upper": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "INIT_L10": "1010",
+            "INIT_L00": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X117Y128/CPE_HALF_U"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26729 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [  ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$716$upper": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "INIT_L10": "1010",
+            "INIT_L00": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X114Y128/CPE_HALF_U"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26729 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [  ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$iopadmap$top.led_4": {
+          "hide_name": 1,
+          "type": "CC_OBUF",
+          "parameters": {
+            "OUT_SIGNAL": "1",
+            "OE_ENABLE": "1",
+            "DELAY_OBF": "0000000000000001",
+            "SLEW": "1"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000100",
+            "NEXTPNR_BEL": "X125Y133/GPIO",
+            "src": "top.v:5.25-5.28",
+            "keep": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT1": "input",
+            "O": "output"
+          },
+          "connections": {
+            "OUT1": [ 26993 ],
+            "O": [  ]
+          }
+        },
+        "$iopadmap$top.led_3": {
+          "hide_name": 1,
+          "type": "CC_OBUF",
+          "parameters": {
+            "OUT_SIGNAL": "1",
+            "OE_ENABLE": "1",
+            "DELAY_OBF": "0000000000000001",
+            "SLEW": "1"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000100",
+            "NEXTPNR_BEL": "X121Y133/GPIO",
+            "src": "top.v:5.25-5.28",
+            "keep": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT1": "input",
+            "O": "output"
+          },
+          "connections": {
+            "OUT1": [ 26995 ],
+            "O": [  ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$714$upper": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "INIT_L10": "1010",
+            "INIT_L00": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X113Y126/CPE_HALF_U"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26729 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [  ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$709$upper": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "INIT_L10": "1010",
+            "INIT_L00": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X118Y127/CPE_HALF_U"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26739 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [  ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$iopadmap$top.led_2": {
+          "hide_name": 1,
+          "type": "CC_OBUF",
+          "parameters": {
+            "OUT_SIGNAL": "1",
+            "OE_ENABLE": "1",
+            "DELAY_OBF": "0000000000000001",
+            "SLEW": "1"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000100",
+            "NEXTPNR_BEL": "X117Y133/GPIO",
+            "src": "top.v:5.25-5.28",
+            "keep": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT1": "input",
+            "O": "output"
+          },
+          "connections": {
+            "OUT1": [ 26997 ],
+            "O": [  ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$712$upper": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "INIT_L10": "1010",
+            "INIT_L00": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X114Y124/CPE_HALF_U"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26729 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [  ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$iopadmap$top.led_1": {
+          "hide_name": 1,
+          "type": "CC_OBUF",
+          "parameters": {
+            "OUT_SIGNAL": "1",
+            "OE_ENABLE": "1",
+            "DELAY_OBF": "0000000000000001",
+            "SLEW": "1"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000100",
+            "NEXTPNR_BEL": "X113Y133/GPIO",
+            "src": "top.v:5.25-5.28",
+            "keep": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT1": "input",
+            "O": "output"
+          },
+          "connections": {
+            "OUT1": [ 26999 ],
+            "O": [  ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$707$upper": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "INIT_L10": "1010",
+            "INIT_L00": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X115Y125/CPE_HALF_U"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26729 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [  ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$710$upper": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "INIT_L10": "1010",
+            "INIT_L00": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X118Y125/CPE_HALF_U"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26729 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [  ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$iopadmap$top.led": {
+          "hide_name": 1,
+          "type": "CC_OBUF",
+          "parameters": {
+            "OUT_SIGNAL": "1",
+            "OE_ENABLE": "1",
+            "DELAY_OBF": "0000000000000001",
+            "SLEW": "1"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000100",
+            "NEXTPNR_BEL": "X109Y133/GPIO",
+            "src": "top.v:5.25-5.28",
+            "keep": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT1": "input",
+            "O": "output"
+          },
+          "connections": {
+            "OUT1": [ 27001 ],
+            "O": [  ]
+          }
+        },
+        "$iopadmap$top.clk": {
+          "hide_name": 1,
+          "type": "CC_IBUF",
+          "parameters": {
+            "INPUT_ENABLE": "1",
+            "DELAY_IBF": "0000000000000001",
+            "SCHMITT_TRIGGER": "1"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000100",
+            "NEXTPNR_BEL": "X0Y103/GPIO",
+            "src": "top.v:2.12-2.15",
+            "keep": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "DI": "output",
+            "I": "input"
+          },
+          "connections": {
+            "DI": [ 26807 ],
+            "I": [  ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$706$upper": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "INIT_L10": "1010",
+            "INIT_L00": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X118Y126/CPE_HALF_U"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26729 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [  ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$702$upper": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "INIT_L10": "1010",
+            "INIT_L00": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X117Y126/CPE_HALF_U"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26729 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [  ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$iopadmap$top.led_7$OUT1_cpe_half": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "C_RAM_O1": "1",
+            "C_O1": "11",
+            "INIT_L11": "1010",
+            "INIT_L02": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000100",
+            "NEXTPNR_BEL": "X137Y130/CPE_HALF_L"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26697 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [ 26987 ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$698$upper": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "INIT_L10": "1010",
+            "INIT_L00": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X115Y127/CPE_HALF_U"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26716 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [  ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$iopadmap$top.led_2$OUT1_cpe_half": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "C_RAM_O1": "1",
+            "C_O1": "11",
+            "INIT_L11": "1010",
+            "INIT_L02": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000100",
+            "NEXTPNR_BEL": "X117Y130/CPE_HALF_L"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26682 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [ 26997 ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$701$upper": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "INIT_L10": "1010",
+            "INIT_L00": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X117Y127/CPE_HALF_U"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26724 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [  ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$694$upper": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "INIT_L10": "1010",
+            "INIT_L00": "1010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X114Y125/CPE_HALF_U"
+          },
+          "port_directions": {
+            "IN1": "input",
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "RAM_O": "output",
+            "OUT": "output",
+            "RAM_I": "input",
+            "I4": "input",
+            "I3": "input",
+            "I2": "input",
+            "I1": "input"
+          },
+          "connections": {
+            "IN1": [ 26699 ],
+            "SR": [  ],
+            "CLK": [  ],
+            "EN": [  ],
+            "RAM_O": [  ],
+            "OUT": [  ],
+            "RAM_I": [  ],
+            "I4": [  ],
+            "I3": [  ],
+            "I2": [  ],
+            "I1": [  ]
+          }
+        },
+        "$auto$clkbufmap.cc:261:execute$788": {
+          "hide_name": 1,
+          "type": "BUFG",
+          "parameters": {
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000010",
+            "NEXTPNR_BEL": "X35Y133/BUFG0"
+          },
+          "port_directions": {
+            "O": "output",
+            "I": "input"
+          },
+          "connections": {
+            "O": [ 26808 ],
+            "I": [ 26807 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$735": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "C_2D_IN": "1",
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "INIT_L10": "1010",
+            "C_O2": "00",
+            "INIT_L00": "0010"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X113Y125/CPE_HALF_U",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:18.7-21.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "IN1": "input",
+            "IN2": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26699 ],
+            "IN1": [ 26729 ],
+            "IN2": [ 26699 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$734": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O1": "00",
+            "INIT_L20": "1000",
+            "INIT_L11": "0110",
+            "INIT_L03": "1010",
+            "INIT_L02": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X116Y125/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:324.7-327.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "I4": "input",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26725 ],
+            "I4": [  ],
+            "IN2": [ 26722 ],
+            "IN1": [ 26724 ],
+            "IN3": [ 26725 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$733": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O1": "00",
+            "INIT_L11": "1000",
+            "INIT_L03": "1010",
+            "INIT_L02": "0110"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X116Y126/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:359.7-362.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26724 ],
+            "IN2": [ 26722 ],
+            "IN1": [ 26724 ],
+            "IN3": [ 26729 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$732": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O1": "00",
+            "INIT_L20": "1000",
+            "INIT_L11": "0110",
+            "INIT_L03": "1010",
+            "INIT_L02": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X115Y129/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:324.7-327.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "I4": "input",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26721 ],
+            "I4": [  ],
+            "IN2": [ 26718 ],
+            "IN1": [ 26720 ],
+            "IN3": [ 26721 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$731": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O1": "00",
+            "INIT_L20": "1000",
+            "INIT_L11": "0110",
+            "INIT_L03": "1010",
+            "INIT_L02": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X118Y130/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:324.7-327.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "I4": "input",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26696 ],
+            "I4": [  ],
+            "IN2": [ 26789 ],
+            "IN1": [ 26693 ],
+            "IN3": [ 26696 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$730": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "C_2D_IN": "1",
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O2": "00",
+            "INIT_L10": "1000",
+            "INIT_L01": "1010",
+            "INIT_L00": "0110"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X118Y129/CPE_HALF_U",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:359.7-362.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26693 ],
+            "IN2": [ 26789 ],
+            "IN1": [ 26693 ],
+            "IN3": [ 26729 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$729": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O1": "00",
+            "INIT_L11": "1000",
+            "INIT_L03": "1010",
+            "INIT_L02": "0110"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X115Y128/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:359.7-362.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26720 ],
+            "IN2": [ 26718 ],
+            "IN1": [ 26720 ],
+            "IN3": [ 26729 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$728": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O1": "00",
+            "INIT_L11": "1000",
+            "INIT_L03": "1010",
+            "INIT_L02": "0110"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X119Y128/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:359.7-362.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26690 ],
+            "IN2": [ 26785 ],
+            "IN1": [ 26690 ],
+            "IN3": [ 26729 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$727": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "C_O1": "11",
+            "INIT_L11": "1000",
+            "INIT_L03": "1000",
+            "INIT_L02": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X118Y129/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:406.7-409.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT": "output",
+            "IN3": "input",
+            "IN2": "input",
+            "IN1": "input",
+            "IN4": "input"
+          },
+          "connections": {
+            "OUT": [ 26789 ],
+            "IN3": [ 26690 ],
+            "IN2": [ 26687 ],
+            "IN1": [ 26684 ],
+            "IN4": [ 26777 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$726": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O1": "00",
+            "INIT_L20": "1000",
+            "INIT_L11": "0110",
+            "INIT_L03": "1010",
+            "INIT_L02": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X117Y128/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:324.7-327.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "I4": "input",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26687 ],
+            "I4": [  ],
+            "IN2": [ 26777 ],
+            "IN1": [ 26684 ],
+            "IN3": [ 26687 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$725": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "C_O2": "11",
+            "INIT_L10": "1000",
+            "INIT_L01": "1010",
+            "INIT_L00": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X119Y128/CPE_HALF_U",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:113.7-116.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT": "output",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "OUT": [ 26785 ],
+            "IN2": [ 26687 ],
+            "IN1": [ 26684 ],
+            "IN3": [ 26777 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$724": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O1": "00",
+            "INIT_L20": "1000",
+            "INIT_L11": "0110",
+            "INIT_L03": "1010",
+            "INIT_L02": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X113Y128/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:324.7-327.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "I4": "input",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26717 ],
+            "I4": [  ],
+            "IN2": [ 26714 ],
+            "IN1": [ 26716 ],
+            "IN3": [ 26717 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$723": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "C_2D_IN": "1",
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O2": "00",
+            "INIT_L10": "1000",
+            "INIT_L01": "1010",
+            "INIT_L00": "0110"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X118Y128/CPE_HALF_U",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:359.7-362.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26684 ],
+            "IN2": [ 26777 ],
+            "IN1": [ 26684 ],
+            "IN3": [ 26729 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$722": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O1": "00",
+            "INIT_L11": "1000",
+            "INIT_L03": "1010",
+            "INIT_L02": "0110"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X119Y127/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:359.7-362.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26681 ],
+            "IN2": [ 26771 ],
+            "IN1": [ 26681 ],
+            "IN3": [ 26729 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$721": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "C_O1": "11",
+            "INIT_L11": "1000",
+            "INIT_L03": "1000",
+            "INIT_L02": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X118Y128/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:406.7-409.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT": "output",
+            "IN3": "input",
+            "IN2": "input",
+            "IN1": "input",
+            "IN4": "input"
+          },
+          "connections": {
+            "OUT": [ 26777 ],
+            "IN3": [ 26681 ],
+            "IN2": [ 26678 ],
+            "IN1": [ 26674 ],
+            "IN4": [ 26753 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$720": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O1": "00",
+            "INIT_L11": "1000",
+            "INIT_L03": "1010",
+            "INIT_L02": "0110"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X115Y126/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:359.7-362.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26716 ],
+            "IN2": [ 26714 ],
+            "IN1": [ 26716 ],
+            "IN3": [ 26729 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$719": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O1": "00",
+            "INIT_L20": "1000",
+            "INIT_L11": "0110",
+            "INIT_L03": "1010",
+            "INIT_L02": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X119Y129/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:324.7-327.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "I4": "input",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26678 ],
+            "I4": [  ],
+            "IN2": [ 26753 ],
+            "IN1": [ 26674 ],
+            "IN3": [ 26678 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$718": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "C_O2": "11",
+            "INIT_L10": "1000",
+            "INIT_L01": "1010",
+            "INIT_L00": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X119Y127/CPE_HALF_U",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:113.7-116.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT": "output",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "OUT": [ 26771 ],
+            "IN2": [ 26678 ],
+            "IN1": [ 26674 ],
+            "IN3": [ 26753 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$717": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "C_2D_IN": "1",
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O2": "00",
+            "INIT_L10": "1000",
+            "INIT_L01": "1010",
+            "INIT_L00": "0110"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X119Y126/CPE_HALF_U",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:359.7-362.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26674 ],
+            "IN2": [ 26753 ],
+            "IN1": [ 26674 ],
+            "IN3": [ 26729 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$716": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O1": "00",
+            "INIT_L20": "1000",
+            "INIT_L11": "0110",
+            "INIT_L03": "1010",
+            "INIT_L02": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X114Y128/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:324.7-327.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "I4": "input",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26713 ],
+            "I4": [  ],
+            "IN2": [ 26710 ],
+            "IN1": [ 26712 ],
+            "IN3": [ 26713 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$715": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "C_2D_IN": "1",
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O2": "00",
+            "INIT_L10": "1000",
+            "INIT_L01": "1010",
+            "INIT_L00": "0110"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X113Y127/CPE_HALF_U",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:359.7-362.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26712 ],
+            "IN2": [ 26710 ],
+            "IN1": [ 26712 ],
+            "IN3": [ 26729 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$714": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O1": "00",
+            "INIT_L20": "1000",
+            "INIT_L11": "0110",
+            "INIT_L03": "1010",
+            "INIT_L02": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X113Y126/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:324.7-327.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "I4": "input",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26709 ],
+            "I4": [  ],
+            "IN2": [ 26706 ],
+            "IN1": [ 26708 ],
+            "IN3": [ 26709 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$713": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "C_2D_IN": "1",
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O2": "00",
+            "INIT_L10": "1000",
+            "INIT_L01": "1010",
+            "INIT_L00": "0110"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X112Y126/CPE_HALF_U",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:359.7-362.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26708 ],
+            "IN2": [ 26706 ],
+            "IN1": [ 26708 ],
+            "IN3": [ 26729 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$712": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O1": "00",
+            "INIT_L20": "1000",
+            "INIT_L11": "0110",
+            "INIT_L03": "1010",
+            "INIT_L02": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X114Y124/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:324.7-327.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "I4": "input",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26705 ],
+            "I4": [  ],
+            "IN2": [ 26702 ],
+            "IN1": [ 26704 ],
+            "IN3": [ 26705 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$711": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "C_2D_IN": "1",
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O2": "00",
+            "INIT_L10": "1000",
+            "INIT_L01": "1010",
+            "INIT_L00": "0110"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X114Y126/CPE_HALF_U",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:359.7-362.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26704 ],
+            "IN2": [ 26702 ],
+            "IN1": [ 26704 ],
+            "IN3": [ 26729 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$710": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O1": "00",
+            "INIT_L20": "1000",
+            "INIT_L11": "0110",
+            "INIT_L03": "1010",
+            "INIT_L02": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X118Y125/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:324.7-327.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "I4": "input",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26752 ],
+            "I4": [  ],
+            "IN2": [ 26743 ],
+            "IN1": [ 26749 ],
+            "IN3": [ 26752 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$709": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "C_O1": "11",
+            "INIT_L20": "1000",
+            "INIT_L11": "1000",
+            "INIT_L03": "1000",
+            "INIT_L02": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X118Y127/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:418.7-421.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT": "output",
+            "I4": "input",
+            "IN3": "input",
+            "IN2": "input",
+            "IN1": "input",
+            "IN4": "input"
+          },
+          "connections": {
+            "OUT": [ 26753 ],
+            "I4": [  ],
+            "IN3": [ 26752 ],
+            "IN2": [ 26749 ],
+            "IN1": [ 26742 ],
+            "IN4": [ 26733 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$708": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O1": "00",
+            "INIT_L11": "1000",
+            "INIT_L03": "1010",
+            "INIT_L02": "0110"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X117Y124/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:359.7-362.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26749 ],
+            "IN2": [ 26743 ],
+            "IN1": [ 26749 ],
+            "IN3": [ 26729 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$707": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O1": "00",
+            "INIT_L20": "1000",
+            "INIT_L11": "0110",
+            "INIT_L03": "1010",
+            "INIT_L02": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X115Y125/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:324.7-327.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "I4": "input",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26701 ],
+            "I4": [  ],
+            "IN2": [ 26700 ],
+            "IN1": [ 26699 ],
+            "IN3": [ 26701 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$706": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O1": "00",
+            "INIT_L20": "1000",
+            "INIT_L11": "0110",
+            "INIT_L03": "1010",
+            "INIT_L02": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X118Y126/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:324.7-327.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "I4": "input",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26742 ],
+            "I4": [  ],
+            "IN2": [ 26733 ],
+            "IN1": [ 26739 ],
+            "IN3": [ 26742 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$705": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "C_O1": "11",
+            "INIT_L11": "1000",
+            "INIT_L03": "1010",
+            "INIT_L02": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X117Y125/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:113.7-116.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT": "output",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "OUT": [ 26743 ],
+            "IN2": [ 26742 ],
+            "IN1": [ 26739 ],
+            "IN3": [ 26733 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$704": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "C_2D_IN": "1",
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O2": "00",
+            "INIT_L10": "1000",
+            "INIT_L01": "1010",
+            "INIT_L00": "0110"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X116Y126/CPE_HALF_U",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:359.7-362.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26739 ],
+            "IN2": [ 26733 ],
+            "IN1": [ 26739 ],
+            "IN3": [ 26729 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$703": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O1": "00",
+            "INIT_L11": "1000",
+            "INIT_L03": "1010",
+            "INIT_L02": "0110"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X114Y126/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:359.7-362.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26700 ],
+            "IN2": [ 26700 ],
+            "IN1": [ 26699 ],
+            "IN3": [ 26729 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$702": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O1": "00",
+            "INIT_L20": "1000",
+            "INIT_L11": "0110",
+            "INIT_L03": "1010",
+            "INIT_L02": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X117Y126/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:324.7-327.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "I4": "input",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26732 ],
+            "I4": [  ],
+            "IN2": [ 26726 ],
+            "IN1": [ 26728 ],
+            "IN3": [ 26732 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$701": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "C_O1": "11",
+            "INIT_L20": "1000",
+            "INIT_L11": "1000",
+            "INIT_L03": "1000",
+            "INIT_L02": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X117Y127/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:418.7-421.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT": "output",
+            "I4": "input",
+            "IN3": "input",
+            "IN2": "input",
+            "IN1": "input",
+            "IN4": "input"
+          },
+          "connections": {
+            "OUT": [ 26733 ],
+            "I4": [  ],
+            "IN3": [ 26732 ],
+            "IN2": [ 26728 ],
+            "IN1": [ 26725 ],
+            "IN4": [ 26722 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$700": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "C_2D_IN": "1",
+            "FF_INIT": "10",
+            "C_CPE_SET": "11",
+            "C_CPE_RES": "11",
+            "C_CPE_CLK": "10",
+            "C_CPE_EN": "11",
+            "C_O2": "00",
+            "INIT_L10": "1000",
+            "INIT_L01": "1010",
+            "INIT_L00": "0110"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X116Y127/CPE_HALF_U",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:359.7-362.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "SR": "input",
+            "CLK": "input",
+            "EN": "input",
+            "OUT": "output",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "SR": [  ],
+            "CLK": [ 26808 ],
+            "EN": [  ],
+            "OUT": [ 26728 ],
+            "IN2": [ 26726 ],
+            "IN1": [ 26728 ],
+            "IN3": [ 26729 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$699": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "C_O1": "11",
+            "INIT_L11": "1000",
+            "INIT_L03": "1010",
+            "INIT_L02": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X116Y127/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:113.7-116.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT": "output",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "OUT": [ 26726 ],
+            "IN2": [ 26725 ],
+            "IN1": [ 26724 ],
+            "IN3": [ 26722 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$698": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "C_O1": "11",
+            "INIT_L20": "1000",
+            "INIT_L11": "1000",
+            "INIT_L03": "1000",
+            "INIT_L02": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X115Y127/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:418.7-421.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT": "output",
+            "I4": "input",
+            "IN3": "input",
+            "IN2": "input",
+            "IN1": "input",
+            "IN4": "input"
+          },
+          "connections": {
+            "OUT": [ 26722 ],
+            "I4": [  ],
+            "IN3": [ 26721 ],
+            "IN2": [ 26720 ],
+            "IN1": [ 26717 ],
+            "IN4": [ 26714 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$697": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "C_O2": "11",
+            "INIT_L10": "1000",
+            "INIT_L01": "1010",
+            "INIT_L00": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X115Y128/CPE_HALF_U",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:113.7-116.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT": "output",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "OUT": [ 26718 ],
+            "IN2": [ 26717 ],
+            "IN1": [ 26716 ],
+            "IN3": [ 26714 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$696": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "C_O1": "11",
+            "INIT_L20": "1000",
+            "INIT_L11": "1000",
+            "INIT_L03": "1000",
+            "INIT_L02": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X114Y127/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:418.7-421.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT": "output",
+            "I4": "input",
+            "IN3": "input",
+            "IN2": "input",
+            "IN1": "input",
+            "IN4": "input"
+          },
+          "connections": {
+            "OUT": [ 26714 ],
+            "I4": [  ],
+            "IN3": [ 26713 ],
+            "IN2": [ 26712 ],
+            "IN1": [ 26709 ],
+            "IN4": [ 26706 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$695": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "C_O1": "11",
+            "INIT_L11": "1000",
+            "INIT_L03": "1010",
+            "INIT_L02": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X113Y127/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:113.7-116.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT": "output",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "OUT": [ 26710 ],
+            "IN2": [ 26709 ],
+            "IN1": [ 26708 ],
+            "IN3": [ 26706 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$694": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "C_O1": "11",
+            "INIT_L20": "1000",
+            "INIT_L11": "1000",
+            "INIT_L03": "1000",
+            "INIT_L02": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X114Y125/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:418.7-421.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT": "output",
+            "I4": "input",
+            "IN3": "input",
+            "IN2": "input",
+            "IN1": "input",
+            "IN4": "input"
+          },
+          "connections": {
+            "OUT": [ 26706 ],
+            "I4": [  ],
+            "IN3": [ 26704 ],
+            "IN2": [ 26701 ],
+            "IN1": [ 26700 ],
+            "IN4": [ 26705 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$693": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "C_O2": "11",
+            "INIT_L10": "1000",
+            "INIT_L01": "1010",
+            "INIT_L00": "1000"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X115Y126/CPE_HALF_U",
+            "src": "/usr/local/bin/../share/yosys/gatemate/lut_tree_map.v:113.7-116.6",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT": "output",
+            "IN2": "input",
+            "IN1": "input",
+            "IN3": "input"
+          },
+          "connections": {
+            "OUT": [ 26702 ],
+            "IN2": [ 26700 ],
+            "IN1": [ 26699 ],
+            "IN3": [ 26701 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$692": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "INIT_L11": "1010",
+            "C_O1": "11",
+            "INIT_L02": "0101"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X127Y130/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/inv_map.v:3.26-3.59",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT": "output",
+            "IN1": "input"
+          },
+          "connections": {
+            "OUT": [ 26697 ],
+            "IN1": [ 26696 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$691": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "INIT_L11": "1010",
+            "C_O1": "11",
+            "INIT_L02": "0101"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X128Y130/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/inv_map.v:3.26-3.59",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT": "output",
+            "IN1": "input"
+          },
+          "connections": {
+            "OUT": [ 26694 ],
+            "IN1": [ 26693 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$690": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "INIT_L11": "1010",
+            "C_O1": "11",
+            "INIT_L02": "0101"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X126Y130/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/inv_map.v:3.26-3.59",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT": "output",
+            "IN1": "input"
+          },
+          "connections": {
+            "OUT": [ 26691 ],
+            "IN1": [ 26690 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$689": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "INIT_L11": "1010",
+            "C_O1": "11",
+            "INIT_L02": "0101"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X123Y129/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/inv_map.v:3.26-3.59",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT": "output",
+            "IN1": "input"
+          },
+          "connections": {
+            "OUT": [ 26688 ],
+            "IN1": [ 26687 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$688": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "INIT_L10": "1010",
+            "C_O2": "11",
+            "INIT_L00": "0101"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X121Y129/CPE_HALF_U",
+            "src": "/usr/local/bin/../share/yosys/gatemate/inv_map.v:3.26-3.59",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT": "output",
+            "IN1": "input"
+          },
+          "connections": {
+            "OUT": [ 26685 ],
+            "IN1": [ 26684 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$687": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "INIT_L11": "1010",
+            "C_O1": "11",
+            "INIT_L02": "0101"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X117Y129/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/inv_map.v:3.26-3.59",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT": "output",
+            "IN1": "input"
+          },
+          "connections": {
+            "OUT": [ 26682 ],
+            "IN1": [ 26681 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$686": {
+          "hide_name": 1,
+          "type": "CPE_HALF_U",
+          "parameters": {
+            "INIT_L10": "1010",
+            "C_O2": "11",
+            "INIT_L00": "0101"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X117Y129/CPE_HALF_U",
+            "src": "/usr/local/bin/../share/yosys/gatemate/inv_map.v:3.26-3.59",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT": "output",
+            "IN1": "input"
+          },
+          "connections": {
+            "OUT": [ 26679 ],
+            "IN1": [ 26678 ]
+          }
+        },
+        "$abc$683$auto$blifparse.cc:396:parse_blif$685": {
+          "hide_name": 1,
+          "type": "CPE_HALF_L",
+          "parameters": {
+            "INIT_L20": "1100",
+            "INIT_L11": "1010",
+            "C_O1": "11",
+            "INIT_L02": "0101"
+          },
+          "attributes": {
+            "BEL_STRENGTH": "00000000000000000000000000000001",
+            "NEXTPNR_BEL": "X113Y129/CPE_HALF_L",
+            "src": "/usr/local/bin/../share/yosys/gatemate/inv_map.v:3.26-3.59",
+            "module_not_derived": "00000000000000000000000000000001"
+          },
+          "port_directions": {
+            "OUT": "output",
+            "IN1": "input"
+          },
+          "connections": {
+            "OUT": [ 26675 ],
+            "IN1": [ 26674 ]
+          }
+        }
+      },
+      "netnames": {
+        "$iopadmap$top.led_2$OUT1_cpe_half$ram_o": {
+          "hide_name": 1,
+          "bits": [ 26997 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$iopadmap$top.led_3$OUT1_cpe_half$ram_o": {
+          "hide_name": 1,
+          "bits": [ 26995 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$iopadmap$top.led_4$OUT1_cpe_half$ram_o": {
+          "hide_name": 1,
+          "bits": [ 26993 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$iopadmap$top.led_5$OUT1_cpe_half$ram_o": {
+          "hide_name": 1,
+          "bits": [ 26991 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$iopadmap$top.led_6$OUT1_cpe_half$ram_o": {
+          "hide_name": 1,
+          "bits": [ 26989 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$iopadmap$top.led_7$OUT1_cpe_half$ram_o": {
+          "hide_name": 1,
+          "bits": [ 26987 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "led[0]": {
+          "hide_name": 0,
+          "bits": [ 26959 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:5.25-5.28"
+          }
+        },
+        "clk": {
+          "hide_name": 0,
+          "bits": [ 26667 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:2.12-2.15"
+          }
+        },
+        "$iopadmap$top.led_1$OUT1_cpe_half$ram_o": {
+          "hide_name": 1,
+          "bits": [ 26999 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$iopadmap$top.led$OUT1_cpe_half$ram_o": {
+          "hide_name": 1,
+          "bits": [ 27001 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "rst": {
+          "hide_name": 0,
+          "bits": [ 26669 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:3.12-3.15"
+          }
+        },
+        "led[7]": {
+          "hide_name": 0,
+          "bits": [ 26973 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:5.25-5.28"
+          }
+        },
+        "led[6]": {
+          "hide_name": 0,
+          "bits": [ 26971 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:5.25-5.28"
+          }
+        },
+        "led[5]": {
+          "hide_name": 0,
+          "bits": [ 26969 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:5.25-5.28"
+          }
+        },
+        "led[4]": {
+          "hide_name": 0,
+          "bits": [ 26967 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:5.25-5.28"
+          }
+        },
+        "led[3]": {
+          "hide_name": 0,
+          "bits": [ 26965 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:5.25-5.28"
+          }
+        },
+        "led[2]": {
+          "hide_name": 0,
+          "bits": [ 26963 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:5.25-5.28"
+          }
+        },
+        "led[1]": {
+          "hide_name": 0,
+          "bits": [ 26961 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:5.25-5.28"
+          }
+        },
+        "$iopadmap$clk": {
+          "hide_name": 1,
+          "bits": [ 26808 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$auto$clkbufmap.cc:262:execute$789": {
+          "hide_name": 1,
+          "bits": [ 26807 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$568": {
+          "hide_name": 1,
+          "bits": [ 26805 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$596": {
+          "hide_name": 1,
+          "bits": [ 26803 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$594": {
+          "hide_name": 1,
+          "bits": [ 26801 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$592": {
+          "hide_name": 1,
+          "bits": [ 26799 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$624": {
+          "hide_name": 1,
+          "bits": [ 26797 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$622": {
+          "hide_name": 1,
+          "bits": [ 26795 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$590": {
+          "hide_name": 1,
+          "bits": [ 26793 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$620": {
+          "hide_name": 1,
+          "bits": [ 26791 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$new_n111": {
+          "hide_name": 1,
+          "bits": [ 26789 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$618": {
+          "hide_name": 1,
+          "bits": [ 26787 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$new_n109": {
+          "hide_name": 1,
+          "bits": [ 26785 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$588": {
+          "hide_name": 1,
+          "bits": [ 26783 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$616": {
+          "hide_name": 1,
+          "bits": [ 26781 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$614": {
+          "hide_name": 1,
+          "bits": [ 26779 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$new_n105": {
+          "hide_name": 1,
+          "bits": [ 26777 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$586": {
+          "hide_name": 1,
+          "bits": [ 26775 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$612": {
+          "hide_name": 1,
+          "bits": [ 26773 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$new_n102": {
+          "hide_name": 1,
+          "bits": [ 26771 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$610": {
+          "hide_name": 1,
+          "bits": [ 26769 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$584": {
+          "hide_name": 1,
+          "bits": [ 26767 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$582": {
+          "hide_name": 1,
+          "bits": [ 26765 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$580": {
+          "hide_name": 1,
+          "bits": [ 26763 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$578": {
+          "hide_name": 1,
+          "bits": [ 26761 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$576": {
+          "hide_name": 1,
+          "bits": [ 26759 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$574": {
+          "hide_name": 1,
+          "bits": [ 26757 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$608": {
+          "hide_name": 1,
+          "bits": [ 26755 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$new_n93": {
+          "hide_name": 1,
+          "bits": [ 26753 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "counter[20]": {
+          "hide_name": 0,
+          "bits": [ 26752 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$606": {
+          "hide_name": 1,
+          "bits": [ 26750 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "counter[19]": {
+          "hide_name": 0,
+          "bits": [ 26749 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$572": {
+          "hide_name": 1,
+          "bits": [ 26747 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$604": {
+          "hide_name": 1,
+          "bits": [ 26745 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$new_n89": {
+          "hide_name": 1,
+          "bits": [ 26743 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "counter[18]": {
+          "hide_name": 0,
+          "bits": [ 26742 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$602": {
+          "hide_name": 1,
+          "bits": [ 26740 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "counter[17]": {
+          "hide_name": 0,
+          "bits": [ 26739 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$570": {
+          "hide_name": 1,
+          "bits": [ 26737 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$600": {
+          "hide_name": 1,
+          "bits": [ 26735 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$new_n85": {
+          "hide_name": 1,
+          "bits": [ 26733 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "counter[16]": {
+          "hide_name": 0,
+          "bits": [ 26732 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "$abc$683$auto$rtlil.cc:2985:MuxGate$598": {
+          "hide_name": 1,
+          "bits": [ 26730 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "$abc$683$iopadmap$rst": {
+          "hide_name": 1,
+          "bits": [ 26729 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "counter[15]": {
+          "hide_name": 0,
+          "bits": [ 26728 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "$abc$683$new_n83": {
+          "hide_name": 1,
+          "bits": [ 26726 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "counter[14]": {
+          "hide_name": 0,
+          "bits": [ 26725 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "counter[13]": {
+          "hide_name": 0,
+          "bits": [ 26724 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "$abc$683$new_n82": {
+          "hide_name": 1,
+          "bits": [ 26722 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "counter[12]": {
+          "hide_name": 0,
+          "bits": [ 26721 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "counter[11]": {
+          "hide_name": 0,
+          "bits": [ 26720 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "$abc$683$new_n81": {
+          "hide_name": 1,
+          "bits": [ 26718 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "counter[10]": {
+          "hide_name": 0,
+          "bits": [ 26717 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "counter[9]": {
+          "hide_name": 0,
+          "bits": [ 26716 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "$abc$683$new_n80": {
+          "hide_name": 1,
+          "bits": [ 26714 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "counter[8]": {
+          "hide_name": 0,
+          "bits": [ 26713 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "counter[7]": {
+          "hide_name": 0,
+          "bits": [ 26712 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "$abc$683$new_n79": {
+          "hide_name": 1,
+          "bits": [ 26710 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "counter[6]": {
+          "hide_name": 0,
+          "bits": [ 26709 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "counter[5]": {
+          "hide_name": 0,
+          "bits": [ 26708 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "$abc$683$new_n78": {
+          "hide_name": 1,
+          "bits": [ 26706 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "counter[4]": {
+          "hide_name": 0,
+          "bits": [ 26705 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "counter[3]": {
+          "hide_name": 0,
+          "bits": [ 26704 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "$abc$683$new_n77": {
+          "hide_name": 1,
+          "bits": [ 26702 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "counter[2]": {
+          "hide_name": 0,
+          "bits": [ 26701 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "counter[1]": {
+          "hide_name": 0,
+          "bits": [ 26700 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "counter[0]": {
+          "hide_name": 0,
+          "bits": [ 26699 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "$abc$683$iopadmap$led[7]": {
+          "hide_name": 1,
+          "bits": [ 26697 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "counter[28]": {
+          "hide_name": 0,
+          "bits": [ 26696 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "$abc$683$iopadmap$led[6]": {
+          "hide_name": 1,
+          "bits": [ 26694 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "counter[27]": {
+          "hide_name": 0,
+          "bits": [ 26693 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "$abc$683$iopadmap$led[5]": {
+          "hide_name": 1,
+          "bits": [ 26691 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "counter[26]": {
+          "hide_name": 0,
+          "bits": [ 26690 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "$abc$683$iopadmap$led[4]": {
+          "hide_name": 1,
+          "bits": [ 26688 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "counter[25]": {
+          "hide_name": 0,
+          "bits": [ 26687 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "$abc$683$iopadmap$led[3]": {
+          "hide_name": 1,
+          "bits": [ 26685 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "counter[24]": {
+          "hide_name": 0,
+          "bits": [ 26684 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "$abc$683$iopadmap$led[2]": {
+          "hide_name": 1,
+          "bits": [ 26682 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "counter[23]": {
+          "hide_name": 0,
+          "bits": [ 26681 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "$abc$683$iopadmap$led[1]": {
+          "hide_name": 1,
+          "bits": [ 26679 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "counter[22]": {
+          "hide_name": 0,
+          "bits": [ 26678 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        },
+        "$abc$683$iopadmap$led[0]": {
+          "hide_name": 1,
+          "bits": [ 26675 ] ,
+          "attributes": {
+            "ROUTING": " "
+          }
+        },
+        "counter[21]": {
+          "hide_name": 0,
+          "bits": [ 26674 ] ,
+          "attributes": {
+            "ROUTING": " ",
+            "src": "top.v:11.30-11.37"
+          }
+        }
+      }
+    }
+  }
+}
