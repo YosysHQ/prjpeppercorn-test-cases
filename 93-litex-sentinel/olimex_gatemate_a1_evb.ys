@@ -1,0 +1,9 @@
+verilog_defaults -push
+verilog_defaults -add -defer
+read_verilog /home/micko/src/litex/litex-boards/litex_boards/targets/build/olimex_gatemate_a1_evb/gateware/sentinel.v
+read_verilog /home/micko/src/litex/litex-boards/litex_boards/targets/build/olimex_gatemate_a1_evb/gateware/olimex_gatemate_a1_evb.v
+verilog_defaults -pop
+attrmap -tocase keep -imap keep="true" keep=1 -imap keep="false" keep=0 -remove keep=0
+
+synth_gatemate -nomx8  -top olimex_gatemate_a1_evb
+write_verilog  olimex_gatemate_a1_evb_synth.v
