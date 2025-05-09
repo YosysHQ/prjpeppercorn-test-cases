@@ -1,0 +1,56 @@
+TEST_CASE := litex-mor1kx
+TOP := olimex_gatemate_a1_evb
+YOSYS_PARAM := -nomx8 -nomult
+VERILOG_FILES := \
+	mor1kx_icache.v \
+	mor1kx_fetch_tcm_prontoespresso.v \
+	mor1kx_branch_prediction.v \
+	mor1kx_utils.vh \
+	mor1kx_pic.v \
+	mor1kx_rf_espresso.v \
+	mor1kx_lsu_espresso.v \
+	mor1kx_ctrl_espresso.v \
+	mor1kx_cpu_espresso.v \
+	mor1kx_ctrl_cappuccino.v \
+	mor1kx.v \
+	mor1kx_wb_mux_cappuccino.v \
+	mor1kx_wb_mux_espresso.v \
+	mor1kx_cache_lru.v \
+	mor1kx_fetch_espresso.v \
+	mor1kx_decode.v \
+	mor1kx_branch_predictor_saturation_counter.v \
+	mor1kx_lsu_cappuccino.v \
+	mor1kx_store_buffer.v \
+	mor1kx_execute_alu.v \
+	mor1kx_cpu_prontoespresso.v \
+	mor1kx-defines.v \
+	mor1kx_immu.v \
+	mor1kx_fetch_prontoespresso.v \
+	mor1kx_branch_predictor_simple.v \
+	mor1kx_branch_predictor_gshare.v \
+	mor1kx_decode_execute_cappuccino.v \
+	mor1kx_rf_cappuccino.v \
+	mor1kx_cpu_cappuccino.v \
+	mor1kx_simple_dpram_sclk.v \
+	mor1kx_dmmu.v \
+	mor1kx_fetch_cappuccino.v \
+	mor1kx_bus_if_wb32.v \
+	mor1kx_true_dpram_sclk.v \
+	mor1kx_cfgrs.v \
+	mor1kx_cpu.v \
+	mor1kx_dcache.v \
+	mor1kx_ticktimer.v \
+	mor1kx_ctrl_prontoespresso.v \
+	mor1kx-sprs.v \
+	mor1kx_pcu.v \
+	mor1kx_execute_ctrl_cappuccino.v \
+	pfpu32/pfpu32_rnd.v \
+	pfpu32/pfpu32_muldiv.v \
+	pfpu32/pfpu32_f2i.v \
+	pfpu32/pfpu32_cmp.v \
+	pfpu32/pfpu32_top.v \
+	pfpu32/pfpu32_i2f.v \
+	pfpu32/pfpu32_addsub.v \
+	olimex_gatemate_a1_evb.v
+
+include ../makefile.inc
