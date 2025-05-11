@@ -1,4 +1,4 @@
-TEST_CASE := vga-2dshaplineses
+TEST_CASE := vga-lines
 TOP := top_demo
 YOSYS_PARAM := -nomx8 -nomult
 VERILOG_FILES := \
