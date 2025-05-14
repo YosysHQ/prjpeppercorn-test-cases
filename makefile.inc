@@ -25,6 +25,10 @@ else
 OFL_BOARD=gatemate_evb_jtag
 endif
 
+ifdef SEED
+SEED_OPT=--seed $(SEED)
+endif
+
 all:
 	@echo "Use one of targets for '$(BOARD)' board:"
 	@echo " - synth - running Yosys synthesys only"
@@ -54,7 +58,7 @@ $(TEST_CASE)_$(BOARD)_00.cfg: $(TEST_CASE)_synth.v $(BOARD).ccf
 
 $(TEST_CASE)_$(BOARD).txt: $(TEST_CASE).json $(BOARD).ccf
 	@echo "Running nextpnr for '$(BOARD)' board"
-	@$(NEXTPNR) --device CCGM1A1 --json $(TEST_CASE).json --vopt ccf=$(BOARD).ccf --vopt out=$(TEST_CASE)_$(BOARD).txt --router router2 --freq 10
+	@$(NEXTPNR) --device CCGM1A1 --json $(TEST_CASE).json --vopt ccf=$(BOARD).ccf --vopt out=$(TEST_CASE)_$(BOARD).txt --router router2 --freq 10 $(SEED_OPT)
 
 $(TEST_CASE)_$(BOARD)_00.txt: $(TEST_CASE)_$(BOARD)_00.cfg
 	@echo "Running unpack for '$(BOARD)' board"
@@ -79,5 +83,8 @@ clean:
 	@rm -rf *.log *_synth.v *.history *.txt *.refwire *.refparam
 	@rm -rf *.refcomp *.pos *.pathes *.path_struc *.net *.id *.prn
 	@rm -rf *_00.v *.used *.sdf *.place *.pin *.cfg *.bit  *.cdf *.idh *.min *.json
+
+clean-bit:
+	@rm -rf $(TEST_CASE)_$(BOARD).txt $(TEST_CASE)_$(BOARD).bit
 
 .PHONY: synth json pr nextpnr jtag_pr jtag unpack
