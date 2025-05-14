@@ -1,0 +1,5 @@
+Net "clk0" Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+Net "user_btn_n0" Loc = "IO_SB_B7";
+Net "serial_tx" Loc = "IO_SA_B6";
+Net "serial_rx" Loc = "IO_SA_A6";
+Net "user_led_n0" Loc = "IO_SB_B6";
