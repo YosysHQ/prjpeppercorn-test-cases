@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 import re
 import subprocess
@@ -27,6 +29,8 @@ def stress(seed, base_dir, test):
             if match and int(match.group(1)) == test:
                 filtered_subdirs.append(d)
         subdirs = filtered_subdirs
+        if len(subdirs)==0:
+            raise click.ClickException("Test not found")
 
     for dir in subdirs:
         if os.path.exists(os.path.join(base_dir,dir,"Makefile")):
