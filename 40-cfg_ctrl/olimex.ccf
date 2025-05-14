@@ -1,0 +1,12 @@
+Net "CLK"  Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+Net "EN" Loc = "IO_SB_B7";
+Net "DATA[0]" Loc = "IO_WB_B3";
+Net "DATA[1]" Loc = "IO_WB_A3";
+Net "DATA[2]" Loc = "IO_WB_B2";
+Net "DATA[3]" Loc = "IO_WB_A2";
+Net "DATA[4]" Loc = "IO_WB_B5";
+Net "DATA[5]" Loc = "IO_WB_A5";
+Net "DATA[6]" Loc = "IO_WB_B4";
+Net "DATA[7]" Loc = "IO_WB_A4";
+Net "RECFG" Loc = "IO_WB_A1";
+Net "VALID" Loc = "IO_WB_B1";
