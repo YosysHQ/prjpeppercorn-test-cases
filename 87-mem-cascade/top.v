@@ -141,7 +141,7 @@ module top (
 //reg memory [0:32767];
 reg memory [0:65535];
 
-reg [11:0] rom_address = 0;
+reg [15:0] rom_address = 16'h0000;
 reg val = 0;
 always @(posedge clk) begin
     if (tx_ready) begin
