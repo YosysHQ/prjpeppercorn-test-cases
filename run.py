@@ -64,7 +64,11 @@ def run(base_dir, test):
             except subprocess.CalledProcessError as e:
                 duration = time.time() - start_time
                 click.secho(f" {duration:.2f} seconds ", nl=False)
-                click.secho("Failure ", fg="red")
+                error_line = next((line for line in e.stdout.decode().splitlines() if line.startswith("ERROR:")), None)
+                if error_line:
+                    click.secho(error_line, fg="red")
+                else:
+                    click.secho("Failure ", fg="red")
                 with open(log_file, "w") as out_f:
                     out_f.write(e.stdout.decode() if e.stdout else "")
 
