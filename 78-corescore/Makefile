@@ -45,4 +45,8 @@ VERILOG_FILES := \
 #	corescore-corescorecore_0/corescorecore_25.v
 #	corescore-corescorecore_0/corescorecore_45.v
 #   corescore-corescorecore_0/corescorecore_50.v
+#   corescore-corescorecore_0/corescorecore_55.v
+#   corescore-corescorecore_0/corescorecore_60.v
+#   corescore-corescorecore_0/corescorecore_64.v
+#   corescore-corescorecore_0/corescorecore_70.v
 include ../makefile.inc
