@@ -15,7 +15,7 @@ wire  [54:0] tvalid;
 wire  [54:0] tready;
 
 base
-  #(.memfile ("core_0.hex"),
+  #(.memfile ("hex/core_0.hex"),
     .memsize (256))
  core_0
    (.i_clk    (i_clk),
@@ -26,7 +26,7 @@ base
     .i_tready (tready[0]));
 
 base
-  #(.memfile ("core_1.hex"),
+  #(.memfile ("hex/core_1.hex"),
     .memsize (256))
  core_1
    (.i_clk    (i_clk),
@@ -37,7 +37,7 @@ base
     .i_tready (tready[1]));
 
 base
-  #(.memfile ("core_2.hex"),
+  #(.memfile ("hex/core_2.hex"),
     .memsize (256))
  core_2
    (.i_clk    (i_clk),
@@ -48,7 +48,7 @@ base
     .i_tready (tready[2]));
 
 base
-  #(.memfile ("core_3.hex"),
+  #(.memfile ("hex/core_3.hex"),
     .memsize (256))
  core_3
    (.i_clk    (i_clk),
@@ -59,7 +59,7 @@ base
     .i_tready (tready[3]));
 
 base
-  #(.memfile ("core_4.hex"),
+  #(.memfile ("hex/core_4.hex"),
     .memsize (256))
  core_4
    (.i_clk    (i_clk),
@@ -70,7 +70,7 @@ base
     .i_tready (tready[4]));
 
 base
-  #(.memfile ("core_5.hex"),
+  #(.memfile ("hex/core_5.hex"),
     .memsize (256))
  core_5
    (.i_clk    (i_clk),
@@ -81,7 +81,7 @@ base
     .i_tready (tready[5]));
 
 base
-  #(.memfile ("core_6.hex"),
+  #(.memfile ("hex/core_6.hex"),
     .memsize (256))
  core_6
    (.i_clk    (i_clk),
@@ -92,7 +92,7 @@ base
     .i_tready (tready[6]));
 
 base
-  #(.memfile ("core_7.hex"),
+  #(.memfile ("hex/core_7.hex"),
     .memsize (256))
  core_7
    (.i_clk    (i_clk),
@@ -103,7 +103,7 @@ base
     .i_tready (tready[7]));
 
 base
-  #(.memfile ("core_8.hex"),
+  #(.memfile ("hex/core_8.hex"),
     .memsize (256))
  core_8
    (.i_clk    (i_clk),
@@ -114,7 +114,7 @@ base
     .i_tready (tready[8]));
 
 base
-  #(.memfile ("core_9.hex"),
+  #(.memfile ("hex/core_9.hex"),
     .memsize (256))
  core_9
    (.i_clk    (i_clk),
@@ -125,7 +125,7 @@ base
     .i_tready (tready[9]));
 
 base
-  #(.memfile ("core_10.hex"),
+  #(.memfile ("hex/core_10.hex"),
     .memsize (256))
  core_10
    (.i_clk    (i_clk),
@@ -136,7 +136,7 @@ base
     .i_tready (tready[10]));
 
 base
-  #(.memfile ("core_11.hex"),
+  #(.memfile ("hex/core_11.hex"),
     .memsize (256))
  core_11
    (.i_clk    (i_clk),
@@ -147,7 +147,7 @@ base
     .i_tready (tready[11]));
 
 base
-  #(.memfile ("core_12.hex"),
+  #(.memfile ("hex/core_12.hex"),
     .memsize (256))
  core_12
    (.i_clk    (i_clk),
@@ -158,7 +158,7 @@ base
     .i_tready (tready[12]));
 
 base
-  #(.memfile ("core_13.hex"),
+  #(.memfile ("hex/core_13.hex"),
     .memsize (256))
  core_13
    (.i_clk    (i_clk),
@@ -169,7 +169,7 @@ base
     .i_tready (tready[13]));
 
 base
-  #(.memfile ("core_14.hex"),
+  #(.memfile ("hex/core_14.hex"),
     .memsize (256))
  core_14
    (.i_clk    (i_clk),
@@ -180,7 +180,7 @@ base
     .i_tready (tready[14]));
 
 base
-  #(.memfile ("core_15.hex"),
+  #(.memfile ("hex/core_15.hex"),
     .memsize (256))
  core_15
    (.i_clk    (i_clk),
@@ -191,7 +191,7 @@ base
     .i_tready (tready[15]));
 
 base
-  #(.memfile ("core_16.hex"),
+  #(.memfile ("hex/core_16.hex"),
     .memsize (256))
  core_16
    (.i_clk    (i_clk),
@@ -202,7 +202,7 @@ base
     .i_tready (tready[16]));
 
 base
-  #(.memfile ("core_17.hex"),
+  #(.memfile ("hex/core_17.hex"),
     .memsize (256))
  core_17
    (.i_clk    (i_clk),
@@ -213,7 +213,7 @@ base
     .i_tready (tready[17]));
 
 base
-  #(.memfile ("core_18.hex"),
+  #(.memfile ("hex/core_18.hex"),
     .memsize (256))
  core_18
    (.i_clk    (i_clk),
@@ -224,7 +224,7 @@ base
     .i_tready (tready[18]));
 
 base
-  #(.memfile ("core_19.hex"),
+  #(.memfile ("hex/core_19.hex"),
     .memsize (256))
  core_19
    (.i_clk    (i_clk),
@@ -235,7 +235,7 @@ base
     .i_tready (tready[19]));
 
 base
-  #(.memfile ("core_20.hex"),
+  #(.memfile ("hex/core_20.hex"),
     .memsize (256))
  core_20
    (.i_clk    (i_clk),
@@ -246,7 +246,7 @@ base
     .i_tready (tready[20]));
 
 base
-  #(.memfile ("core_21.hex"),
+  #(.memfile ("hex/core_21.hex"),
     .memsize (256))
  core_21
    (.i_clk    (i_clk),
@@ -257,7 +257,7 @@ base
     .i_tready (tready[21]));
 
 base
-  #(.memfile ("core_22.hex"),
+  #(.memfile ("hex/core_22.hex"),
     .memsize (256))
  core_22
    (.i_clk    (i_clk),
@@ -268,7 +268,7 @@ base
     .i_tready (tready[22]));
 
 base
-  #(.memfile ("core_23.hex"),
+  #(.memfile ("hex/core_23.hex"),
     .memsize (256))
  core_23
    (.i_clk    (i_clk),
@@ -279,7 +279,7 @@ base
     .i_tready (tready[23]));
 
 base
-  #(.memfile ("core_24.hex"),
+  #(.memfile ("hex/core_24.hex"),
     .memsize (256))
  core_24
    (.i_clk    (i_clk),
@@ -290,7 +290,7 @@ base
     .i_tready (tready[24]));
 
 base
-  #(.memfile ("core_25.hex"),
+  #(.memfile ("hex/core_25.hex"),
     .memsize (256))
  core_25
    (.i_clk    (i_clk),
@@ -301,7 +301,7 @@ base
     .i_tready (tready[25]));
 
 base
-  #(.memfile ("core_26.hex"),
+  #(.memfile ("hex/core_26.hex"),
     .memsize (256))
  core_26
    (.i_clk    (i_clk),
@@ -312,7 +312,7 @@ base
     .i_tready (tready[26]));
 
 base
-  #(.memfile ("core_27.hex"),
+  #(.memfile ("hex/core_27.hex"),
     .memsize (256))
  core_27
    (.i_clk    (i_clk),
@@ -323,7 +323,7 @@ base
     .i_tready (tready[27]));
 
 base
-  #(.memfile ("core_28.hex"),
+  #(.memfile ("hex/core_28.hex"),
     .memsize (256))
  core_28
    (.i_clk    (i_clk),
@@ -334,7 +334,7 @@ base
     .i_tready (tready[28]));
 
 base
-  #(.memfile ("core_29.hex"),
+  #(.memfile ("hex/core_29.hex"),
     .memsize (256))
  core_29
    (.i_clk    (i_clk),
@@ -345,7 +345,7 @@ base
     .i_tready (tready[29]));
 
 base
-  #(.memfile ("core_30.hex"),
+  #(.memfile ("hex/core_30.hex"),
     .memsize (256))
  core_30
    (.i_clk    (i_clk),
@@ -356,7 +356,7 @@ base
     .i_tready (tready[30]));
 
 base
-  #(.memfile ("core_31.hex"),
+  #(.memfile ("hex/core_31.hex"),
     .memsize (256))
  core_31
    (.i_clk    (i_clk),
@@ -367,7 +367,7 @@ base
     .i_tready (tready[31]));
 
 base
-  #(.memfile ("core_32.hex"),
+  #(.memfile ("hex/core_32.hex"),
     .memsize (256))
  core_32
    (.i_clk    (i_clk),
@@ -378,7 +378,7 @@ base
     .i_tready (tready[32]));
 
 base
-  #(.memfile ("core_33.hex"),
+  #(.memfile ("hex/core_33.hex"),
     .memsize (256))
  core_33
    (.i_clk    (i_clk),
@@ -389,7 +389,7 @@ base
     .i_tready (tready[33]));
 
 base
-  #(.memfile ("core_34.hex"),
+  #(.memfile ("hex/core_34.hex"),
     .memsize (256))
  core_34
    (.i_clk    (i_clk),
@@ -400,7 +400,7 @@ base
     .i_tready (tready[34]));
 
 base
-  #(.memfile ("core_35.hex"),
+  #(.memfile ("hex/core_35.hex"),
     .memsize (256))
  core_35
    (.i_clk    (i_clk),
@@ -411,7 +411,7 @@ base
     .i_tready (tready[35]));
 
 base
-  #(.memfile ("core_36.hex"),
+  #(.memfile ("hex/core_36.hex"),
     .memsize (256))
  core_36
    (.i_clk    (i_clk),
@@ -422,7 +422,7 @@ base
     .i_tready (tready[36]));
 
 base
-  #(.memfile ("core_37.hex"),
+  #(.memfile ("hex/core_37.hex"),
     .memsize (256))
  core_37
    (.i_clk    (i_clk),
@@ -433,7 +433,7 @@ base
     .i_tready (tready[37]));
 
 base
-  #(.memfile ("core_38.hex"),
+  #(.memfile ("hex/core_38.hex"),
     .memsize (256))
  core_38
    (.i_clk    (i_clk),
@@ -444,7 +444,7 @@ base
     .i_tready (tready[38]));
 
 base
-  #(.memfile ("core_39.hex"),
+  #(.memfile ("hex/core_39.hex"),
     .memsize (256))
  core_39
    (.i_clk    (i_clk),
@@ -455,7 +455,7 @@ base
     .i_tready (tready[39]));
 
 base
-  #(.memfile ("core_40.hex"),
+  #(.memfile ("hex/core_40.hex"),
     .memsize (256))
  core_40
    (.i_clk    (i_clk),
@@ -466,7 +466,7 @@ base
     .i_tready (tready[40]));
 
 base
-  #(.memfile ("core_41.hex"),
+  #(.memfile ("hex/core_41.hex"),
     .memsize (256))
  core_41
    (.i_clk    (i_clk),
@@ -477,7 +477,7 @@ base
     .i_tready (tready[41]));
 
 base
-  #(.memfile ("core_42.hex"),
+  #(.memfile ("hex/core_42.hex"),
     .memsize (256))
  core_42
    (.i_clk    (i_clk),
@@ -488,7 +488,7 @@ base
     .i_tready (tready[42]));
 
 base
-  #(.memfile ("core_43.hex"),
+  #(.memfile ("hex/core_43.hex"),
     .memsize (256))
  core_43
    (.i_clk    (i_clk),
@@ -499,7 +499,7 @@ base
     .i_tready (tready[43]));
 
 base
-  #(.memfile ("core_44.hex"),
+  #(.memfile ("hex/core_44.hex"),
     .memsize (256))
  core_44
    (.i_clk    (i_clk),
@@ -510,7 +510,7 @@ base
     .i_tready (tready[44]));
 
 base
-  #(.memfile ("core_45.hex"),
+  #(.memfile ("hex/core_45.hex"),
     .memsize (256))
  core_45
    (.i_clk    (i_clk),
@@ -521,7 +521,7 @@ base
     .i_tready (tready[45]));
 
 base
-  #(.memfile ("core_46.hex"),
+  #(.memfile ("hex/core_46.hex"),
     .memsize (256))
  core_46
    (.i_clk    (i_clk),
@@ -532,7 +532,7 @@ base
     .i_tready (tready[46]));
 
 base
-  #(.memfile ("core_47.hex"),
+  #(.memfile ("hex/core_47.hex"),
     .memsize (256))
  core_47
    (.i_clk    (i_clk),
@@ -543,7 +543,7 @@ base
     .i_tready (tready[47]));
 
 base
-  #(.memfile ("core_48.hex"),
+  #(.memfile ("hex/core_48.hex"),
     .memsize (256))
  core_48
    (.i_clk    (i_clk),
@@ -554,7 +554,7 @@ base
     .i_tready (tready[48]));
 
 base
-  #(.memfile ("core_49.hex"),
+  #(.memfile ("hex/core_49.hex"),
     .memsize (256))
  core_49
    (.i_clk    (i_clk),
@@ -565,7 +565,7 @@ base
     .i_tready (tready[49]));
 
 base
-  #(.memfile ("core_50.hex"),
+  #(.memfile ("hex/core_50.hex"),
     .memsize (256))
  core_50
    (.i_clk    (i_clk),
@@ -576,7 +576,7 @@ base
     .i_tready (tready[50]));
 
 base
-  #(.memfile ("core_51.hex"),
+  #(.memfile ("hex/core_51.hex"),
     .memsize (256))
  core_51
    (.i_clk    (i_clk),
@@ -587,7 +587,7 @@ base
     .i_tready (tready[51]));
 
 base
-  #(.memfile ("core_52.hex"),
+  #(.memfile ("hex/core_52.hex"),
     .memsize (256))
  core_52
    (.i_clk    (i_clk),
@@ -598,7 +598,7 @@ base
     .i_tready (tready[52]));
 
 base
-  #(.memfile ("core_53.hex"),
+  #(.memfile ("hex/core_53.hex"),
     .memsize (256))
  core_53
    (.i_clk    (i_clk),
@@ -609,7 +609,7 @@ base
     .i_tready (tready[53]));
 
 base
-  #(.memfile ("core_54.hex"),
+  #(.memfile ("hex/core_54.hex"),
     .memsize (256))
  core_54
    (.i_clk    (i_clk),
