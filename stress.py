@@ -1,10 +1,28 @@
 #!/usr/bin/env python3
 
+import concurrent.futures
 import os
 import re
 import subprocess
 import shutil
 import click
+
+def build(logs_dir, dir, curr_seed, bar):
+    log_file = os.path.join(logs_dir, f"{dir}_{curr_seed}.log")
+    try:
+        result = subprocess.run(
+            ["make", "-C", dir, "BOARD=olimex", f"SEED={curr_seed}", "clean-bit", "nextpnr"],
+            check=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT
+        )
+        with open(log_file, "w") as out_f:
+            out_f.write(result.stdout.decode())
+        return True
+    except subprocess.CalledProcessError as e:
+        with open(log_file, "w") as out_f:
+            out_f.write(e.stdout.decode() if e.stdout else "")
+    return False
 
 @click.command()
 @click.option('--seed', default=100, help='Max seed numbers.')
@@ -34,7 +52,6 @@ def stress(seed, base_dir, test):
 
     for dir in subdirs:
         if os.path.exists(os.path.join(base_dir,dir,"Makefile")):
-
             click.secho("Running ", nl=False)
             click.secho(f"{dir}", bold=True)
             try:
@@ -50,22 +67,12 @@ def stress(seed, base_dir, test):
             items = list(range(0,seed))
             count = 0
             with click.progressbar(items, label='Processing items', length=len(items)) as bar:
-                for curr_seed in items:
-                    log_file = os.path.join(logs_dir, f"{dir}_{curr_seed}.log")
-                    try:
-                        result = subprocess.run(
-                            ["make", "-C", dir, "BOARD=olimex", f"SEED={curr_seed}", "clean-bit", "nextpnr"],
-                            check=True,
-                            stdout=subprocess.PIPE,
-                            stderr=subprocess.STDOUT
-                        )
-                        with open(log_file, "w") as out_f:
-                            out_f.write(result.stdout.decode())
-                        count += 1
-                    except subprocess.CalledProcessError as e:
-                        with open(log_file, "w") as out_f:
-                            out_f.write(e.stdout.decode() if e.stdout else "")
-                    bar.update(1)
+                with concurrent.futures.ThreadPoolExecutor(max_workers=os.process_cpu_count()) as executor:
+                    tasks = {executor.submit(build, logs_dir, dir, curr_seed, bar): curr_seed for curr_seed in items}
+                    for future in concurrent.futures.as_completed(tasks):
+                        bar.update(1)
+                        count += future.result()
+
             if (count == len(items)):
                 click.secho("Success", fg="green", nl=False)
             else:
