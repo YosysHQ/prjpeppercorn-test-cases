@@ -66,12 +66,16 @@ def stress(seed, base_dir, test):
 
             items = list(range(0,seed))
             count = 0
+            failed_seeds = []
             with click.progressbar(items, label='Processing items', length=len(items)) as bar:
                 with concurrent.futures.ThreadPoolExecutor(max_workers=os.process_cpu_count()) as executor:
                     tasks = {executor.submit(build, logs_dir, dir, curr_seed, bar): curr_seed for curr_seed in items}
                     for future in concurrent.futures.as_completed(tasks):
                         bar.update(1)
-                        count += future.result()
+                        if future.result():
+                            count += 1
+                        else:
+                            failed_seeds.append(tasks[future])
 
             if (count == len(items)):
                 click.secho("Success", fg="green", nl=False)
@@ -79,6 +83,9 @@ def stress(seed, base_dir, test):
                 click.secho("Failure", fg="red", nl=False)
             click.secho(f" {count}/{len(items)}")
             click.secho("")
+            if len(failed_seeds) > 0:
+                click.secho("Failed seeds:")
+                click.secho(failed_seeds)
 
 if __name__ == "__main__":
     stress()
