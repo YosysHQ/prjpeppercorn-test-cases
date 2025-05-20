@@ -1,0 +1,12 @@
+Net  "clk_10m"  Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+Net  "rst"  Loc = "IO_SB_B7" | PULLUP=true; # FPGA_BUT
+Net  "led"  Loc = "IO_SB_B6"; # LED D1
+Net  "uart_rx"  Loc = "IO_SA_A6";
+Net  "audio_l[0]"  Loc = "IO_SB_A0";
+Net  "audio_l[1]"  Loc = "IO_SB_B0";
+Net  "audio_l[2]"  Loc = "IO_SB_A1";
+Net  "audio_l[3]"  Loc = "IO_SB_B1";
+Net  "audio_r[0]"  Loc = "IO_SB_A2";
+Net  "audio_r[1]"  Loc = "IO_SB_B2";
+Net  "audio_r[2]"  Loc = "IO_SB_A3";
+Net  "audio_r[3]"  Loc = "IO_SB_B3";
