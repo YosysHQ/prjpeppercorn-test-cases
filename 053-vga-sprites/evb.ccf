@@ -1,0 +1,21 @@
+Pin_in  "clk_10m"  Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+
+Pin_in  "btn_rst_n" Loc = "IO_EB_B0" | PULLUP=true; # SW3
+
+# PMOD A
+Pin_out "vga_r[0]" Loc = "IO_NB_A0";
+Pin_out "vga_r[1]" Loc = "IO_NB_A1";
+Pin_out "vga_r[2]" Loc = "IO_NB_A2";
+Pin_out "vga_r[3]" Loc = "IO_NB_A3";
+Pin_out "vga_b[0]" Loc = "IO_NB_B0";
+Pin_out "vga_b[1]" Loc = "IO_NB_B1";
+Pin_out "vga_b[2]" Loc = "IO_NB_B2";
+Pin_out "vga_b[3]" Loc = "IO_NB_B3";
+
+# PMOD B
+Pin_out "vga_g[0]"  Loc = "IO_NB_A4";
+Pin_out "vga_g[1]"  Loc = "IO_NB_A5";
+Pin_out "vga_g[2]"  Loc = "IO_NB_A6";
+Pin_out "vga_g[3]"  Loc = "IO_NB_A7";
+Pin_out "vga_hsync" Loc = "IO_NB_B4";
+Pin_out "vga_vsync" Loc = "IO_NB_B5";

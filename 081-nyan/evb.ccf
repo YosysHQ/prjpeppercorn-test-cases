@@ -1,0 +1,21 @@
+Pin_in  "clk_10m"  Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+
+Pin_in  "rst_n" Loc = "IO_EB_B0" | PULLUP=true; # SW3
+
+# PMOD A
+Pin_out "R[0]" Loc = "IO_NB_A0";
+Pin_out "R[1]" Loc = "IO_NB_A1";
+Pin_out "R[2]" Loc = "IO_NB_A2";
+Pin_out "R[3]" Loc = "IO_NB_A3";
+Pin_out "B[0]" Loc = "IO_NB_B0";
+Pin_out "B[1]" Loc = "IO_NB_B1";
+Pin_out "B[2]" Loc = "IO_NB_B2";
+Pin_out "B[3]" Loc = "IO_NB_B3";
+
+# PMOD B
+Pin_out "G[0]"  Loc = "IO_NB_A4";
+Pin_out "G[1]"  Loc = "IO_NB_A5";
+Pin_out "G[2]"  Loc = "IO_NB_A6";
+Pin_out "G[3]"  Loc = "IO_NB_A7";
+Pin_out "hsync" Loc = "IO_NB_B4";
+Pin_out "vsync" Loc = "IO_NB_B5";
