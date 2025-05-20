@@ -31,7 +31,7 @@ module top (
         else
             counter_1 <= counter_1 + 1;
 	end
-    always @(posedge clk_2) begin
+    always @(posedge clk) begin
         if (~rst)
             counter_2 <= 0;
         else
