@@ -1,0 +1,4 @@
+Net  "clk"  Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+Net  "led"  Loc = "IO_EB_B1"; # D1
+Net  "uart_rx"  Loc = "IO_NB_A2";
+Net  "uart_tx"  Loc = "IO_NB_A1";

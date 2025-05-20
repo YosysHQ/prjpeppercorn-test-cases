@@ -1,0 +1,6 @@
+Pin_in   "clk"  Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+Pin_in   "rst"  Loc = "IO_EB_B0"; # SW3
+
+# leds
+Pin_out   "led1"   Loc = "IO_EB_B1"; # LED D1
+Pin_out   "led2"   Loc = "IO_EB_B2"; # LED D2

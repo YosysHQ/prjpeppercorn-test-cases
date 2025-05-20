@@ -1,0 +1,4 @@
+Net "XCLK" Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+Net "XRES" Loc = "IO_EB_B0" | PULLUP=true;
+Net "UART_TXD" Loc = "IO_NB_A1";
+Net "UART_RXD" Loc = "IO_NB_A2";
