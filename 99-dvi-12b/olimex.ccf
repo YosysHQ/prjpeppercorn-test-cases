@@ -1,0 +1,22 @@
+Pin_in   "clk"  Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+Pin_in   "rst"  Loc = "IO_SB_B7" | PULLUP=true; # FPGA_BUT
+
+# Bank NA1 - PMOD 1
+Net "hdmi_r[2]" Loc = "IO_NA_B0";
+Net "hdmi_r[0]" Loc = "IO_NA_B1";
+Net "hdmi_g[2]" Loc = "IO_NA_B2";
+Net "hdmi_g[0]" Loc = "IO_NA_B3";
+Net "hdmi_r[3]" Loc = "IO_NA_A0";
+Net "hdmi_r[1]" Loc = "IO_NA_A1";
+Net "hdmi_g[3]" Loc = "IO_NA_A2";
+Net "hdmi_g[1]" Loc = "IO_NA_A3";
+
+# Bank NA1 - PMOD 2
+Net "hdmi_b[2]"  Loc = "IO_NA_B4";
+Net "hdmi_b[1]"  Loc = "IO_NA_B5";
+Net "hdmi_de"    Loc = "IO_NA_B6";
+Net "hdmi_vsync" Loc = "IO_NA_B7";
+Net "hdmi_b[3]"  Loc = "IO_NA_A4";
+Net "hdmi_clk"   Loc = "IO_NA_A5";
+Net "hdmi_b[0]"  Loc = "IO_NA_A6";
+Net "hdmi_hsync" Loc = "IO_NA_A7";
