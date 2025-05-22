@@ -54,7 +54,7 @@ $(TEST_CASE).json: $(VERILOG_FILES)
 $(TEST_CASE)_$(BOARD)_00.cfg: $(TEST_CASE)_synth.v $(BOARD).ccf
 	$(call check_cc_tool)
 	@echo "Running P_R for '$(BOARD)' board"
-	@$(P_R) -i $(TEST_CASE)_synth.v -cCP -pr -ccf $(BOARD).ccf -o $(TEST_CASE)_$(BOARD) > $@.log
+	@$(P_R) -i $(TEST_CASE)_synth.v -cCP -pr -ccf $(BOARD).ccf -o $(TEST_CASE)_$(BOARD)
 
 $(TEST_CASE)_$(BOARD).txt: $(TEST_CASE).json $(BOARD).ccf
 	@echo "Running nextpnr for '$(BOARD)' board"

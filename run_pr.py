@@ -10,7 +10,8 @@ import click
 @click.command()
 @click.option('--base_dir', default=".", help='Base directory.')
 @click.option('--test', default=-1, type=int, help='Run specific test.')
-def run(base_dir, test):
+@click.option('--freq', is_flag=True, help='Display max frequency.')
+def run(base_dir, test, freq):
     logs_dir = os.path.join(base_dir, "logs")
     if os.path.exists(logs_dir):
         shutil.rmtree(logs_dir)
@@ -64,6 +65,13 @@ def run(base_dir, test):
                 with open(log_file, "w") as out_f:
                     out_f.write(result.stdout.decode())
                 click.secho("Success ", fg="green")
+                report = set()
+                if freq:
+                    for line in result.stdout.decode().splitlines():
+                        if line.startswith("Maximum Clock Frequency"):
+                            report.add(line)
+                    for line in report:
+                        click.secho(line)
             except subprocess.CalledProcessError as e:
                 duration = time.time() - start_time
                 click.secho(f" {duration:.2f} seconds ", nl=False)
