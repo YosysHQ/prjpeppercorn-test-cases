@@ -1,0 +1,8 @@
+Pin_out  "led"  Loc = "IO_EB_B1"; # LED D1
+Pin_in   "rst"  Loc = "IO_EB_B0" | PULLUP=true; # SW3
+
+Pin_in   "btn0"     Loc = "IO_NB_A0"; # LED D0
+Pin_in   "btn1"     Loc = "IO_NB_A1"; # LED D1
+Pin_in   "btn2"     Loc = "IO_NB_A2"; # LED D2
+Pin_in   "btn3"     Loc = "IO_NB_A3"; # LED D3
+
