@@ -38,6 +38,7 @@ def run(base_dir, test):
 
             click.secho("Running ", nl=False)
             click.secho(f"{dir}",  bold=True, nl=False)
+            start_time = time.time()
             try:
                 result = subprocess.run(
                     ["make", "-C", dir, "BOARD=olimex", "clean", "synth"],
@@ -47,6 +48,8 @@ def run(base_dir, test):
                 )
             except subprocess.CalledProcessError:
                 pass
+            duration = time.time() - start_time
+            click.secho(f" (synth {duration:.2f} seconds) ", nl=False)
 
             start_time = time.time()
             try:
