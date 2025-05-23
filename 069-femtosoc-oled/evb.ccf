@@ -1,0 +1,13 @@
+Net  "pclk"     Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+Net  "RESET"    Loc = "IO_EB_B0" | PULLUP=true; # SW3
+
+# PMOD A
+Net "RXD"       Loc = "IO_NB_A2";
+Net "TXD"       Loc = "IO_NB_A1";
+
+# PMOD B
+Net "oled_CLK"  Loc = "IO_NB_B4";
+Net "oled_DIN"  Loc = "IO_NB_A4";
+Net "oled_RST"  Loc = "IO_NB_A5";
+Net "oled_DC"   Loc = "IO_NB_A6";
+Net "oled_CS"   Loc = "IO_NB_A7";

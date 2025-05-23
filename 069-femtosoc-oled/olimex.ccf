@@ -1,11 +1,11 @@
-Net   "pclk"  Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
-Net   "RESET"  Loc = "IO_SB_B7" | PULLUP=true; # FPGA_BUT
+Net "pclk"      Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+Net "RESET"     Loc = "IO_SB_B7" | PULLUP=true; # FPGA_BUT
 
-Net  "RXD"  Loc = "IO_SA_A6";
-Net  "TXD"  Loc = "IO_SA_B6";
+Net "RXD"       Loc = "IO_SA_A6";
+Net "TXD"       Loc = "IO_SA_B6";
 
-Net   "oled_CLK"   Loc = "IO_EA_B4"; # LED D0
-Net   "oled_DIN"   Loc = "IO_EA_A4"; # LED D4
-Net   "oled_RST"   Loc = "IO_EA_A5"; # LED D5
-Net   "oled_DC"   Loc = "IO_EA_A6"; # LED D6
-Net   "oled_CS"   Loc = "IO_EA_A7"; # LED D7
+Net "oled_CLK"  Loc = "IO_EA_B4"; # LED D0
+Net "oled_DIN"  Loc = "IO_EA_A4"; # LED D4
+Net "oled_RST"  Loc = "IO_EA_A5"; # LED D5
+Net "oled_DC"   Loc = "IO_EA_A6"; # LED D6
+Net "oled_CS"   Loc = "IO_EA_A7"; # LED D7
