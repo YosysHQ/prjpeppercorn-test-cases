@@ -1,0 +1,12 @@
+Net "clk0" Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+Net "user_btn_n0" Loc = "IO_SB_B7";
+Net "serial_tx" Loc = "IO_SA_B6";
+Net "serial_rx" Loc = "IO_SA_A6";
+Net "user_led_n0" Loc = "IO_SB_B6";
+Net "eth_rmii_clocks_ref_clk" Loc = "IO_EA_B6";
+Net "eth_rmii_rx_data[0]" Loc = "IO_EA_B5";
+Net "eth_rmii_rx_data[1]" Loc = "IO_EA_A5";
+Net "eth_rmii_crs_dv" Loc = "IO_EA_A6";
+Net "eth_rmii_tx_en" Loc = "IO_EA_B4";
+Net "eth_rmii_tx_data[0]" Loc = "IO_EA_A4";
+Net "eth_rmii_tx_data[1]" Loc = "IO_EA_B7";
