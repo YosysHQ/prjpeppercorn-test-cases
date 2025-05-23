@@ -1,0 +1,13 @@
+Pin_in   "clk"  Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+Pin_in   "btn"  Loc = "IO_EB_B0" | PULLUP=true; # SW3
+Pin_out  "led"  Loc = "IO_EB_B1"; # LED D1
+
+# PMOD A
+Pin_out   "oled_clk"   Loc = "IO_NB_B0";
+# not - used
+Pin_out   "audio_l"    Loc = "IO_NB_B2";
+Pin_out   "audio_r"    Loc = "IO_NB_B3";
+Pin_out   "oled_mosi"  Loc = "IO_NB_A0";
+Pin_out   "oled_resn"  Loc = "IO_NB_A1";
+Pin_out   "oled_dc"    Loc = "IO_NB_A2";
+Pin_out   "oled_csn"   Loc = "IO_NB_A3";
