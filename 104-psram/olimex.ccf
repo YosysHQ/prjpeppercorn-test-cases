@@ -1,0 +1,14 @@
+Pin_in   "CLK"     Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+Pin_in   "BUT"  Loc = "IO_SB_B7"; # SW3
+Pin_out  "LED"  Loc = "IO_SB_B6"; # D1
+#PSRAM
+Pin_out     "PSRAM_CSN"       Loc = "IO_WC_A4"; # PSRAM CSn
+Pin_out     "PSRAM_SCLK"      Loc = "IO_WC_B4"; # PSRAM SCLK
+Pin_inout   "PSRAM_DATA[0]"   Loc = "IO_WC_A5"; # PSRAM DATA0
+Pin_inout   "PSRAM_DATA[1]"   Loc = "IO_WC_B5"; # PSRAM DATA1
+Pin_inout   "PSRAM_DATA[2]"   Loc = "IO_WC_A6"; # PSRAM DATA2
+Pin_inout   "PSRAM_DATA[3]"   Loc = "IO_WC_B6"; # PSRAM DATA3
+Pin_inout   "PSRAM_DATA[4]"   Loc = "IO_WC_A7"; # PSRAM DATA4
+Pin_inout   "PSRAM_DATA[5]"   Loc = "IO_WC_B7"; # PSRAM DATA5
+Pin_inout   "PSRAM_DATA[6]"   Loc = "IO_WC_A8"; # PSRAM DATA6
+Pin_inout   "PSRAM_DATA[7]"   Loc = "IO_WC_B8"; # PSRAM DATA7
