@@ -1,0 +1,12 @@
+Net "clk0" Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+Net "user_btn_n0" Loc = "IO_SB_B7";
+Net "serial_tx" Loc = "IO_SA_B6";
+Net "serial_rx" Loc = "IO_SA_A6";
+Net "user_led_n0" Loc = "IO_SB_B6";
+Net "sdcard_data[0]" Loc = "IO_EA_A6" | PULLUP=true;
+Net "sdcard_data[1]" Loc = "IO_EA_B4" | PULLUP=true;
+Net "sdcard_data[2]" Loc = "IO_EA_B5" | PULLUP=true;
+Net "sdcard_data[3]" Loc = "IO_EA_A4" | PULLUP=true;
+Net "sdcard_cmd" Loc = "IO_EA_A5" | PULLUP=true;
+Net "sdcard_clk" Loc = "IO_EA_A7";
+Net "sdcard_cd" Loc = "IO_EA_B6";
