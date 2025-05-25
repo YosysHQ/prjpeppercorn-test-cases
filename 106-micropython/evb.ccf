@@ -1,0 +1,29 @@
+# picosoc pin file
+
+default_GPIO | SLEW="fast";
+
+## 10 MHz clock
+NET   "clk_i"      Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+NET   "rstn_i"     Loc = "IO_EB_B0" | PULLUP=true; # SW3
+
+## UART
+NET   "ser_tx"     Loc = "IO_NB_A1"; # Pmod A: IO D1
+NET   "ser_rx"     Loc = "IO_NB_A2"; # Pmod A: IO D2
+
+## Serial flash (use +uCIO to enable bank)
+NET   "flash_csb"  Loc = "IO_WA_A8";
+NET   "flash_clk"  Loc = "IO_WA_B8";
+NET   "flash_io0"  Loc = "IO_WA_B7";
+NET   "flash_io1"  Loc = "IO_WA_A7";
+NET   "flash_io2"  Loc = "IO_WA_B6";
+NET   "flash_io3"  Loc = "IO_WA_A6";
+
+## GPIO
+NET   "led[0]"     Loc = "IO_EB_B1";
+NET   "led[1]"     Loc = "IO_EB_B2";
+NET   "led[2]"     Loc = "IO_EB_B3";
+NET   "led[3]"     Loc = "IO_EB_B4";
+NET   "led[4]"     Loc = "IO_EB_B5";
+NET   "led[5]"     Loc = "IO_EB_B6";
+NET   "led[6]"     Loc = "IO_EB_B7";
+NET   "led[7]"     Loc = "IO_EB_B8";
