@@ -13,7 +13,7 @@ module camera_read(
     );
 
 	reg [7:0] first_byte, second_byte;
-	reg [9:0] row_count, col_count;
+	reg [9:0] row_count = 0 , col_count = 0;
 	reg start_of_frame = 0;
 	reg [7:0] data;
 

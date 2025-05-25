@@ -32,10 +32,7 @@ assign cam_RESET = 1'b1; // camera reset to HIGH
 wire inDisplayArea;
 wire [9:0] CounterX;
 wire [8:0] CounterY;
-reg [4:0] fudge = 31;
-wire vga_blank,frame_done;
-
-assign vga_blank = (~inDisplayArea); // vga is blank if pixel is not in Display area
+wire frame_done;
 
 hvsync_generator hvsync_gen(
   .clk(clk_25MHz), //Input
@@ -46,40 +43,36 @@ hvsync_generator hvsync_gen(
   .CounterY(CounterY) //Output
 );
 
-wire [15:0] pixin;
-
-wire [7:0] R = { pixin[15:11], 3'b000};
-wire [7:0] G = { pixin[10:5], 2'b00};
-wire [7:0] B = { pixin[4:0] , 3'b000};
-
+wire [11:0] pixin;
 wire [15:0] pixout;
 wire [7:0] xout;
-wire [6:0] yout;
+wire [7:0] yout;
 reg we;
 
-assign vga_R = inDisplayArea?R[7:4]:0;
-assign vga_G = inDisplayArea?G[7:4]:0;
-assign vga_B = inDisplayArea?B[7:4]:0;
+assign vga_R = inDisplayArea? pixin[11:8]:0;
+assign vga_G = inDisplayArea? pixin[7:4]:0;
+assign vga_B = inDisplayArea? pixin[3:0]:0;
 
-wire [7:0] xin = (inDisplayArea ? (CounterX[9:2]) : 0);
-wire [6:0] yin = (inDisplayArea ? (CounterY[8:2]) : 0);
+wire [7:0] xin = CounterX[9:2];
+wire [7:0] yin = CounterY[8:1];
 
-wire [14:0] raddr = (yin << 7) + (yin << 5) + xin;
-wire [14:0] waddr = (yout << 7) + (yout << 5) + xout;
+wire [15:0] raddr = { yin, xin };
+wire [15:0] waddr = { yout, xout };
 
 vgabuff vgab (
-        .clk(clk_25MHz), // Input
+        .clk(cam_PCLK), // Input
         .raddr(raddr),   // Input
         .pixin(pixin),  // Output
         .we(we),        // Input
         .waddr(waddr),  // Input
-        .pixout(pixout) // Input
+        .rclk(clk_25MHz),
+        .pixout(pixout[11:0]) // Input
         );
 
 wire [15:0] pixel_data;
 wire [9:0] row, col;
 
-assign yout = 119 - row[8:2] + fudge;
+assign yout = 255 - row[8:1] + 31;
 assign xout = 150 - col[9:2];
 
 assign pixout = pixel_data;
