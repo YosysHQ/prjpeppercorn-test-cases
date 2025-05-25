@@ -1,0 +1,42 @@
+Pin_in  "clk"    Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+
+Pin_in  "btn"    Loc = "IO_SB_B7" | PULLUP=true; # FPGA_BUT
+
+#J1
+Pin_out "vga_R[0]" Loc = "IO_WB_B3";
+Pin_out "vga_R[1]" Loc = "IO_WB_A3";
+Pin_out "vga_R[2]" Loc = "IO_WB_B2";
+Pin_out "vga_R[3]" Loc = "IO_WB_A2";
+
+Pin_out "vga_G[0]" Loc = "IO_WB_B5";
+Pin_out "vga_G[1]" Loc = "IO_WB_A5";
+Pin_out "vga_G[2]" Loc = "IO_WB_B4";
+Pin_out "vga_G[3]" Loc = "IO_WB_A4";
+
+#J2
+Pin_out "vga_B[0]"  Loc = "IO_WB_B7";
+Pin_out "vga_B[1]"  Loc = "IO_WB_A7";
+Pin_out "vga_B[2]"  Loc = "IO_WB_B6";
+Pin_out "vga_B[3]"  Loc = "IO_WB_A6";
+Pin_out "vga_hsync" Loc = "IO_WB_A1";
+Pin_out "vga_vsync" Loc = "IO_WB_B1";
+
+# Bank NA1 - PMOD 1
+Net "cam_data[1]" Loc = "IO_NA_A0";
+Net "cam_data[0]" Loc = "IO_NA_B0";
+Net "cam_data[3]" Loc = "IO_NA_A1";
+Net "cam_data[2]" Loc = "IO_NA_B1";
+Net "cam_data[5]" Loc = "IO_NA_A2";
+Net "cam_data[4]" Loc = "IO_NA_B2";
+Net "cam_data[7]" Loc = "IO_NA_A3";
+Net "cam_data[6]" Loc = "IO_NA_B3";
+
+# Bank NA1 - PMOD 2
+Net "cam_RESET" Loc = "IO_NA_A4";
+Net "cam_PWON"  Loc = "IO_NA_B4";
+Net "cam_XCLK"  Loc = "IO_NA_A5";
+Net "cam_PCLK"  Loc = "IO_NA_B5";
+Net "cam_VSYNC" Loc = "IO_NA_A6";
+Net "cam_HREF"  Loc = "IO_NA_B6";
+Net "cam_SOIC"  Loc = "IO_NA_A7";
+Net "cam_SOID"  Loc = "IO_NA_B7";
