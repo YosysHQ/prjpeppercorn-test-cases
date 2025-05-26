@@ -106,7 +106,7 @@ module OV7670_config_rom(
     72: dout <= 16'ha9_90;  // HAECC6
     73: dout <= 16'haa_94;  // HAECC7
     74: dout <= 16'h13_a7;  // COM8, enable AGC / AEC
-    //75: dout <= 16'h69_06;
+    75: dout <= 16'h69_06;
     default: dout <= 16'hFF_FF;         //mark end of ROM
     endcase
     
