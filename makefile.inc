@@ -30,6 +30,11 @@ ifdef SEED
 SEED_OPT=--seed $(SEED)
 endif
 
+SDC_OPT ?=
+ifneq ($(wildcard constraints.sdc),)
+SDC_OPT = --sdc constraints.sdc
+endif
+
 all:
 	@echo "Use one of targets for '$(BOARD)' board:"
 	@echo " - synth - running Yosys synthesys only"
@@ -59,7 +64,7 @@ $(TEST_CASE)_$(BOARD)_00.cfg: $(TEST_CASE)_synth.v $(BOARD).ccf
 
 $(TEST_CASE)_$(BOARD).txt: $(TEST_CASE).json $(BOARD).ccf
 	@echo "Running nextpnr for '$(BOARD)' board"
-	@$(NEXTPNR) --device CCGM1A1 --json $(TEST_CASE).json --vopt ccf=$(BOARD).ccf --vopt out=$(TEST_CASE)_$(BOARD).txt --router router2 --freq 10 $(SEED_OPT)
+	@$(NEXTPNR) --device CCGM1A1 --json $(TEST_CASE).json --vopt ccf=$(BOARD).ccf --vopt out=$(TEST_CASE)_$(BOARD).txt --router router2 --freq 10 $(SEED_OPT) $(SDC_OPT)
 
 $(TEST_CASE)_$(BOARD)_00.txt: $(TEST_CASE)_$(BOARD)_00.cfg
 	@echo "Running unpack for '$(BOARD)' board"
