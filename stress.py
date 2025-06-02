@@ -7,11 +7,11 @@ import subprocess
 import shutil
 import click
 
-def build(logs_dir, dir, curr_seed, bar):
+def build(board, logs_dir, dir, curr_seed, bar):
     log_file = os.path.join(logs_dir, f"{dir}_{curr_seed}.log")
     try:
         result = subprocess.run(
-            ["make", "-C", dir, "BOARD=olimex", f"SEED={curr_seed}", "clean-bit", "nextpnr"],
+            ["make", "-C", dir, f"BOARD={board}", f"SEED={curr_seed}", "clean-bit", "nextpnr"],
             check=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT
@@ -54,9 +54,12 @@ def stress(seed, base_dir, test):
         if os.path.exists(os.path.join(base_dir,dir,"Makefile")):
             click.secho("Running ", nl=False)
             click.secho(f"{dir}", bold=True)
+            board = "olimex"
+            if not os.path.exists(os.path.join(base_dir,dir,"olimex.ccf")):
+                board = "evb"
             try:
                 result = subprocess.run(
-                    ["make", "-C", dir, "BOARD=olimex", "clean", "json"],
+                    ["make", "-C", dir, f"BOARD={board}", "clean", "json"],
                     check=True,
                     stdout=subprocess.PIPE,
                     stderr=subprocess.STDOUT
@@ -69,7 +72,7 @@ def stress(seed, base_dir, test):
             failed_seeds = []
             with click.progressbar(items, label='Processing items', length=len(items)) as bar:
                 with concurrent.futures.ThreadPoolExecutor(max_workers=os.process_cpu_count()) as executor:
-                    tasks = {executor.submit(build, logs_dir, dir, curr_seed, bar): curr_seed for curr_seed in items}
+                    tasks = {executor.submit(build, board, logs_dir, dir, curr_seed, bar): curr_seed for curr_seed in items}
                     for future in concurrent.futures.as_completed(tasks):
                         bar.update(1)
                         if future.result():

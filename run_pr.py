@@ -40,9 +40,12 @@ def run(base_dir, test, freq):
             click.secho("Running ", nl=False)
             click.secho(f"{dir}",  bold=True, nl=False)
             start_time = time.time()
+            board = "olimex"
+            if not os.path.exists(os.path.join(base_dir,dir,"olimex.ccf")):
+                board = "evb"
             try:
                 result = subprocess.run(
-                    ["make", "-C", dir, "BOARD=olimex", "clean", "synth"],
+                    ["make", "-C", dir, f"BOARD={board}", "clean", "synth"],
                     check=True,
                     stdout=subprocess.PIPE,
                     stderr=subprocess.STDOUT
@@ -55,7 +58,7 @@ def run(base_dir, test, freq):
             start_time = time.time()
             try:
                 result = subprocess.run(
-                    ["make", "-C", dir, "BOARD=olimex", "pr"],
+                    ["make", "-C", dir, f"BOARD={board}", "pr"],
                     check=True,
                     stdout=subprocess.PIPE,
                     stderr=subprocess.STDOUT
