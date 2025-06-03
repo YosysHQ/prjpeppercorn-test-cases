@@ -1,4 +1,5 @@
 YOSYS_PARAM ?=
+YOSYS_CMDS ?=
 TARGETS ?= impl
 VERILOG_FILES ?= top.v
 TOP ?= top
@@ -51,11 +52,11 @@ json: $(TEST_CASE).json
 
 $(TEST_CASE)_synth.v: $(VERILOG_FILES)
 	@echo "Running Yosys"
-	@$(YOSYS) -ql synth.log $(YS_OPTS) -p 'read_verilog -defer -sv $^; synth_gatemate $(YOSYS_PARAM) -top $(TOP) -nomx8 -vlog $(TEST_CASE)_synth.v'
+	@$(YOSYS) -ql synth.log $(YS_OPTS) -p 'read_verilog -defer -sv $^; $(YOSYS_CMDS) synth_gatemate $(YOSYS_PARAM) -top $(TOP) -nomx8 -vlog $(TEST_CASE)_synth.v'
 
 $(TEST_CASE).json: $(VERILOG_FILES)
 	@echo "Running Yosys"
-	@$(YOSYS) -ql synth.log $(YS_OPTS) -p 'read_verilog -defer -sv $^; synth_gatemate $(YOSYS_PARAM) -luttree -top $(TOP) -json $(TEST_CASE).json'
+	@$(YOSYS) -ql synth.log $(YS_OPTS) -p 'read_verilog -defer -sv $^; $(YOSYS_CMDS) synth_gatemate $(YOSYS_PARAM) -luttree -top $(TOP) -json $(TEST_CASE).json'
 
 $(TEST_CASE)_$(BOARD)_00.cfg: $(TEST_CASE)_synth.v $(BOARD).ccf
 	$(call check_cc_tool)

@@ -1,0 +1,11 @@
+verilog_defaults -push
+verilog_defaults -add -defer
+read_verilog /home/micko/src/litex/pythondata-cpu-vexriscv-smp/pythondata_cpu_vexriscv_smp/verilog/Ram_1w_1rs_Generic.v
+read_verilog /home/micko/src/litex/pythondata-cpu-vexriscv-smp/pythondata_cpu_vexriscv_smp/verilog/VexRiscvLitexSmpCluster_Cc1_Iw32Is4096Iy1_Dw32Ds4096Dy1_ITs4DTs4_Ood_Wm_Hb1.v
+read_verilog /home/micko/src/linux-on-litex-vexriscv/build/colognechip_gatemate_evb/gateware/colognechip_gatemate_evb.v
+verilog_defaults -pop
+attrmap -tocase keep -imap keep="true" keep=1 -imap keep="false" keep=0 -remove keep=0
+hierarchy -top colognechip_gatemate_evb
+setattr -unset ram_style a:ram_style=distributed
+synth_gatemate -luttree -nomx8 -nomult -top colognechip_gatemate_evb
+write_json  colognechip_gatemate_evb.json
