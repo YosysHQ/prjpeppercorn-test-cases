@@ -1,8 +1,8 @@
 Pin_in   "pclk"  Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
 Pin_in   "RESET"  Loc = "IO_EB_B0"; # SW3
 
-Net  "RXD"  Loc = "IO_NB_A2";
-Net  "TXD"  Loc = "IO_NB_A1";
+Net  "RXD"  Loc = "IO_NB_A6";
+Net  "TXD"  Loc = "IO_NB_A5";
 
 # leds
 Pin_out   "D1"   Loc = "IO_EB_B1"; # LED D1

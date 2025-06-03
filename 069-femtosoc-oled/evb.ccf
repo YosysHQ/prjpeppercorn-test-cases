@@ -2,8 +2,8 @@ Net  "pclk"     Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
 Net  "RESET"    Loc = "IO_EB_B0" | PULLUP=true; # SW3
 
 # PMOD A
-Net "RXD"       Loc = "IO_NB_A2";
-Net "TXD"       Loc = "IO_NB_A1";
+Net "RXD"       Loc = "IO_NB_A6";
+Net "TXD"       Loc = "IO_NB_A5";
 
 # PMOD B
 Net "oled_CLK"  Loc = "IO_NB_B4";

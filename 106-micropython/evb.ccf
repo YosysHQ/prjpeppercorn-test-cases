@@ -7,8 +7,8 @@ NET   "clk_i"      Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
 NET   "rstn_i"     Loc = "IO_EB_B0" | PULLUP=true; # SW3
 
 ## UART
-NET   "ser_tx"     Loc = "IO_NB_A1"; # Pmod A: IO D1
-NET   "ser_rx"     Loc = "IO_NB_A2"; # Pmod A: IO D2
+NET   "ser_tx"     Loc = "IO_NB_A5"; # Pmod B top
+NET   "ser_rx"     Loc = "IO_NB_A6";
 
 ## Serial flash (use +uCIO to enable bank)
 NET   "flash_csb"  Loc = "IO_WA_A8";

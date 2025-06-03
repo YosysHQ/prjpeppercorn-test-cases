@@ -1,7 +1,7 @@
 Net "clk10" Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
 Net "user_btn_n0" Loc = "IO_EB_B0";
-Net "usb_uart_tx" Loc = "IO_NB_A1";
-Net "usb_uart_rx" Loc = "IO_NB_A2";
+Net "usb_uart_tx" Loc = "IO_NB_A5";
+Net "usb_uart_rx" Loc = "IO_NB_A6";
 Net "spiflash4x_cs_n" Loc = "IO_WA_A8";
 Net "spiflash4x_clk" Loc = "IO_WA_B8" | SLEW=fast;
 Net "spiflash4x_dq[0]" Loc = "IO_WA_B7";
