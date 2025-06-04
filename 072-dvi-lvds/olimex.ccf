@@ -12,12 +12,3 @@ Pin_out "TMDS_0_clk_n"     Loc = "IO_NA_B4" | LVDS_BOOST=true; #JA10
 Pin_out "TMDS_HPD" 		   Loc = "IO_NA_B6";
 Pin_out "TMDS_IN"		   Loc = "IO_NA_B0";
 
-# leds
-Net   "o_led[0]"   Loc = "IO_WC_B3"; # LED D1
-Net   "o_led[1]"   Loc = "IO_WC_A3"; # LED D2
-Net   "o_led[2]"   Loc = "IO_WC_B2"; # LED D3
-Net   "o_led[3]"   Loc = "IO_WC_A2"; # LED D4
-Net   "o_led[4]"   Loc = "IO_WC_B1"; # LED D5
-Net   "o_led[5]"   Loc = "IO_WC_A1"; # LED D6
-Net   "o_led[6]"   Loc = "IO_WC_B0"; # LED D7
-Net   "o_led[7]"   Loc = "IO_WC_A0"; # LED D8

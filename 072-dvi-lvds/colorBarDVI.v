@@ -7,7 +7,6 @@
 
 module colorBarDVI (
 	input  wire       clk_i,
-	output [7:0] 	  o_led,
 	output wire       TMDS_0_clk_p,
 	output wire       TMDS_0_clk_n,
 	output wire [2:0] TMDS_0_data_p,
@@ -58,9 +57,6 @@ module colorBarDVI (
 	);
 
 	wire [7:0] r_s, g_s, b_s;
-	wire       blank2_s, vsync2_s, hsync2_s;
-
-	assign o_led = b_s;
 
 	color_bar #(
 		.H_RES(HRES/8), .PIX_SZ(8)
@@ -70,9 +66,6 @@ module colorBarDVI (
 		.i_blank(~de_s),
 		.i_vsync(vsync_s), 
 		.i_hsync(hsync_s),
-		.o_blank(blank2_s),
-		.o_vsync(vsync2_s), 
-		.o_hsync(hsync2_s),
 		.o_r(r_s), 
 		.o_g(g_s), 
 		.o_b(b_s)
@@ -83,10 +76,10 @@ module colorBarDVI (
 		.rst(rst), 
 		.clk_dvi(clk_dvi),
 		// horizontal & vertical synchro
-		.hsync_i(hsync2_s), 
-		.vsync_i(vsync2_s),
+		.hsync_i(hsync_s), 
+		.vsync_i(vsync_s),
 		// display enable (active area)
-		.de_i(~blank2_s),
+		.de_i(~de_s),
 		// pixel colors
 		.pix_r(r_s), 
 		.pix_g(g_s), 
