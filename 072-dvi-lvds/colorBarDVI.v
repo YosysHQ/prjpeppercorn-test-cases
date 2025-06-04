@@ -22,8 +22,8 @@ module colorBarDVI (
 
 	CC_LVDS_OBUF lvds_obuf_inst [3:0] (
 		.A({TMDS_0_clk, TMDS_0_data}),
-		.O_P({TMDS_0_clk_n, TMDS_0_data_n}),
-		.O_N({TMDS_0_clk_p, TMDS_0_data_p})
+		.O_P({TMDS_0_clk_p, TMDS_0_data_p}),
+		.O_N({TMDS_0_clk_n, TMDS_0_data_n})
 	);
 
 	/* PLL: 25MHz (pix clock) and 125MHz (hdmi clk rate) */
