@@ -37,7 +37,7 @@ module serializer (
 	CC_ODDR #(
 		.CLK_INV(1'b0)
 	) ddr_inst (.CLK(fast_clk_i), .DDR(fast_clk_i),
-		.D0(~dat_pos[1]), .D1(~dat_pos[0]),
+		.D0(dat_pos[1]), .D1(dat_pos[0]),
 		.Q(dat_o)
 	);
 
