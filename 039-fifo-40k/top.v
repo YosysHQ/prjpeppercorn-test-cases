@@ -142,7 +142,8 @@ module top (
 
     wire F_FULL, F_EMPTY;
     wire fifo_wr_en = rx_valid && ~F_FULL;
-    wire [7:0] uart_out;
+    wire [9:0] uart_out_full;
+    wire [7:0] uart_out = uart_out_full[7:0];
 
     wire tx_valid;
     reg [$clog2(tx_cycles - 1):0] tx_counter = 0;
@@ -167,8 +168,8 @@ module top (
         .LOC("UNPLACED"),
         .ALMOST_EMPTY_OFFSET(15'h0),
         .ALMOST_FULL_OFFSET(15'h0),
-        .A_WIDTH(8),
-        .B_WIDTH(8),
+        .A_WIDTH(10),
+        .B_WIDTH(10),
         .RAM_MODE("TDP"),
         .FIFO_MODE("SYNC"),
         .A_CLK_INV(1'b0),
@@ -186,12 +187,12 @@ module top (
         .B_ECC_1B_ERR(),
         .A_ECC_2B_ERR(),
         .B_ECC_2B_ERR(),
-        .A_DO(uart_out),
+        .A_DO(uart_out_full),
         .B_DO(),
         .A_CLK(clk),
         .A_EN(fifo_rd_en),
         .A_DI(8'h0),
-        .B_DI(uart_in),
+        .B_DI({2'b00, uart_in}),
         .A_BM(8'h0),
         .B_BM(8'hFF),
         .B_CLK(clk),
