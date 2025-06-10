@@ -1,6 +1,6 @@
 TEST_CASE := darkriscv
 TOP := darksocv
-YS_OPTS := -D OLIMEX_GATEMATE=1
+YOSYS_DEFS := -DOLIMEX_GATEMATE=1
 YOSYS_PARAM := -nomx8 -nomult
 VERILOG_FILES := \
 	rtl/darksocv.v \

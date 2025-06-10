@@ -1,7 +1,7 @@
 TEST_CASE := usb
 TOP := colorBarVGAUSB
 YOSYS_PARAM := -nomx8 -nomult
-YS_OPTS := -D DISP_640x480_60Hz=1
+YOSYS_DEFS := -DDISP_640x480_60Hz=1
 VERILOG_FILES := \
 	colorBarVGAUSB.v \
 	../lib/fpgalibs/hdl/vga.v \
