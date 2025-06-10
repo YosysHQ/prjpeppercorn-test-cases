@@ -1,0 +1,14 @@
+NET   "clk_i"  Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+NET   "rst_i"  Loc = "IO_SB_B7" | pullup=true;
+
+## TMDS outputs, Olimex dvi extension (fixed supply 2.5V)
+## https://github.com/intergalaktik/Extension_Boards_for_Olimex_GateMate/tree/main/dvi
+NET   "TMDS_0_clk_p"     Loc = "IO_NA_A4" | LVDS_BOOST=true;
+NET   "TMDS_0_clk_n"     Loc = "IO_NA_B4" | LVDS_BOOST=true;
+NET   "TMDS_0_data_p[0]" Loc = "IO_NA_A3" | LVDS_BOOST=true;
+NET   "TMDS_0_data_n[0]" Loc = "IO_NA_B3" | LVDS_BOOST=true;
+NET   "TMDS_0_data_p[1]" Loc = "IO_NA_A2" | LVDS_BOOST=true;
+NET   "TMDS_0_data_n[1]" Loc = "IO_NA_B2" | LVDS_BOOST=true;
+NET   "TMDS_0_data_p[2]" Loc = "IO_NA_A1" | LVDS_BOOST=true;
+NET   "TMDS_0_data_n[2]" Loc = "IO_NA_B1" | LVDS_BOOST=true;
+NET   "buck_enable"      Loc = "IO_NA_B0";
