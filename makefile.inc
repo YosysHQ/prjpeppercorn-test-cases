@@ -45,6 +45,7 @@ all:
 	@echo " - json - Yosys for nextpnr"
 	@echo " - nextpnr - Yosys + nextpnr"
 	@echo " - jtag - programming bitstream produced by nextpnr"
+	@echo " - post - generate post pnr verilog netlist by nextpnr"
 	@exit
 
 synth: $(TEST_CASE)_synth.v
@@ -65,7 +66,7 @@ $(TEST_CASE)_$(BOARD)_00.cfg: $(TEST_CASE)_synth.v $(BOARD).ccf
 
 $(TEST_CASE)_$(BOARD).txt: $(TEST_CASE).json $(BOARD).ccf
 	@echo "Running nextpnr for '$(BOARD)' board"
-	@$(NEXTPNR) --device CCGM1A1 --json $(TEST_CASE).json --vopt ccf=$(BOARD).ccf --vopt out=$(TEST_CASE)_$(BOARD).txt --router router2 --freq 10 $(SEED_OPT) $(SDC_OPT)
+	@$(NEXTPNR) --device CCGM1A1 --json $(TEST_CASE).json --vopt ccf=$(BOARD).ccf --vopt out=$(TEST_CASE)_$(BOARD).txt --router router2 --freq 10 $(SEED_OPT) $(SDC_OPT) --write $(TEST_CASE)_$(BOARD)_pnr.json
 
 $(TEST_CASE)_$(BOARD)_00.txt: $(TEST_CASE)_$(BOARD)_00.cfg
 	@echo "Running unpack for '$(BOARD)' board"
@@ -77,6 +78,8 @@ unpack: $(TEST_CASE)_$(BOARD)_00.txt
 
 nextpnr: $(TEST_CASE)_$(BOARD).txt
 
+post: $(TEST_CASE)_$(BOARD)_pnr.v
+
 jtag_pr: $(TEST_CASE)_$(BOARD)_00.cfg
 	@echo "Running openFPGALoader for '$(BOARD)' board"
 	@$(OFL) -b $(OFL_BOARD) $^
@@ -85,6 +88,10 @@ jtag: $(TEST_CASE)_$(BOARD).txt
 	@echo "Running openFPGALoader for '$(BOARD)' board"
 	@$(GMPACK) $(TEST_CASE)_$(BOARD).txt $(TEST_CASE)_$(BOARD).bit
 	@$(OFL) -b $(OFL_BOARD) $(TEST_CASE)_$(BOARD).bit
+
+$(TEST_CASE)_$(BOARD)_pnr.v: $(TEST_CASE)_$(BOARD).txt
+	@echo "Generate post PnR Verilog netlist"
+	@$(YOSYS) -q -p 'read_json $(TEST_CASE)_$(BOARD)_pnr.json; write_verilog -noattr $(TEST_CASE)_$(BOARD)_pnr.v'
 
 firmware: $(FIRMWARE)
 	@echo "Running openFPGALoader to program '$(FIRMWARE)' on '$(BOARD)' board"

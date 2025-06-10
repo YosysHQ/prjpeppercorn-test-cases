@@ -27,3 +27,5 @@ lut*.txt
 *.json
 # Setup file
 environment.sh
+# Post pnr verilog
+*_pnr.v
