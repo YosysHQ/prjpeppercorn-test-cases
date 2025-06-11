@@ -110,4 +110,31 @@ clean:
 clean-bit:
 	@rm -rf $(TEST_CASE)_$(BOARD).txt $(TEST_CASE)_$(BOARD).bit
 
-.PHONY: synth json pr nextpnr jtag_pr jtag unpack
+.PHONY: synth json pr nextpnr jtag_pr jtag unpack check_yosys
+
+check_yosys.eqy: $(TEST_CASE)_$(BOARD)_ys.v $(VERILOG_FILES)
+	@echo "Generating EQY file"
+	@{ \
+	  echo "[gold]"; \
+	  echo "$(YOSYS_DEFS_OPT)"; \
+	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v +/gatemate/cells_bb.v"; \
+	  echo "read_verilog -defer -sv $(VERILOG_FILES)"; \
+	  echo "$(YOSYS_CMDS)"; \
+	  echo "prep -top $(TOP)"; \
+	  echo ""; \
+	  echo "[gate]"; \
+	  echo "$(YOSYS_DEFS_OPT)"; \
+	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v +/gatemate/cells_bb.v"; \
+	  echo "read_verilog $(TEST_CASE)_$(BOARD)_ys.v"; \
+	  echo "prep -top $(TOP)"; \
+	  echo ""; \
+	  echo "[collect *]"; \
+	  echo "bind *"; \
+	  echo ""; \
+	  echo "[strategy pdr]"; \
+	  echo "use sby"; \
+	  echo "engine abc pdr"; \
+	} > $@
+
+check_yosys: check_yosys.eqy
+	@eqy -f $^

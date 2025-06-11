@@ -29,3 +29,8 @@ lut*.txt
 environment.sh
 # Post pnr verilog
 *_pnr.v
+*_ys.v
+# EQY
+*.eqy
+check_yosys/
+check_pnr/
