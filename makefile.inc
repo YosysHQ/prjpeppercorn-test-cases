@@ -2,6 +2,7 @@ YOSYS_PARAM ?=
 YOSYS_CMDS ?=
 YOSYS_DEFS_OPT ?=
 TARGETS ?= impl
+FPGA ?= CCGM1A1
 VERILOG_FILES ?= top.v
 TOP ?= top
 FIRMWARE ?= firmware.bin
@@ -71,7 +72,7 @@ $(TEST_CASE)_$(BOARD)_00.cfg: $(TEST_CASE)_synth.v $(BOARD).ccf
 
 $(TEST_CASE)_$(BOARD).txt $(TEST_CASE)_$(BOARD)_pnr.json: $(TEST_CASE).json $(BOARD).ccf
 	@echo "Running nextpnr for '$(BOARD)' board"
-	@$(NEXTPNR) --device CCGM1A1 --json $(TEST_CASE).json --vopt ccf=$(BOARD).ccf --vopt out=$(TEST_CASE)_$(BOARD).txt --router router2 --freq 10 $(SEED_OPT) $(SDC_OPT) --write $(TEST_CASE)_$(BOARD)_pnr.json
+	$(NEXTPNR) --device $(FPGA) --json $(TEST_CASE).json --vopt ccf=$(BOARD).ccf --vopt out=$(TEST_CASE)_$(BOARD).txt --router router2 --freq 10 $(SEED_OPT) $(SDC_OPT) --write $(TEST_CASE)_$(BOARD)_pnr.json
 
 $(TEST_CASE)_$(BOARD)_00.txt: $(TEST_CASE)_$(BOARD)_00.cfg
 	@echo "Running unpack for '$(BOARD)' board"
@@ -92,7 +93,7 @@ jtag_pr: $(TEST_CASE)_$(BOARD)_00.cfg
 jtag: $(TEST_CASE)_$(BOARD).txt
 	@echo "Running openFPGALoader for '$(BOARD)' board"
 	@$(GMPACK) $(TEST_CASE)_$(BOARD).txt $(TEST_CASE)_$(BOARD).bit
-	@$(OFL) -b $(OFL_BOARD) $(TEST_CASE)_$(BOARD).bit
+	@$(OFL) -b $(OFL_BOARD) --index-chain 0 $(TEST_CASE)_$(BOARD).bit
 
 $(TEST_CASE)_$(BOARD)_pnr.v: $(TEST_CASE)_$(BOARD).txt
 	@echo "Generate post PnR Verilog netlist"
@@ -100,7 +101,7 @@ $(TEST_CASE)_$(BOARD)_pnr.v: $(TEST_CASE)_$(BOARD).txt
 
 firmware: $(FIRMWARE)
 	@echo "Running openFPGALoader to program '$(FIRMWARE)' on '$(BOARD)' board"
-	@$(OFL) -b $(OFL_BOARD) -f -o 1048576 $(FIRMWARE)
+	@$(OFL) -b $(OFL_BOARD) --index-chain 0 -f -o 1048576 $(FIRMWARE)
 
 clean:
 	@rm -rf *.log *_synth.v *.history *.txt *.refwire *.refparam *_ys.v
