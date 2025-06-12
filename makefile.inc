@@ -61,9 +61,9 @@ $(TEST_CASE)_synth.v: $(VERILOG_FILES)
 	@echo "Running Yosys"
 	@$(YOSYS) -ql synth.log -p '$(YOSYS_DEFS_OPT) read_verilog -defer -sv $^; $(YOSYS_CMDS) synth_gatemate $(YOSYS_PARAM) -top $(TOP) -nomx8 -vlog $(TEST_CASE)_synth.v'
 
-$(TEST_CASE).json $(TEST_CASE)_$(BOARD)_ys.v: $(VERILOG_FILES)
+$(TEST_CASE).json $(TEST_CASE)_ys.v: $(VERILOG_FILES)
 	@echo "Running Yosys"
-	@$(YOSYS) -ql synth.log -p '$(YOSYS_DEFS_OPT) read_verilog -defer -sv $^; $(YOSYS_CMDS) synth_gatemate $(YOSYS_PARAM) -luttree -top $(TOP) -json $(TEST_CASE).json -vlog $(TEST_CASE)_$(BOARD)_ys.v'
+	@$(YOSYS) -ql synth.log -p '$(YOSYS_DEFS_OPT) read_verilog -defer -sv $^; $(YOSYS_CMDS) synth_gatemate $(YOSYS_PARAM) -luttree -top $(TOP) -json $(TEST_CASE).json -vlog $(TEST_CASE)_ys.v'
 
 $(TEST_CASE)_$(BOARD)_00.cfg: $(TEST_CASE)_synth.v $(BOARD).ccf
 	$(call check_cc_tool)
@@ -113,7 +113,7 @@ clean-bit:
 
 .PHONY: synth json pr nextpnr jtag_pr jtag unpack check_yosys
 
-check_yosys.eqy: $(TEST_CASE)_$(BOARD)_ys.v $(VERILOG_FILES)
+check_yosys.eqy: $(TEST_CASE)_ys.v $(VERILOG_FILES)
 	@echo "Generating EQY file"
 	@{ \
 	  echo "[gold]"; \
@@ -126,7 +126,7 @@ check_yosys.eqy: $(TEST_CASE)_$(BOARD)_ys.v $(VERILOG_FILES)
 	  echo "[gate]"; \
 	  echo "$(YOSYS_DEFS_OPT)"; \
 	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v +/gatemate/cells_bb.v"; \
-	  echo "read_verilog $(TEST_CASE)_$(BOARD)_ys.v"; \
+	  echo "read_verilog $(TEST_CASE)_ys.v"; \
 	  echo "prep -top $(TOP)"; \
 	  echo ""; \
 	  echo "[collect *]"; \
