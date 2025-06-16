@@ -1,8 +1,16 @@
 all:
   top_module: colognechip_gatemate_evb
-  source: ["Ram_1w_1rs_Generic.v", "VexRiscvLitexSmpCluster_Cc1_Iw32Is4096Iy1_Dw32Ds4096Dy1_ITs4DTs4_Ood_Wm_Hb1.v", "colognechip_gatemate_evb.v", "colognechip_gatemate_evb_mem.init", "colognechip_gatemate_evb_rom.init", "colognechip_gatemate_evb_sram.init"]
-  output_files: ["$(SOURCE)"]
+  source:
+    - Ram_1w_1rs_Generic.v
+    - VexRiscvLitexSmpCluster_Cc1_Iw32Is4096Iy1_Dw32Ds4096Dy1_ITs4DTs4_Ood_Wm_Hb1.v
+    - colognechip_gatemate_evb.v
+  includes:
+    - colognechip_gatemate_evb_mem.init
+    - colognechip_gatemate_evb_rom.init
+    - colognechip_gatemate_evb_sram.init
+    - evb.ccf
+  output_files:
+    - $(SOURCE)
   output_format: Verilog
 
 base: {}
-
