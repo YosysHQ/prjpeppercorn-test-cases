@@ -6952,7 +6952,7 @@ module VexRiscv (
   reg [31:0] decode_to_execute_BRANCH_CTRL_string;
   `endif
 
-  (* ram_style = "distributed" *) reg [31:0] RegFilePlugin_regFile [0:31] /* verilator public */ ;
+  reg [31:0] RegFilePlugin_regFile [0:31] /* verilator public */ ;
 
   assign _zz_when = (|{decodeExceptionPort_valid,IBusCachedPlugin_decodeExceptionPort_valid});
   assign _zz_when_1 = (|{BranchPlugin_branchExceptionPort_valid,CsrPlugin_selfException_valid});
