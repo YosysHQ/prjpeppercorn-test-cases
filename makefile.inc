@@ -12,6 +12,7 @@ NEXTPNR = nextpnr-himbaechel
 YOSYS = yosys
 GMPACK = gmpack
 GMUNPACK = gmunpack
+EQY_CLOCK = async2sync
 
 define check_cc_tool
   $(if $(CC_TOOL), \
@@ -31,6 +32,10 @@ endif
 
 ifdef SEED
 SEED_OPT=--seed $(SEED)
+endif
+
+ifdef MULTICLOCK
+EQY_CLOCK=clk2fflogic
 endif
 
 ifdef YOSYS_DEFS
@@ -88,7 +93,7 @@ post: $(TEST_CASE)_$(BOARD)_pnr.v
 
 jtag_pr: $(TEST_CASE)_$(BOARD)_00.cfg
 	@echo "Running openFPGALoader for '$(BOARD)' board"
-	@$(OFL) -b $(OFL_BOARD) $^
+	@$(OFL) -b $(OFL_BOARD) --index-chain 0 $^
 
 jtag: $(TEST_CASE)_$(BOARD).txt
 	@echo "Running openFPGALoader for '$(BOARD)' board"
@@ -122,12 +127,18 @@ check_yosys.eqy: $(TEST_CASE)_ys.v $(VERILOG_FILES)
 	  echo "read_verilog -defer -sv $(VERILOG_FILES)"; \
 	  echo "$(YOSYS_CMDS)"; \
 	  echo "prep -top $(TOP)"; \
+	  echo "flatten";\
+	  echo "$(EQY_CLOCK)";\
+	  echo "memory_map";\
 	  echo ""; \
 	  echo "[gate]"; \
 	  echo "$(YOSYS_DEFS_OPT)"; \
 	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v +/gatemate/cells_bb.v"; \
 	  echo "read_verilog $(TEST_CASE)_ys.v"; \
 	  echo "prep -top $(TOP)"; \
+	  echo "flatten";\
+	  echo "$(EQY_CLOCK)";\
+	  echo "memory_map";\
 	  echo ""; \
 	  echo "[collect *]"; \
 	  echo "bind *"; \
