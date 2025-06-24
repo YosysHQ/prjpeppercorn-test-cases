@@ -116,7 +116,7 @@ clean:
 clean-bit:
 	@rm -rf $(TEST_CASE)_$(BOARD).txt $(TEST_CASE)_$(BOARD).bit
 
-.PHONY: synth json pr nextpnr jtag_pr jtag unpack check_yosys
+.PHONY: synth json pr nextpnr jtag_pr jtag unpack check_yosys check_pnr
 
 check_yosys.eqy: $(TEST_CASE)_ys.v $(VERILOG_FILES)
 	@echo "Generating EQY file"
@@ -145,8 +145,41 @@ check_yosys.eqy: $(TEST_CASE)_ys.v $(VERILOG_FILES)
 	  echo ""; \
 	  echo "[strategy pdr]"; \
 	  echo "use sby"; \
-	  echo "engine abc pdr"; \
+	  echo "engine abc scorr; pdr"; \
 	} > $@
 
 check_yosys: check_yosys.eqy
+	@eqy -f $^
+
+check_pnr.eqy: $(TEST_CASE)_$(BOARD)_pnr.v $(VERILOG_FILES)
+	@echo "Generating EQY file"
+	@{ \
+	  echo "[gold]"; \
+	  echo "$(YOSYS_DEFS_OPT)"; \
+	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v +/gatemate/cells_bb.v"; \
+	  echo "read_verilog -defer -sv $(VERILOG_FILES)"; \
+	  echo "$(YOSYS_CMDS)"; \
+	  echo "prep -top $(TOP)"; \
+	  echo "flatten";\
+	  echo "$(EQY_CLOCK)";\
+	  echo "memory_map";\
+	  echo ""; \
+	  echo "[gate]"; \
+	  echo "$(YOSYS_DEFS_OPT)"; \
+	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v +/gatemate/cells_bb.v ../cpesim.v"; \
+	  echo "read_verilog $(TEST_CASE)_$(BOARD)_pnr.v"; \
+	  echo "prep -top $(TOP)"; \
+	  echo "flatten";\
+	  echo "$(EQY_CLOCK)";\
+	  echo "memory_map";\
+	  echo ""; \
+	  echo "[collect *]"; \
+	  echo "bind *"; \
+	  echo ""; \
+	  echo "[strategy pdr]"; \
+	  echo "use sby"; \
+	  echo "engine abc scorr; pdr"; \
+	} > $@
+
+check_pnr: check_pnr.eqy
 	@eqy -f $^
