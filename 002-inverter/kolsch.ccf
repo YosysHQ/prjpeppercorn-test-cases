@@ -1,0 +1,2 @@
+Pin_in   "rst"  Loc = "IO_EB_A0"; # PMOD BUT0
+Pin_out  "led"  Loc = "IO_NB_B4"; # D1

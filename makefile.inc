@@ -25,9 +25,11 @@ $(error BOARD variable is not set)
 endif
 
 ifeq ($(BOARD), olimex)
-OFL_BOARD=olimex_gatemateevb
+OFL_BOARD=-b olimex_gatemateevb
+else ifeq ($(BOARD), kolsch)
+OFL_BOARD=-c dirtyJtag
 else
-OFL_BOARD=gatemate_evb_jtag
+OFL_BOARD=-b gatemate_evb_jtag
 endif
 
 ifdef SEED
@@ -93,12 +95,12 @@ post: $(TEST_CASE)_$(BOARD)_pnr.v
 
 jtag_pr: $(TEST_CASE)_$(BOARD)_00.cfg
 	@echo "Running openFPGALoader for '$(BOARD)' board"
-	@$(OFL) -b $(OFL_BOARD) --index-chain 0 $^
+	@$(OFL) $(OFL_BOARD) --index-chain 0 $^
 
 jtag: $(TEST_CASE)_$(BOARD).txt
 	@echo "Running openFPGALoader for '$(BOARD)' board"
 	@$(GMPACK) $(TEST_CASE)_$(BOARD).txt $(TEST_CASE)_$(BOARD).bit
-	@$(OFL) -b $(OFL_BOARD) --index-chain 0 $(TEST_CASE)_$(BOARD).bit
+	@$(OFL) $(OFL_BOARD) --index-chain 0 $(TEST_CASE)_$(BOARD).bit
 
 $(TEST_CASE)_$(BOARD)_pnr.v: $(TEST_CASE)_$(BOARD).txt
 	@echo "Generate post PnR Verilog netlist"
@@ -106,7 +108,7 @@ $(TEST_CASE)_$(BOARD)_pnr.v: $(TEST_CASE)_$(BOARD).txt
 
 firmware: $(FIRMWARE)
 	@echo "Running openFPGALoader to program '$(FIRMWARE)' on '$(BOARD)' board"
-	@$(OFL) -b $(OFL_BOARD) --index-chain 0 -f -o 1048576 $(FIRMWARE)
+	@$(OFL) $(OFL_BOARD) --index-chain 0 -f -o 1048576 $(FIRMWARE)
 
 clean:
 	@rm -rf *.log *_synth.v *.history *.txt *.refwire *.refparam *_ys.v
