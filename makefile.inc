@@ -26,10 +26,13 @@ endif
 
 ifeq ($(BOARD), olimex)
 OFL_BOARD=-b olimex_gatemateevb
+FREQ = 10
 else ifeq ($(BOARD), kolsch)
 OFL_BOARD=-c dirtyJtag
+FREQ = 48
 else
 OFL_BOARD=-b gatemate_evb_jtag
+FREQ = 10
 endif
 
 ifdef SEED
@@ -64,11 +67,11 @@ all:
 synth: $(TEST_CASE)_synth.v
 json: $(TEST_CASE).json
 
-$(TEST_CASE)_synth.v: $(VERILOG_FILES)
+$(TEST_CASE)_synth.v: ../$(BOARD).vh $(VERILOG_FILES)
 	@echo "Running Yosys"
 	@$(YOSYS) -ql synth.log -p '$(YOSYS_DEFS_OPT) read_verilog -defer -sv $^; $(YOSYS_CMDS) synth_gatemate $(YOSYS_PARAM) -top $(TOP) -nomx8 -vlog $(TEST_CASE)_synth.v'
 
-$(TEST_CASE).json $(TEST_CASE)_ys.v: $(VERILOG_FILES)
+$(TEST_CASE).json $(TEST_CASE)_ys.v: ../$(BOARD).vh $(VERILOG_FILES)
 	@echo "Running Yosys"
 	@$(YOSYS) -ql synth.log -p '$(YOSYS_DEFS_OPT) read_verilog -defer -sv $^; $(YOSYS_CMDS) synth_gatemate $(YOSYS_PARAM) -luttree -top $(TOP) -json $(TEST_CASE).json -vlog $(TEST_CASE)_ys.v'
 
@@ -79,7 +82,7 @@ $(TEST_CASE)_$(BOARD)_00.cfg: $(TEST_CASE)_synth.v $(BOARD).ccf
 
 $(TEST_CASE)_$(BOARD).txt $(TEST_CASE)_$(BOARD)_pnr.json: $(TEST_CASE).json $(BOARD).ccf
 	@echo "Running nextpnr for '$(BOARD)' board"
-	$(NEXTPNR) --device $(FPGA) --json $(TEST_CASE).json --vopt ccf=$(BOARD).ccf --vopt out=$(TEST_CASE)_$(BOARD).txt --router router2 --freq 10 $(SEED_OPT) $(SDC_OPT) --write $(TEST_CASE)_$(BOARD)_pnr.json
+	$(NEXTPNR) --device $(FPGA) --json $(TEST_CASE).json --vopt ccf=$(BOARD).ccf --vopt out=$(TEST_CASE)_$(BOARD).txt --router router2 --freq $(FREQ) $(SEED_OPT) $(SDC_OPT) --write $(TEST_CASE)_$(BOARD)_pnr.json
 
 $(TEST_CASE)_$(BOARD)_00.txt: $(TEST_CASE)_$(BOARD)_00.cfg
 	@echo "Running unpack for '$(BOARD)' board"
@@ -120,13 +123,13 @@ clean-bit:
 
 .PHONY: synth json pr nextpnr jtag_pr jtag unpack check_yosys check_pnr
 
-check_yosys.eqy: $(TEST_CASE)_ys.v $(VERILOG_FILES)
+check_yosys.eqy: $(TEST_CASE)_ys.v ../$(BOARD).vh $(VERILOG_FILES)
 	@echo "Generating EQY file"
 	@{ \
 	  echo "[gold]"; \
 	  echo "$(YOSYS_DEFS_OPT)"; \
 	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v +/gatemate/cells_bb.v"; \
-	  echo "read_verilog -defer -sv $(VERILOG_FILES)"; \
+	  echo "read_verilog -defer -sv ../$(BOARD).vh $(VERILOG_FILES)"; \
 	  echo "$(YOSYS_CMDS)"; \
 	  echo "prep -top $(TOP)"; \
 	  echo "flatten";\
@@ -153,13 +156,13 @@ check_yosys.eqy: $(TEST_CASE)_ys.v $(VERILOG_FILES)
 check_yosys: check_yosys.eqy
 	@eqy -f $^
 
-check_pnr.eqy: $(TEST_CASE)_$(BOARD)_pnr.v $(VERILOG_FILES)
+check_pnr.eqy: $(TEST_CASE)_$(BOARD)_pnr.v ../$(BOARD).vh $(VERILOG_FILES)
 	@echo "Generating EQY file"
 	@{ \
 	  echo "[gold]"; \
 	  echo "$(YOSYS_DEFS_OPT)"; \
 	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v +/gatemate/cells_bb.v"; \
-	  echo "read_verilog -defer -sv $(VERILOG_FILES)"; \
+	  echo "read_verilog -defer -sv ../$(BOARD).vh $(VERILOG_FILES)"; \
 	  echo "$(YOSYS_CMDS)"; \
 	  echo "prep -top $(TOP)"; \
 	  echo "flatten";\
