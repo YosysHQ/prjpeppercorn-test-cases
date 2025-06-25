@@ -13,7 +13,7 @@ module top (
 	wire clk_4;
 
 	CC_PLL #(
-		.REF_CLK("10.0"),    // reference input in MHz
+		.REF_CLK(`BOARD_FREQ_STR),    // reference input in MHz
 		.OUT_CLK("20"),   // pll output frequency in MHz
 		.PERF_MD("SPEED"), // LOWPOWER, ECONOMY, SPEED
 		.LOW_JITTER(1),      // 0: disable, 1: enable low jitter mode
@@ -26,7 +26,7 @@ module top (
 	);
 
 	CC_PLL #(
-		.REF_CLK("10.0"),    // reference input in MHz
+		.REF_CLK(`BOARD_FREQ_STR),    // reference input in MHz
 		.OUT_CLK("15"),   // pll output frequency in MHz
 		.PERF_MD("SPEED"), // LOWPOWER, ECONOMY, SPEED
 		.LOW_JITTER(1),      // 0: disable, 1: enable low jitter mode
@@ -39,7 +39,7 @@ module top (
 	);
 
 	CC_PLL #(
-		.REF_CLK("10.0"),    // reference input in MHz
+		.REF_CLK(`BOARD_FREQ_STR),    // reference input in MHz
 		.OUT_CLK("10"),   // pll output frequency in MHz
 		.PERF_MD("SPEED"), // LOWPOWER, ECONOMY, SPEED
 		.LOW_JITTER(1),      // 0: disable, 1: enable low jitter mode
@@ -52,7 +52,7 @@ module top (
 	);
 
 	CC_PLL #(
-		.REF_CLK("10.0"),    // reference input in MHz
+		.REF_CLK(`BOARD_FREQ_STR),    // reference input in MHz
 		.OUT_CLK("5"),   // pll output frequency in MHz
 		.PERF_MD("SPEED"), // LOWPOWER, ECONOMY, SPEED
 		.LOW_JITTER(1),      // 0: disable, 1: enable low jitter mode

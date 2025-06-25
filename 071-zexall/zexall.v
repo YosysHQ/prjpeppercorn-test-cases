@@ -51,7 +51,7 @@ module zexall(
 		.ser_tx(tx),
 		.ser_rx(rx),
 
-		.cfg_divider(10000000/115200),
+		.cfg_divider(`BOARD_FREQ/115200),
 
 		.reg_dat_we(wr_uart),
 		.reg_dat_re(rd_uart),

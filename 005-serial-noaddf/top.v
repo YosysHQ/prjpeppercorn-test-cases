@@ -116,7 +116,7 @@ module top (input  clk, output uart_tx, input uart_rx);
     .clk(clk),
     .resetn(resetn),
     .ser_rx(uart_rx),
-    .cfg_divider(10000000/115200),
+    .cfg_divider(`BOARD_FREQ/115200),
     .data(uart_out),
     .valid(rx_valid)
   );
@@ -125,7 +125,7 @@ module top (input  clk, output uart_tx, input uart_rx);
     .clk(clk),
     .resetn(resetn),
     .ser_tx(uart_tx),
-    .cfg_divider(10000000/115200),
+    .cfg_divider(`BOARD_FREQ/115200),
     .data(uart_out),
     .data_we(rx_valid)
   );

@@ -1722,7 +1722,7 @@ CC_PLL #(
 	.LOW_JITTER      (1'd1),
 	.OUT_CLK         ("24.0"),
 	.PERF_MD         ("ECONOMY"),
-	.REF_CLK         ("10.0")
+	.REF_CLK         (`BOARD_FREQ_STR)
 ) CC_PLL (
 	// Inputs.
 	.CLK_FEEDBACK        (1'd0),

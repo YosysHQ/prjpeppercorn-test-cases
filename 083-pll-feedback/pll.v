@@ -12,7 +12,7 @@ module pll (
     wire clk270, clk180, clk90, clk0, usr_ref_out;
 
     CC_PLL #(
-        .REF_CLK("10.0"),    // 10 MHz reference input
+        .REF_CLK(`BOARD_FREQ_STR),    // 10 MHz reference input
         .OUT_CLK("20.0"),    // 20 MHz PLL output -- must be multiple of ref_clk
         .LOW_JITTER(1),      // 0: disable, 1: enable low jitter mode
         .CI_FILTER_CONST(2), // optional CI filter constant

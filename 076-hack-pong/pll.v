@@ -17,8 +17,8 @@ module pll(
 	wire usr_pll_lock_stdy, usr_pll_lock;
 
 	CC_PLL #(
-		.REF_CLK(10.0),			// reference input in MHz
-		.OUT_CLK(1.0),			// pll output frequency in MHz
+		.REF_CLK(`BOARD_FREQ_STR),			// reference input in MHz
+		.OUT_CLK("1.0"),			// pll output frequency in MHz
 		.PERF_MD("ECONOMY"),	// LOWPOWER, ECONOMY, SPEED
 		.LOCK_REQ(1),
 		.LOW_JITTER(1),			// 0: disable, 1: enable low jitter mode

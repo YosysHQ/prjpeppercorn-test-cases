@@ -1,5 +1,5 @@
 /*
- * gatemate_25MHz_pll.v
+ * gatemate_40MHz_pll.v
  *
  * Copyright (C) 2022-2024  Gwenhael Goavec-Merou <gwenhael.goavec-merou@trabucayre.com>
  * SPDX-License-Identifier: MIT
@@ -16,7 +16,7 @@ wire usr_pll_lock;
 
 wire pll_clk_nobuf;
 CC_PLL #(
-    .REF_CLK("10.0"),    // reference input in MHz
+    .REF_CLK(`BOARD_FREQ_STR),    // reference input in MHz
     .OUT_CLK("40.0"),    // pll output frequency in MHz
     .LOCK_REQ(0),        // 1: Lock status required before PLL output enable
                          // 0: PLL output before lock

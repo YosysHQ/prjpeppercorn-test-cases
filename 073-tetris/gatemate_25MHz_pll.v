@@ -16,7 +16,7 @@ wire usr_pll_lock;
 
 wire pll_clk_nobuf;
 CC_PLL #(
-    .REF_CLK("10.0"),    // reference input in MHz
+    .REF_CLK(`BOARD_FREQ_STR),    // reference input in MHz
     .OUT_CLK("25.0"),    // pll output frequency in MHz
     .LOCK_REQ(0),        // 1: Lock status required before PLL output enable
                          // 0: PLL output before lock

@@ -124,7 +124,7 @@ module top (
     .clk(clk),
     .resetn(resetn),
     .ser_rx(uart_rx),
-    .cfg_divider(10000000/115200),
+    .cfg_divider(`BOARD_FREQ/115200),
     .data(uart_in),
     .valid(rx_valid)
   );
@@ -133,7 +133,7 @@ module top (
     .clk(clk),
     .resetn(resetn),
     .ser_tx(uart_tx),
-    .cfg_divider(10000000/115200),
+    .cfg_divider(`BOARD_FREQ/115200),
     .data(uart_out),
     .data_we(tx_valid)
   );

@@ -6,7 +6,7 @@ module top (
     wire clk0;
 
 	CC_PLL #(
-		.REF_CLK("10.0"),    // reference input in MHz
+		.REF_CLK(`BOARD_FREQ_STR),    // reference input in MHz
 		.OUT_CLK("25"),   // pll output frequency in MHz
 		.PERF_MD("SPEED"), // LOWPOWER, ECONOMY, SPEED
 		.LOW_JITTER(1),      // 0: disable, 1: enable low jitter mode
