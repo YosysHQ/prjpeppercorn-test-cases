@@ -1,0 +1,22 @@
+Pin_in  "clk_i"  Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+
+Pin_in  "rstn_i" Loc = "IO_NB_B3" | PULLUP=true; # Not connected pin
+
+#J1
+Pin_out "o_r[0]" Loc = "IO_NA_B1";
+Pin_out "o_r[1]" Loc = "IO_NA_A1";
+Pin_out "o_r[2]" Loc = "IO_NA_A2";
+Pin_out "o_r[3]" Loc = "IO_NA_A4";
+
+Pin_out "o_g[0]" Loc = "IO_NA_B4";
+Pin_out "o_g[1]" Loc = "IO_NA_A7";
+Pin_out "o_g[2]" Loc = "IO_NA_B7";
+Pin_out "o_g[3]" Loc = "IO_NA_B2";
+
+#J2
+Pin_out "o_b[0]"  Loc = "IO_NA_A3";
+Pin_out "o_b[1]"  Loc = "IO_NA_A5";
+Pin_out "o_b[2]"  Loc = "IO_NA_A6";
+Pin_out "o_b[3]"  Loc = "IO_NA_A8";
+Pin_out "o_hsync" Loc = "IO_NA_A0";
+Pin_out "o_vsync" Loc = "IO_NA_B0";
