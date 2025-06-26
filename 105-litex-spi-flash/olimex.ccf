@@ -1,0 +1,18 @@
+Net "clk10" Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+Net "user_btn_n0" Loc = "IO_SB_B7";
+Net "usb_uart_tx" Loc = "IO_SA_B6";
+Net "usb_uart_rx" Loc = "IO_SA_A6";
+Net "spiflash4x_cs_n" Loc = "IO_EA_A4";
+Net "spiflash4x_clk" Loc = "IO_EA_A7" | SLEW=fast;
+Net "spiflash4x_dq[0]" Loc = "IO_EA_A5";
+Net "spiflash4x_dq[1]" Loc = "IO_EA_A6";
+Net "spiflash4x_dq[2]" Loc = "IO_EA_B6";
+Net "spiflash4x_dq[3]" Loc = "IO_EA_B7";
+Net "user_led_n0" Loc = "IO_WC_B3";
+Net "user_led_n1" Loc = "IO_WC_A3";
+Net "user_led_n2" Loc = "IO_WC_B2";
+Net "user_led_n3" Loc = "IO_WC_A2";
+Net "user_led_n4" Loc = "IO_WC_B1";
+Net "user_led_n5" Loc = "IO_WC_A1";
+Net "user_led_n6" Loc = "IO_WC_B0";
+Net "user_led_n7" Loc = "IO_WC_A0";
