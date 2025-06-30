@@ -128,7 +128,7 @@ check_yosys.eqy: $(TEST_CASE)_ys.v ../$(BOARD).vh $(VERILOG_FILES)
 	@{ \
 	  echo "[gold]"; \
 	  echo "$(YOSYS_DEFS_OPT)"; \
-	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v +/gatemate/cells_bb.v"; \
+	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v ../cells_extra.v"; \
 	  echo "read_verilog -defer -sv ../$(BOARD).vh $(VERILOG_FILES)"; \
 	  echo "$(YOSYS_CMDS)"; \
 	  echo "prep -top $(TOP)"; \
@@ -138,7 +138,7 @@ check_yosys.eqy: $(TEST_CASE)_ys.v ../$(BOARD).vh $(VERILOG_FILES)
 	  echo ""; \
 	  echo "[gate]"; \
 	  echo "$(YOSYS_DEFS_OPT)"; \
-	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v +/gatemate/cells_bb.v"; \
+	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v ../cells_extra.v"; \
 	  echo "read_verilog $(TEST_CASE)_ys.v"; \
 	  echo "prep -top $(TOP)"; \
 	  echo "flatten";\
@@ -161,7 +161,7 @@ check_pnr.eqy: $(TEST_CASE)_$(BOARD)_pnr.v ../$(BOARD).vh $(VERILOG_FILES)
 	@{ \
 	  echo "[gold]"; \
 	  echo "$(YOSYS_DEFS_OPT)"; \
-	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v +/gatemate/cells_bb.v"; \
+	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v ../cells_extra.v"; \
 	  echo "read_verilog -defer -sv ../$(BOARD).vh $(VERILOG_FILES)"; \
 	  echo "$(YOSYS_CMDS)"; \
 	  echo "prep -top $(TOP)"; \
@@ -171,8 +171,9 @@ check_pnr.eqy: $(TEST_CASE)_$(BOARD)_pnr.v ../$(BOARD).vh $(VERILOG_FILES)
 	  echo ""; \
 	  echo "[gate]"; \
 	  echo "$(YOSYS_DEFS_OPT)"; \
-	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v +/gatemate/cells_bb.v ../cpesim.v"; \
+	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v ../cpesim.v"; \
 	  echo "read_verilog $(TEST_CASE)_$(BOARD)_pnr.v"; \
+	  echo "rename top $(TOP)";\
 	  echo "prep -top $(TOP)"; \
 	  echo "flatten";\
 	  echo "$(EQY_CLOCK)";\
