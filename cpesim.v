@@ -359,29 +359,15 @@ module CPE_LATCH #(
 endmodule
 
 
-module CPE_CI #(
+module CPE_CPLINES #(
 	parameter C_CY1_I = 1'b0,
-	parameter [1:0] C_O1 = 2'b00,
 	parameter C_SELY1 = 1'b0,
-	parameter [3:0] INIT_L00 = 4'b0000,
-	parameter [3:0] INIT_L01 = 4'b0000,
-	parameter [3:0] INIT_L10 = 4'b0000,
-	parameter [3:0] INIT_L20 = 4'b0000,
 )(
-	input IN1,
-	input IN2,
-	input IN3,
-	input IN4,
+	input OUT1,
+	input OUT2,
 	output COUTY1
 );
-	wire [1:0] l00_s1 = IN2 ? INIT_L00[3:2] : INIT_L00[1:0];
-	wire l00 = IN1 ? l00_s1[1] : l00_s1[0];
-
-	wire [1:0] l01_s1 = IN4 ? INIT_L01[3:2] : INIT_L01[1:0];
-	wire l01 = IN3 ? l01_s1[1] : l01_s1[0];
-
-	wire [1:0] l10_s1 = l01 ? INIT_L10[3:2] : INIT_L10[1:0];
-	assign COUTY1 = l00 ? l10_s1[1] : l10_s1[0];
+	assign COUTY1 = OUT1;
 endmodule
 
 module CPE_EN_CIN #(
