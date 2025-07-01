@@ -360,14 +360,51 @@ endmodule
 
 
 module CPE_CPLINES #(
-	parameter C_CY1_I = 1'b0,
-	parameter C_SELY1 = 1'b0,
+    parameter C_SELX  = 1'b0,
+    parameter C_SELY1 = 1'b0,
+    parameter C_SELY2 = 1'b0,
+    parameter C_SEL_C = 1'b0,
+    parameter C_SEL_P = 1'b0,
+    parameter C_Y12   = 1'b0,
+    parameter C_CX_I  = 1'b0,
+    parameter C_CY1_I = 1'b0,
+    parameter C_CY2_I = 1'b0,
+    parameter C_PX_I  = 1'b0,
+    parameter C_PY1_I = 1'b0,
+    parameter C_PY2_I = 1'b0
 )(
 	input OUT1,
 	input OUT2,
-	output COUTY1
+	input COMPOUT,
+	input CINX,
+	input PINX,
+	input CINY1,
+	input PINY1,
+	input CINY2,
+	input PINY2,
+	output COUTX,
+    output POUTX,
+    output COUTY1,
+    output POUTY1,
+    output COUTY2,
+    output POUTY2
 );
-	assign COUTY1 = OUT1;
+	wire CIY12 = C_Y12 ? CINY2 : CINY1;
+	wire PIY12 = C_Y12 ? PINY2 : PINY1;
+
+	wire CX_VAL  = C_SEL_C ? (C_SELX ? CIY12 : COMPOUT) : (C_SELX  ? OUT2 : OUT1);
+	wire PX_VAL  = C_SEL_P ? (C_SELX ? PIY12 : COMPOUT) : (C_SELX  ? OUT1 : OUT2);
+	wire CY1_VAL = C_SEL_C ? (C_SELY1 ? CINX : COMPOUT) : (C_SELY1 ? OUT1 : OUT2);
+	wire PY1_VAL = C_SEL_P ? (C_SELY1 ? PINX : COMPOUT) : (C_SELY1 ? OUT2 : OUT1);
+	wire CY2_VAL = C_SEL_C ? (C_SELY2 ? CINX : COMPOUT) : (C_SELY2 ? OUT2 : OUT1);
+	wire PY2_VAL = C_SEL_P ? (C_SELY2 ? PINX : COMPOUT) : (C_SELY2 ? OUT1 : OUT2);
+
+	assign COUTX  = C_CX_I  ? CX_VAL  : CINX;
+	assign COUTY1 = C_CY1_I ? CY1_VAL : CINY1;
+	assign COUTY2 = C_CY2_I ? CY2_VAL : CINY2;
+	assign POUTX  = C_PX_I  ? PX_VAL  : PINX;
+	assign POUTY1 = C_PY1_I ? PY1_VAL : PINY1;
+	assign POUTY2 = C_PY2_I ? PY2_VAL : PINY2;
 endmodule
 
 module CPE_EN_CIN #(
