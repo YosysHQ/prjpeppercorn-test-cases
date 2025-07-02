@@ -9,7 +9,7 @@
 // Filename   : kolsch.v
 // Device     : CCGM1A1
 // LiteX sha1 : edc0fea4a
-// Date       : 2025-06-27 09:41:12
+// Date       : 2025-07-02 12:17:19
 //------------------------------------------------------------------------------
 
 `timescale 1ns / 1ps
@@ -19,6 +19,7 @@
 //------------------------------------------------------------------------------
 
 module kolsch (
+    (* keep = "true" *)
     input  wire          clk48,
     output wire   [12:0] sdram_a,
     output wire    [1:0] sdram_ba,
@@ -204,24 +205,29 @@ _SoCLinux
 │    │    └─── csrstatus_5* (CSRStatus)
 └─── csr_interconnect (InterconnectShared)
 └─── [CC_DFF]
+└─── [CC_IOBUF]
+└─── [CC_IOBUF]
+└─── [CC_IOBUF]
+└─── [CC_IOBUF]
+└─── [CC_IOBUF]
+└─── [CC_IOBUF]
+└─── [CC_IOBUF]
+└─── [CC_IOBUF]
+└─── [CC_IOBUF]
+└─── [CC_IOBUF]
+└─── [CC_IOBUF]
+└─── [CC_IOBUF]
+└─── [CC_IOBUF]
+└─── [CC_IOBUF]
+└─── [CC_IOBUF]
+└─── [CC_IOBUF]
 └─── [CC_DFF]
 └─── [CC_DFF]
-└─── [CC_IOBUF]
-└─── [CC_IOBUF]
-└─── [CC_IOBUF]
-└─── [CC_IOBUF]
-└─── [CC_IOBUF]
-└─── [CC_IOBUF]
-└─── [CC_IOBUF]
-└─── [CC_IOBUF]
-└─── [CC_IOBUF]
-└─── [CC_IOBUF]
-└─── [CC_IOBUF]
-└─── [CC_IOBUF]
-└─── [CC_IOBUF]
-└─── [CC_IOBUF]
-└─── [CC_IOBUF]
-└─── [CC_IOBUF]
+└─── [CC_DFF]
+└─── [CC_DFF]
+└─── [CC_DFF]
+└─── [CC_DFF]
+└─── [CC_DFF]
 └─── [CC_DFF]
 └─── [CC_DFF]
 └─── [CC_DFF]
@@ -289,12 +295,6 @@ _SoCLinux
 └─── [CC_DFF]
 └─── [CC_DFF]
 └─── [CC_DFF]
-└─── [CC_DFF]
-└─── [CC_DFF]
-└─── [CC_DFF]
-└─── [CC_DFF]
-└─── [CC_DFF]
-└─── [CC_DFF]
 * : Generated name.
 []: BlackBox.
 */
@@ -303,7 +303,6 @@ _SoCLinux
 // Signals
 //------------------------------------------------------------------------------
 
-wire          builder_align_q;
 reg     [2:0] builder_bankmachine0_next_state = 3'd0;
 reg     [2:0] builder_bankmachine0_state = 3'd0;
 reg     [2:0] builder_bankmachine1_next_state = 3'd0;
@@ -1762,6 +1761,7 @@ reg           soclinux_wrdata_re = 1'd0;
 reg    [15:0] soclinux_wrdata_storage = 16'd0;
 wire          soclinux_write_available;
 reg           soclinux_xfer_enable = 1'd0;
+(* keep = "true" *)
 wire          sys_clk;
 wire          sys_ps_clk;
 wire          sys_ps_rst;
@@ -6302,6 +6302,23 @@ CC_DFF #(
 );
 
 //------------------------------------------------------------------------------
+// Instance CC_ODDR of CC_ODDR Module.
+//------------------------------------------------------------------------------
+CC_ODDR #(
+	// Parameters.
+	.CLK_INV (1'd0)
+) CC_ODDR (
+	// Inputs.
+	.CLK (sys_ps_clk),
+	.D0  (1'd1),
+	.D1  (1'd0),
+	.DDR (sys_ps_clk),
+
+	// Outputs.
+	.Q   (sdram_clock)
+);
+
+//------------------------------------------------------------------------------
 // Instance CC_DFF_4 of CC_DFF Module.
 //------------------------------------------------------------------------------
 CC_DFF #(
@@ -6312,30 +6329,13 @@ CC_DFF #(
 	.SR_VAL  (1'd0)
 ) CC_DFF_4 (
 	// Inputs.
-	.CLK (sys_ps_clk),
-	.D   (1'd0),
+	.CLK (sys_clk),
+	.D   (sdrphy_dfi_p0_cs_n),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_align_q)
-);
-
-//------------------------------------------------------------------------------
-// Instance CC_ODDR of CC_ODDR Module.
-//------------------------------------------------------------------------------
-CC_ODDR #(
-	// Parameters.
-	.CLK_INV (1'd0)
-) CC_ODDR (
-	// Inputs.
-	.CLK (sys_ps_clk),
-	.D0  (1'd1),
-	.D1  (builder_align_q),
-	.DDR (sys_ps_clk),
-
-	// Outputs.
-	.Q   (sdram_clock)
+	.Q   (sdram_cs_n)
 );
 
 //------------------------------------------------------------------------------
@@ -6350,12 +6350,12 @@ CC_DFF #(
 ) CC_DFF_5 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_cs_n),
+	.D   (sdrphy_dfi_p0_address[0]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdram_cs_n)
+	.Q   (sdram_a[0])
 );
 
 //------------------------------------------------------------------------------
@@ -6370,12 +6370,12 @@ CC_DFF #(
 ) CC_DFF_6 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_address[0]),
+	.D   (sdrphy_dfi_p0_address[1]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdram_a[0])
+	.Q   (sdram_a[1])
 );
 
 //------------------------------------------------------------------------------
@@ -6390,12 +6390,12 @@ CC_DFF #(
 ) CC_DFF_7 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_address[1]),
+	.D   (sdrphy_dfi_p0_address[2]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdram_a[1])
+	.Q   (sdram_a[2])
 );
 
 //------------------------------------------------------------------------------
@@ -6410,12 +6410,12 @@ CC_DFF #(
 ) CC_DFF_8 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_address[2]),
+	.D   (sdrphy_dfi_p0_address[3]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdram_a[2])
+	.Q   (sdram_a[3])
 );
 
 //------------------------------------------------------------------------------
@@ -6430,12 +6430,12 @@ CC_DFF #(
 ) CC_DFF_9 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_address[3]),
+	.D   (sdrphy_dfi_p0_address[4]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdram_a[3])
+	.Q   (sdram_a[4])
 );
 
 //------------------------------------------------------------------------------
@@ -6450,12 +6450,12 @@ CC_DFF #(
 ) CC_DFF_10 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_address[4]),
+	.D   (sdrphy_dfi_p0_address[5]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdram_a[4])
+	.Q   (sdram_a[5])
 );
 
 //------------------------------------------------------------------------------
@@ -6470,12 +6470,12 @@ CC_DFF #(
 ) CC_DFF_11 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_address[5]),
+	.D   (sdrphy_dfi_p0_address[6]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdram_a[5])
+	.Q   (sdram_a[6])
 );
 
 //------------------------------------------------------------------------------
@@ -6490,12 +6490,12 @@ CC_DFF #(
 ) CC_DFF_12 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_address[6]),
+	.D   (sdrphy_dfi_p0_address[7]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdram_a[6])
+	.Q   (sdram_a[7])
 );
 
 //------------------------------------------------------------------------------
@@ -6510,12 +6510,12 @@ CC_DFF #(
 ) CC_DFF_13 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_address[7]),
+	.D   (sdrphy_dfi_p0_address[8]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdram_a[7])
+	.Q   (sdram_a[8])
 );
 
 //------------------------------------------------------------------------------
@@ -6530,12 +6530,12 @@ CC_DFF #(
 ) CC_DFF_14 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_address[8]),
+	.D   (sdrphy_dfi_p0_address[9]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdram_a[8])
+	.Q   (sdram_a[9])
 );
 
 //------------------------------------------------------------------------------
@@ -6550,12 +6550,12 @@ CC_DFF #(
 ) CC_DFF_15 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_address[9]),
+	.D   (sdrphy_dfi_p0_address[10]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdram_a[9])
+	.Q   (sdram_a[10])
 );
 
 //------------------------------------------------------------------------------
@@ -6570,12 +6570,12 @@ CC_DFF #(
 ) CC_DFF_16 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_address[10]),
+	.D   (sdrphy_dfi_p0_address[11]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdram_a[10])
+	.Q   (sdram_a[11])
 );
 
 //------------------------------------------------------------------------------
@@ -6590,12 +6590,12 @@ CC_DFF #(
 ) CC_DFF_17 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_address[11]),
+	.D   (sdrphy_dfi_p0_address[12]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdram_a[11])
+	.Q   (sdram_a[12])
 );
 
 //------------------------------------------------------------------------------
@@ -6610,12 +6610,12 @@ CC_DFF #(
 ) CC_DFF_18 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_address[12]),
+	.D   (sdrphy_dfi_p0_bank[0]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdram_a[12])
+	.Q   (sdram_ba[0])
 );
 
 //------------------------------------------------------------------------------
@@ -6630,12 +6630,12 @@ CC_DFF #(
 ) CC_DFF_19 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_bank[0]),
+	.D   (sdrphy_dfi_p0_bank[1]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdram_ba[0])
+	.Q   (sdram_ba[1])
 );
 
 //------------------------------------------------------------------------------
@@ -6650,12 +6650,12 @@ CC_DFF #(
 ) CC_DFF_20 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_bank[1]),
+	.D   (sdrphy_dfi_p0_ras_n),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdram_ba[1])
+	.Q   (sdram_ras_n)
 );
 
 //------------------------------------------------------------------------------
@@ -6670,12 +6670,12 @@ CC_DFF #(
 ) CC_DFF_21 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_ras_n),
+	.D   (sdrphy_dfi_p0_cas_n),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdram_ras_n)
+	.Q   (sdram_cas_n)
 );
 
 //------------------------------------------------------------------------------
@@ -6690,12 +6690,12 @@ CC_DFF #(
 ) CC_DFF_22 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_cas_n),
+	.D   (sdrphy_dfi_p0_we_n),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdram_cas_n)
+	.Q   (sdram_we_n)
 );
 
 //------------------------------------------------------------------------------
@@ -6708,26 +6708,6 @@ CC_DFF #(
 	.SR_INV  (1'd0),
 	.SR_VAL  (1'd0)
 ) CC_DFF_23 (
-	// Inputs.
-	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_we_n),
-	.EN  (1'd1),
-	.SR  (1'd0),
-
-	// Outputs.
-	.Q   (sdram_we_n)
-);
-
-//------------------------------------------------------------------------------
-// Instance CC_DFF_24 of CC_DFF Module.
-//------------------------------------------------------------------------------
-CC_DFF #(
-	// Parameters.
-	.CLK_INV (1'd0),
-	.EN_INV  (1'd0),
-	.SR_INV  (1'd0),
-	.SR_VAL  (1'd0)
-) CC_DFF_24 (
 	// Inputs.
 	.CLK (sys_clk),
 	.D   (sdrphy_dfi_p0_cke),
@@ -7043,6 +7023,26 @@ CC_IOBUF #(
 );
 
 //------------------------------------------------------------------------------
+// Instance CC_DFF_24 of CC_DFF Module.
+//------------------------------------------------------------------------------
+CC_DFF #(
+	// Parameters.
+	.CLK_INV (1'd0),
+	.EN_INV  (1'd0),
+	.SR_INV  (1'd0),
+	.SR_VAL  (1'd0)
+) CC_DFF_24 (
+	// Inputs.
+	.CLK (sys_clk),
+	.D   ((sdrphy_dfi_p0_wrdata_en & sdrphy_dfi_p0_wrdata_mask[0])),
+	.EN  (1'd1),
+	.SR  (1'd0),
+
+	// Outputs.
+	.Q   (sdram_dm[0])
+);
+
+//------------------------------------------------------------------------------
 // Instance CC_DFF_25 of CC_DFF Module.
 //------------------------------------------------------------------------------
 CC_DFF #(
@@ -7054,12 +7054,12 @@ CC_DFF #(
 ) CC_DFF_25 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   ((sdrphy_dfi_p0_wrdata_en & sdrphy_dfi_p0_wrdata_mask[0])),
+	.D   ((sdrphy_dfi_p0_wrdata_en & sdrphy_dfi_p0_wrdata_mask[1])),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdram_dm[0])
+	.Q   (sdram_dm[1])
 );
 
 //------------------------------------------------------------------------------
@@ -7074,12 +7074,12 @@ CC_DFF #(
 ) CC_DFF_26 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   ((sdrphy_dfi_p0_wrdata_en & sdrphy_dfi_p0_wrdata_mask[1])),
+	.D   (sdrphy_dfi_p0_wrdata[0]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdram_dm[1])
+	.Q   (builder_colognechipsdrtristateimpl0__o)
 );
 
 //------------------------------------------------------------------------------
@@ -7094,12 +7094,12 @@ CC_DFF #(
 ) CC_DFF_27 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_wrdata[0]),
+	.D   ((~sdrphy_dfi_p0_wrdata_en)),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl0__o)
+	.Q   (builder_colognechipsdrtristateimpl0_oe_n)
 );
 
 //------------------------------------------------------------------------------
@@ -7114,12 +7114,12 @@ CC_DFF #(
 ) CC_DFF_28 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   ((~sdrphy_dfi_p0_wrdata_en)),
+	.D   (builder_colognechipsdrtristateimpl0__i),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl0_oe_n)
+	.Q   (sdrphy_dfi_p0_rddata[0])
 );
 
 //------------------------------------------------------------------------------
@@ -7134,12 +7134,12 @@ CC_DFF #(
 ) CC_DFF_29 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (builder_colognechipsdrtristateimpl0__i),
+	.D   (sdrphy_dfi_p0_wrdata[1]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdrphy_dfi_p0_rddata[0])
+	.Q   (builder_colognechipsdrtristateimpl1__o)
 );
 
 //------------------------------------------------------------------------------
@@ -7154,12 +7154,12 @@ CC_DFF #(
 ) CC_DFF_30 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_wrdata[1]),
+	.D   ((~sdrphy_dfi_p0_wrdata_en)),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl1__o)
+	.Q   (builder_colognechipsdrtristateimpl1_oe_n)
 );
 
 //------------------------------------------------------------------------------
@@ -7174,12 +7174,12 @@ CC_DFF #(
 ) CC_DFF_31 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   ((~sdrphy_dfi_p0_wrdata_en)),
+	.D   (builder_colognechipsdrtristateimpl1__i),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl1_oe_n)
+	.Q   (sdrphy_dfi_p0_rddata[1])
 );
 
 //------------------------------------------------------------------------------
@@ -7194,12 +7194,12 @@ CC_DFF #(
 ) CC_DFF_32 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (builder_colognechipsdrtristateimpl1__i),
+	.D   (sdrphy_dfi_p0_wrdata[2]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdrphy_dfi_p0_rddata[1])
+	.Q   (builder_colognechipsdrtristateimpl2__o)
 );
 
 //------------------------------------------------------------------------------
@@ -7214,12 +7214,12 @@ CC_DFF #(
 ) CC_DFF_33 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_wrdata[2]),
+	.D   ((~sdrphy_dfi_p0_wrdata_en)),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl2__o)
+	.Q   (builder_colognechipsdrtristateimpl2_oe_n)
 );
 
 //------------------------------------------------------------------------------
@@ -7234,12 +7234,12 @@ CC_DFF #(
 ) CC_DFF_34 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   ((~sdrphy_dfi_p0_wrdata_en)),
+	.D   (builder_colognechipsdrtristateimpl2__i),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl2_oe_n)
+	.Q   (sdrphy_dfi_p0_rddata[2])
 );
 
 //------------------------------------------------------------------------------
@@ -7254,12 +7254,12 @@ CC_DFF #(
 ) CC_DFF_35 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (builder_colognechipsdrtristateimpl2__i),
+	.D   (sdrphy_dfi_p0_wrdata[3]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdrphy_dfi_p0_rddata[2])
+	.Q   (builder_colognechipsdrtristateimpl3__o)
 );
 
 //------------------------------------------------------------------------------
@@ -7274,12 +7274,12 @@ CC_DFF #(
 ) CC_DFF_36 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_wrdata[3]),
+	.D   ((~sdrphy_dfi_p0_wrdata_en)),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl3__o)
+	.Q   (builder_colognechipsdrtristateimpl3_oe_n)
 );
 
 //------------------------------------------------------------------------------
@@ -7294,12 +7294,12 @@ CC_DFF #(
 ) CC_DFF_37 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   ((~sdrphy_dfi_p0_wrdata_en)),
+	.D   (builder_colognechipsdrtristateimpl3__i),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl3_oe_n)
+	.Q   (sdrphy_dfi_p0_rddata[3])
 );
 
 //------------------------------------------------------------------------------
@@ -7314,12 +7314,12 @@ CC_DFF #(
 ) CC_DFF_38 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (builder_colognechipsdrtristateimpl3__i),
+	.D   (sdrphy_dfi_p0_wrdata[4]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdrphy_dfi_p0_rddata[3])
+	.Q   (builder_colognechipsdrtristateimpl4__o)
 );
 
 //------------------------------------------------------------------------------
@@ -7334,12 +7334,12 @@ CC_DFF #(
 ) CC_DFF_39 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_wrdata[4]),
+	.D   ((~sdrphy_dfi_p0_wrdata_en)),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl4__o)
+	.Q   (builder_colognechipsdrtristateimpl4_oe_n)
 );
 
 //------------------------------------------------------------------------------
@@ -7354,12 +7354,12 @@ CC_DFF #(
 ) CC_DFF_40 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   ((~sdrphy_dfi_p0_wrdata_en)),
+	.D   (builder_colognechipsdrtristateimpl4__i),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl4_oe_n)
+	.Q   (sdrphy_dfi_p0_rddata[4])
 );
 
 //------------------------------------------------------------------------------
@@ -7374,12 +7374,12 @@ CC_DFF #(
 ) CC_DFF_41 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (builder_colognechipsdrtristateimpl4__i),
+	.D   (sdrphy_dfi_p0_wrdata[5]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdrphy_dfi_p0_rddata[4])
+	.Q   (builder_colognechipsdrtristateimpl5__o)
 );
 
 //------------------------------------------------------------------------------
@@ -7394,12 +7394,12 @@ CC_DFF #(
 ) CC_DFF_42 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_wrdata[5]),
+	.D   ((~sdrphy_dfi_p0_wrdata_en)),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl5__o)
+	.Q   (builder_colognechipsdrtristateimpl5_oe_n)
 );
 
 //------------------------------------------------------------------------------
@@ -7414,12 +7414,12 @@ CC_DFF #(
 ) CC_DFF_43 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   ((~sdrphy_dfi_p0_wrdata_en)),
+	.D   (builder_colognechipsdrtristateimpl5__i),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl5_oe_n)
+	.Q   (sdrphy_dfi_p0_rddata[5])
 );
 
 //------------------------------------------------------------------------------
@@ -7434,12 +7434,12 @@ CC_DFF #(
 ) CC_DFF_44 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (builder_colognechipsdrtristateimpl5__i),
+	.D   (sdrphy_dfi_p0_wrdata[6]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdrphy_dfi_p0_rddata[5])
+	.Q   (builder_colognechipsdrtristateimpl6__o)
 );
 
 //------------------------------------------------------------------------------
@@ -7454,12 +7454,12 @@ CC_DFF #(
 ) CC_DFF_45 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_wrdata[6]),
+	.D   ((~sdrphy_dfi_p0_wrdata_en)),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl6__o)
+	.Q   (builder_colognechipsdrtristateimpl6_oe_n)
 );
 
 //------------------------------------------------------------------------------
@@ -7474,12 +7474,12 @@ CC_DFF #(
 ) CC_DFF_46 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   ((~sdrphy_dfi_p0_wrdata_en)),
+	.D   (builder_colognechipsdrtristateimpl6__i),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl6_oe_n)
+	.Q   (sdrphy_dfi_p0_rddata[6])
 );
 
 //------------------------------------------------------------------------------
@@ -7494,12 +7494,12 @@ CC_DFF #(
 ) CC_DFF_47 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (builder_colognechipsdrtristateimpl6__i),
+	.D   (sdrphy_dfi_p0_wrdata[7]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdrphy_dfi_p0_rddata[6])
+	.Q   (builder_colognechipsdrtristateimpl7__o)
 );
 
 //------------------------------------------------------------------------------
@@ -7514,12 +7514,12 @@ CC_DFF #(
 ) CC_DFF_48 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_wrdata[7]),
+	.D   ((~sdrphy_dfi_p0_wrdata_en)),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl7__o)
+	.Q   (builder_colognechipsdrtristateimpl7_oe_n)
 );
 
 //------------------------------------------------------------------------------
@@ -7534,12 +7534,12 @@ CC_DFF #(
 ) CC_DFF_49 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   ((~sdrphy_dfi_p0_wrdata_en)),
+	.D   (builder_colognechipsdrtristateimpl7__i),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl7_oe_n)
+	.Q   (sdrphy_dfi_p0_rddata[7])
 );
 
 //------------------------------------------------------------------------------
@@ -7554,12 +7554,12 @@ CC_DFF #(
 ) CC_DFF_50 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (builder_colognechipsdrtristateimpl7__i),
+	.D   (sdrphy_dfi_p0_wrdata[8]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdrphy_dfi_p0_rddata[7])
+	.Q   (builder_colognechipsdrtristateimpl8__o)
 );
 
 //------------------------------------------------------------------------------
@@ -7574,12 +7574,12 @@ CC_DFF #(
 ) CC_DFF_51 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_wrdata[8]),
+	.D   ((~sdrphy_dfi_p0_wrdata_en)),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl8__o)
+	.Q   (builder_colognechipsdrtristateimpl8_oe_n)
 );
 
 //------------------------------------------------------------------------------
@@ -7594,12 +7594,12 @@ CC_DFF #(
 ) CC_DFF_52 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   ((~sdrphy_dfi_p0_wrdata_en)),
+	.D   (builder_colognechipsdrtristateimpl8__i),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl8_oe_n)
+	.Q   (sdrphy_dfi_p0_rddata[8])
 );
 
 //------------------------------------------------------------------------------
@@ -7614,12 +7614,12 @@ CC_DFF #(
 ) CC_DFF_53 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (builder_colognechipsdrtristateimpl8__i),
+	.D   (sdrphy_dfi_p0_wrdata[9]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdrphy_dfi_p0_rddata[8])
+	.Q   (builder_colognechipsdrtristateimpl9__o)
 );
 
 //------------------------------------------------------------------------------
@@ -7634,12 +7634,12 @@ CC_DFF #(
 ) CC_DFF_54 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_wrdata[9]),
+	.D   ((~sdrphy_dfi_p0_wrdata_en)),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl9__o)
+	.Q   (builder_colognechipsdrtristateimpl9_oe_n)
 );
 
 //------------------------------------------------------------------------------
@@ -7654,12 +7654,12 @@ CC_DFF #(
 ) CC_DFF_55 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   ((~sdrphy_dfi_p0_wrdata_en)),
+	.D   (builder_colognechipsdrtristateimpl9__i),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl9_oe_n)
+	.Q   (sdrphy_dfi_p0_rddata[9])
 );
 
 //------------------------------------------------------------------------------
@@ -7674,12 +7674,12 @@ CC_DFF #(
 ) CC_DFF_56 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (builder_colognechipsdrtristateimpl9__i),
+	.D   (sdrphy_dfi_p0_wrdata[10]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdrphy_dfi_p0_rddata[9])
+	.Q   (builder_colognechipsdrtristateimpl10__o)
 );
 
 //------------------------------------------------------------------------------
@@ -7694,12 +7694,12 @@ CC_DFF #(
 ) CC_DFF_57 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_wrdata[10]),
+	.D   ((~sdrphy_dfi_p0_wrdata_en)),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl10__o)
+	.Q   (builder_colognechipsdrtristateimpl10_oe_n)
 );
 
 //------------------------------------------------------------------------------
@@ -7714,12 +7714,12 @@ CC_DFF #(
 ) CC_DFF_58 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   ((~sdrphy_dfi_p0_wrdata_en)),
+	.D   (builder_colognechipsdrtristateimpl10__i),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl10_oe_n)
+	.Q   (sdrphy_dfi_p0_rddata[10])
 );
 
 //------------------------------------------------------------------------------
@@ -7734,12 +7734,12 @@ CC_DFF #(
 ) CC_DFF_59 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (builder_colognechipsdrtristateimpl10__i),
+	.D   (sdrphy_dfi_p0_wrdata[11]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdrphy_dfi_p0_rddata[10])
+	.Q   (builder_colognechipsdrtristateimpl11__o)
 );
 
 //------------------------------------------------------------------------------
@@ -7754,12 +7754,12 @@ CC_DFF #(
 ) CC_DFF_60 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_wrdata[11]),
+	.D   ((~sdrphy_dfi_p0_wrdata_en)),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl11__o)
+	.Q   (builder_colognechipsdrtristateimpl11_oe_n)
 );
 
 //------------------------------------------------------------------------------
@@ -7774,12 +7774,12 @@ CC_DFF #(
 ) CC_DFF_61 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   ((~sdrphy_dfi_p0_wrdata_en)),
+	.D   (builder_colognechipsdrtristateimpl11__i),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl11_oe_n)
+	.Q   (sdrphy_dfi_p0_rddata[11])
 );
 
 //------------------------------------------------------------------------------
@@ -7794,12 +7794,12 @@ CC_DFF #(
 ) CC_DFF_62 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (builder_colognechipsdrtristateimpl11__i),
+	.D   (sdrphy_dfi_p0_wrdata[12]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdrphy_dfi_p0_rddata[11])
+	.Q   (builder_colognechipsdrtristateimpl12__o)
 );
 
 //------------------------------------------------------------------------------
@@ -7814,12 +7814,12 @@ CC_DFF #(
 ) CC_DFF_63 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_wrdata[12]),
+	.D   ((~sdrphy_dfi_p0_wrdata_en)),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl12__o)
+	.Q   (builder_colognechipsdrtristateimpl12_oe_n)
 );
 
 //------------------------------------------------------------------------------
@@ -7834,12 +7834,12 @@ CC_DFF #(
 ) CC_DFF_64 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   ((~sdrphy_dfi_p0_wrdata_en)),
+	.D   (builder_colognechipsdrtristateimpl12__i),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl12_oe_n)
+	.Q   (sdrphy_dfi_p0_rddata[12])
 );
 
 //------------------------------------------------------------------------------
@@ -7854,12 +7854,12 @@ CC_DFF #(
 ) CC_DFF_65 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (builder_colognechipsdrtristateimpl12__i),
+	.D   (sdrphy_dfi_p0_wrdata[13]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdrphy_dfi_p0_rddata[12])
+	.Q   (builder_colognechipsdrtristateimpl13__o)
 );
 
 //------------------------------------------------------------------------------
@@ -7874,12 +7874,12 @@ CC_DFF #(
 ) CC_DFF_66 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_wrdata[13]),
+	.D   ((~sdrphy_dfi_p0_wrdata_en)),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl13__o)
+	.Q   (builder_colognechipsdrtristateimpl13_oe_n)
 );
 
 //------------------------------------------------------------------------------
@@ -7894,12 +7894,12 @@ CC_DFF #(
 ) CC_DFF_67 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   ((~sdrphy_dfi_p0_wrdata_en)),
+	.D   (builder_colognechipsdrtristateimpl13__i),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl13_oe_n)
+	.Q   (sdrphy_dfi_p0_rddata[13])
 );
 
 //------------------------------------------------------------------------------
@@ -7914,12 +7914,12 @@ CC_DFF #(
 ) CC_DFF_68 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (builder_colognechipsdrtristateimpl13__i),
+	.D   (sdrphy_dfi_p0_wrdata[14]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdrphy_dfi_p0_rddata[13])
+	.Q   (builder_colognechipsdrtristateimpl14__o)
 );
 
 //------------------------------------------------------------------------------
@@ -7934,12 +7934,12 @@ CC_DFF #(
 ) CC_DFF_69 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_wrdata[14]),
+	.D   ((~sdrphy_dfi_p0_wrdata_en)),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl14__o)
+	.Q   (builder_colognechipsdrtristateimpl14_oe_n)
 );
 
 //------------------------------------------------------------------------------
@@ -7954,12 +7954,12 @@ CC_DFF #(
 ) CC_DFF_70 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   ((~sdrphy_dfi_p0_wrdata_en)),
+	.D   (builder_colognechipsdrtristateimpl14__i),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl14_oe_n)
+	.Q   (sdrphy_dfi_p0_rddata[14])
 );
 
 //------------------------------------------------------------------------------
@@ -7974,12 +7974,12 @@ CC_DFF #(
 ) CC_DFF_71 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (builder_colognechipsdrtristateimpl14__i),
+	.D   (sdrphy_dfi_p0_wrdata[15]),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (sdrphy_dfi_p0_rddata[14])
+	.Q   (builder_colognechipsdrtristateimpl15__o)
 );
 
 //------------------------------------------------------------------------------
@@ -7994,12 +7994,12 @@ CC_DFF #(
 ) CC_DFF_72 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   (sdrphy_dfi_p0_wrdata[15]),
+	.D   ((~sdrphy_dfi_p0_wrdata_en)),
 	.EN  (1'd1),
 	.SR  (1'd0),
 
 	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl15__o)
+	.Q   (builder_colognechipsdrtristateimpl15_oe_n)
 );
 
 //------------------------------------------------------------------------------
@@ -8014,26 +8014,6 @@ CC_DFF #(
 ) CC_DFF_73 (
 	// Inputs.
 	.CLK (sys_clk),
-	.D   ((~sdrphy_dfi_p0_wrdata_en)),
-	.EN  (1'd1),
-	.SR  (1'd0),
-
-	// Outputs.
-	.Q   (builder_colognechipsdrtristateimpl15_oe_n)
-);
-
-//------------------------------------------------------------------------------
-// Instance CC_DFF_74 of CC_DFF Module.
-//------------------------------------------------------------------------------
-CC_DFF #(
-	// Parameters.
-	.CLK_INV (1'd0),
-	.EN_INV  (1'd0),
-	.SR_INV  (1'd0),
-	.SR_VAL  (1'd0)
-) CC_DFF_74 (
-	// Inputs.
-	.CLK (sys_clk),
 	.D   (builder_colognechipsdrtristateimpl15__i),
 	.EN  (1'd1),
 	.SR  (1'd0),
@@ -8045,5 +8025,5 @@ CC_DFF #(
 endmodule
 
 // -----------------------------------------------------------------------------
-//  Auto-Generated by LiteX on 2025-06-27 09:41:12.
+//  Auto-Generated by LiteX on 2025-07-02 12:17:19.
 //------------------------------------------------------------------------------
