@@ -73,7 +73,7 @@ $(TEST_CASE)_synth.v: ../$(BOARD).vh $(VERILOG_FILES)
 
 $(TEST_CASE).json $(TEST_CASE)_ys.v: ../$(BOARD).vh $(VERILOG_FILES)
 	@echo "Running Yosys"
-	@$(YOSYS) -ql synth.log -p '$(YOSYS_DEFS_OPT) read_verilog -defer -sv $^; $(YOSYS_CMDS) synth_gatemate $(YOSYS_PARAM) -luttree -top $(TOP) -json $(TEST_CASE).json -vlog $(TEST_CASE)_ys.v'
+	@$(YOSYS) -ql synth.log -p '$(YOSYS_DEFS_OPT) read_verilog -defer -sv $^; $(YOSYS_CMDS) synth_gatemate $(YOSYS_PARAM) -luttree -top $(TOP) -json $(TEST_CASE).json; write_verilog -norename -noattr $(TEST_CASE)_ys.v'
 
 $(TEST_CASE)_$(BOARD)_00.cfg: $(TEST_CASE)_synth.v $(BOARD).ccf
 	$(call check_cc_tool)
@@ -121,7 +121,7 @@ clean:
 clean-bit:
 	@rm -rf $(TEST_CASE)_$(BOARD).txt $(TEST_CASE)_$(BOARD).bit
 
-.PHONY: synth json pr nextpnr jtag_pr jtag unpack check_yosys check_pnr
+.PHONY: synth json pr nextpnr jtag_pr jtag unpack check_yosys check_pnr check_pnr_post
 
 check_yosys.eqy: $(TEST_CASE)_ys.v ../$(BOARD).vh $(VERILOG_FILES)
 	@echo "Generating EQY file"
@@ -188,4 +188,37 @@ check_pnr.eqy: $(TEST_CASE)_$(BOARD)_pnr.v ../$(BOARD).vh $(VERILOG_FILES)
 	} > $@
 
 check_pnr: check_pnr.eqy
+	@eqy -f $^
+
+check_pnr_post.eqy: $(TEST_CASE)_$(BOARD)_pnr.v ../$(BOARD).vh $(TEST_CASE)_ys.v
+	@echo "Generating EQY file"
+	@{ \
+	  echo "[gold]"; \
+	  echo "$(YOSYS_DEFS_OPT)"; \
+	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v ../cells_extra.v"; \
+	  echo "read_verilog $(TEST_CASE)_ys.v"; \
+	  echo "prep -top $(TOP)"; \
+	  echo "flatten";\
+	  echo "$(EQY_CLOCK)";\
+	  echo "memory_map";\
+	  echo ""; \
+	  echo "[gate]"; \
+	  echo "$(YOSYS_DEFS_OPT)"; \
+	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v ../cpesim.v"; \
+	  echo "read_verilog $(TEST_CASE)_$(BOARD)_pnr.v"; \
+	  echo "rename top $(TOP)";\
+	  echo "prep -top $(TOP)"; \
+	  echo "flatten";\
+	  echo "$(EQY_CLOCK)";\
+	  echo "memory_map";\
+	  echo ""; \
+	  echo "[collect *]"; \
+	  echo "bind *"; \
+	  echo ""; \
+	  echo "[strategy pdr]"; \
+	  echo "use sby"; \
+	  echo "engine abc scorr; pdr"; \
+	} > $@
+
+check_pnr_post: check_pnr_post.eqy
 	@eqy -f $^
