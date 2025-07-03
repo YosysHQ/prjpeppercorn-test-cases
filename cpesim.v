@@ -164,18 +164,21 @@ module CPE_L2T4 #(
 );
 	wire IN2_int = L2T4_UPPER ? C_I1 ? PINY1 : IN2 : C_I3 ? PINY1 : IN2;
 	wire IN4_int = L2T4_UPPER ? C_I2 ? CINX  : IN4 : C_I4 ? PINX  : IN4;
+	wire CIN_int = C_HORIZ ? CINX : CINY1;
 
 	wire [1:0] l00_s1 = IN2_int ? INIT_L00[3:2] : INIT_L00[1:0];
 	wire l00 = IN1 ? l00_s1[1] : l00_s1[0];
 
 	wire [1:0] l01_s1 = IN4_int ? INIT_L01[3:2] : INIT_L01[1:0];
-	wire l01 = (L2T4_UPPER == 1'b0 && C_FUNCTION == 3'b101) ? (C_HORIZ ? CINX : CINY1) : (IN3 ? l01_s1[1] : l01_s1[0]);
+	wire l01_int = (IN3 ? l01_s1[1] : l01_s1[0]);
+	wire l01 = (L2T4_UPPER == 1'b0 && C_FUNCTION == 3'b101) ? CIN_int | l01_int : l01_int;
 
 	wire [1:0] l10_s1 = l01 ? INIT_L10[3:2] : INIT_L10[1:0];
 	wire l10 = l00 ? l10_s1[1] : l10_s1[0];
 
 	wire [1:0] l20_s1 = l10 ? INIT_L20[3:2] : INIT_L20[1:0];
-	assign OUT = L2T4_UPPER ? l10 : (COMBIN ? l20_s1[1] : l20_s1[0]);
+	wire OUT_int = L2T4_UPPER ? l10 : (COMBIN ? l20_s1[1] : l20_s1[0]);
+	assign OUT = (L2T4_UPPER == 1'b0 && C_FUNCTION == 3'b111) ? CIN_int ^ OUT_int : OUT_int;
 endmodule
 
 module CPE_MX4 #(
@@ -468,39 +471,6 @@ module CPE_ADDF2 #(
 	assign { CO, OUT1 } = A1 + B1 + CINY1;
 	assign { COUTY1, OUT2 } = A2 + B2 + CO;
 
-endmodule
-
-module CPE_ADDCIN #(
-    parameter [2:0] C_FUNCTION = 3'b000,
-    parameter [3:0] INIT_L00 = 4'b0000,
-    parameter [3:0] INIT_L01 = 4'b0000,
-    parameter [3:0] INIT_L02 = 4'b0000,
-    parameter [3:0] INIT_L03 = 4'b0000,
-    parameter [3:0] INIT_L10 = 4'b0000,
-    parameter [3:0] INIT_L11 = 4'b0000,
-    parameter [3:0] INIT_L20 = 4'b0000,
-	parameter C_I1 = 1'b0,
-	parameter C_I2 = 1'b0,
-	parameter C_I3 = 1'b0,
-	parameter C_I4 = 1'b0,
-)(
-	input CINX,
-	input PINX,
-    input CINY1,
-	input PINY1,
-	input PINY2,
-    output COUTY1,
-	input IN1,
-	input IN2,
-    input IN3,
-	input IN4,
-	input IN5,
-	input IN6,
-    input IN7,
-	input IN8,
-    output OUT1,
-    output OUT2
-);
 endmodule
 
 module CPE_MULT #(
