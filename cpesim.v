@@ -139,21 +139,32 @@ module CPE_LVDS_OBUF #(
 endmodule
 
 module CPE_L2T4 #(
-	parameter [3:0] INIT_L00 = 4'b0,
-	parameter [3:0] INIT_L01 = 4'b0,
-	parameter [3:0] INIT_L10 = 4'b0,
-	parameter [3:0] INIT_L20 = 4'b0, // Unused
+	parameter [3:0] INIT_L00 = 4'b0000,
+	parameter [3:0] INIT_L01 = 4'b0000,
+	parameter [3:0] INIT_L10 = 4'b0000,
+	parameter [3:0] INIT_L20 = 4'b0000, // Unused
+	parameter L2T4_UPPER = 1'b0,
+	parameter C_I1 = 1'b0,
+	parameter C_I2 = 1'b0,
+	parameter C_I3 = 1'b0,
+	parameter C_I4 = 1'b0,
 )(
 	input  IN1,
 	input  IN2,
 	input  IN3,
 	input  IN4,
+	input  PINY1,
+	input  CINX,
+	input  PINX,
 	output OUT
 );
-	wire [1:0] l00_s1 = IN2 ? INIT_L00[3:2] : INIT_L00[1:0];
+	wire IN2_int = L2T4_UPPER ? C_I1 ? PINY1 : IN2 : C_I3 ? PINY1 : IN2;
+	wire IN4_int = L2T4_UPPER ? C_I2 ? CINX  : IN4 : C_I4 ? PINX  : IN4;
+
+	wire [1:0] l00_s1 = IN2_int ? INIT_L00[3:2] : INIT_L00[1:0];
 	wire l00 = IN1 ? l00_s1[1] : l00_s1[0];
 
-	wire [1:0] l01_s1 = IN4 ? INIT_L01[3:2] : INIT_L01[1:0];
+	wire [1:0] l01_s1 = IN4_int ? INIT_L01[3:2] : INIT_L01[1:0];
 	wire l01 = IN3 ? l01_s1[1] : l01_s1[0];
 
 	wire [1:0] l10_s1 = l01 ? INIT_L10[3:2] : INIT_L10[1:0];
