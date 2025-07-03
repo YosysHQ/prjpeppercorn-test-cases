@@ -509,6 +509,10 @@ module CPE_ADDCIN #(
     parameter [3:0] INIT_L10 = 4'b0000,
     parameter [3:0] INIT_L11 = 4'b0000,
     parameter [3:0] INIT_L20 = 4'b0000,
+	parameter C_I1 = 1'b0,
+	parameter C_I2 = 1'b0,
+	parameter C_I3 = 1'b0,
+	parameter C_I4 = 1'b0,
 )(
 	input CINX,
 	input PINX,
@@ -539,6 +543,10 @@ module CPE_MULT #(
     parameter [3:0] INIT_L10 = 4'b0000,
     parameter [3:0] INIT_L11 = 4'b0000,
     parameter [3:0] INIT_L20 = 4'b0000,
+	parameter C_I1 = 1'b0,
+	parameter C_I2 = 1'b0,
+	parameter C_I3 = 1'b0,
+	parameter C_I4 = 1'b0,
 )(
 	input IN1,
 	input IN2,
