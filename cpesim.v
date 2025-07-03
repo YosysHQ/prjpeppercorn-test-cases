@@ -148,11 +148,14 @@ module CPE_L2T4 #(
 	parameter C_I2 = 1'b0,
 	parameter C_I3 = 1'b0,
 	parameter C_I4 = 1'b0,
+	parameter [2:0] C_FUNCTION = 3'b000,
+	parameter C_HORIZ = 1'b0
 )(
 	input  IN1,
 	input  IN2,
 	input  IN3,
 	input  IN4,
+	input  CINY1,
 	input  PINY1,
 	input  CINX,
 	input  PINX,
@@ -165,7 +168,7 @@ module CPE_L2T4 #(
 	wire l00 = IN1 ? l00_s1[1] : l00_s1[0];
 
 	wire [1:0] l01_s1 = IN4_int ? INIT_L01[3:2] : INIT_L01[1:0];
-	wire l01 = IN3 ? l01_s1[1] : l01_s1[0];
+	wire l01 = (L2T4_UPPER == 1'b0 && C_FUNCTION == 3'b101) ? (C_HORIZ ? CINX : CINY1) : (IN3 ? l01_s1[1] : l01_s1[0]);
 
 	wire [1:0] l10_s1 = l01 ? INIT_L10[3:2] : INIT_L10[1:0];
 	assign OUT = l00 ? l10_s1[1] : l10_s1[0];
@@ -416,17 +419,6 @@ module CPE_CPLINES #(
 	assign POUTX  = C_PX_I  ? PX_VAL  : PINX;
 	assign POUTY1 = C_PY1_I ? PY1_VAL : PINY1;
 	assign POUTY2 = C_PY2_I ? PY2_VAL : PINY2;
-endmodule
-
-module CPE_EN_CIN #(
-    parameter [2:0] C_FUNCTION = 3'b000,
-    parameter [3:0] INIT_L11 = 4'b0000,
-    parameter [3:0] INIT_L20 = 4'b0000,
-)(
-    input CINY1,
-    output OUT1
-);
-	assign OUT1 = CINY1;
 endmodule
 
 module CPE_ADDF #(
