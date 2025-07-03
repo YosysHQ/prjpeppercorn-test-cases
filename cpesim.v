@@ -177,7 +177,7 @@ module CPE_L2T4 #(
 	wire l10 = l00 ? l10_s1[1] : l10_s1[0];
 
 	wire [1:0] l20_s1 = l10 ? INIT_L20[3:2] : INIT_L20[1:0];
-	wire OUT_int = L2T4_UPPER ? l10 : (COMBIN ? l20_s1[1] : l20_s1[0]);
+	wire OUT_int = L2T4_UPPER ? l10 : (INIT_L20==4'b1100 ? l10 : (COMBIN ? l20_s1[1] : l20_s1[0]));
 	assign OUT = (L2T4_UPPER == 1'b0 && C_FUNCTION == 3'b111) ? CIN_int ^ OUT_int : OUT_int;
 endmodule
 
@@ -511,10 +511,12 @@ endmodule
 module CPE_COMP #(
     parameter [3:0] INIT_L30 = 4'b0000,
 )(
-	input COMB1,
-	input COMB2,
-	input COMPOUT,
+    input COMB1,
+    input COMB2,
+    output COMPOUT,
 );
+    wire [1:0] l30_s1 = COMB2 ? INIT_L30[3:2] : INIT_L30[1:0];
+    assign COMPOUT = COMB1 ? l30_s1[1] : l30_s1[0];
 endmodule
 
 module CLKIN #(
