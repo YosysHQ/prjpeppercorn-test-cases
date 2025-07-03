@@ -500,6 +500,75 @@ module CPE_ADDF2 #(
 
 endmodule
 
+module CPE_ADDCIN #(
+    parameter [2:0] C_FUNCTION = 3'b000,
+    parameter [3:0] INIT_L00 = 4'b0000,
+    parameter [3:0] INIT_L01 = 4'b0000,
+    parameter [3:0] INIT_L02 = 4'b0000,
+    parameter [3:0] INIT_L03 = 4'b0000,
+    parameter [3:0] INIT_L10 = 4'b0000,
+    parameter [3:0] INIT_L11 = 4'b0000,
+    parameter [3:0] INIT_L20 = 4'b0000,
+)(
+	input CINX,
+	input PINX,
+    input CINY1,
+	input PINY1,
+	input PINY2,
+    output COUTY1,
+	input IN1,
+	input IN2,
+    input IN3,
+	input IN4,
+	input IN5,
+	input IN6,
+    input IN7,
+	input IN8,
+    output OUT1,
+    output OUT2
+);
+endmodule
+
+module CPE_MULT #(
+    parameter C_C_P = 1'b0,
+    parameter [2:0] C_FUNCTION = 3'b000,
+    parameter [3:0] INIT_L00 = 4'b0000,
+    parameter [3:0] INIT_L01 = 4'b0000,
+    parameter [3:0] INIT_L02 = 4'b0000,
+    parameter [3:0] INIT_L03 = 4'b0000,
+    parameter [3:0] INIT_L10 = 4'b0000,
+    parameter [3:0] INIT_L11 = 4'b0000,
+    parameter [3:0] INIT_L20 = 4'b0000,
+)(
+	input IN1,
+	input IN2,
+    input IN3,
+	input IN4,
+	input IN5,
+	input IN6,
+    input IN7,
+	input IN8,
+    output OUT1,
+    output OUT2,
+	input CINX,
+	input PINX,
+	input CINY1,
+	input CINY2,
+	input PINY1,
+	input PINY2,
+);
+
+endmodule
+
+module CPE_COMP #(
+    parameter [3:0] INIT_L30 = 4'b0000,
+)(
+	input COMB1,
+	input COMB2,
+	input COMPOUT,
+);
+endmodule
+
 module CLKIN #(
 	parameter [3:0] REF0 = 4'b0,
 	parameter REF0_INV = 1'b0,
