@@ -8,7 +8,7 @@ module CPE_IBUF #(
 	parameter IN1_FF = 1'b0,
 	parameter IN2_FF = 1'b0,
 	parameter INV_IN1_CLOCK = 1'b0,
-	parameter INV_IN2_CLOCK = 1'b0,
+	parameter INV_IN2_CLOCK = 1'b0
 )(
 	input  I,
 	input  OUT1,
@@ -55,7 +55,7 @@ module CPE_OBUF #(
 	parameter OUT2_FF = 1'b0,
 	parameter INV_OUT1_CLOCK = 1'b0,
 	parameter INV_OUT2_CLOCK = 1'b0,
-	parameter USE_DDR = 1'b0,
+	parameter USE_DDR = 1'b0
 )(
 	input  OUT1,
 	input  OUT2,
@@ -102,7 +102,7 @@ module CPE_LVDS_IBUF #(
 	parameter SCHMITT_TRIGGER = 1'b0,
 	parameter LVDS_IE = 1'b1,
 	parameter LVDS_EN = 1'b1,
-	parameter SEL_IN_CLOCK = 1'b0,
+	parameter SEL_IN_CLOCK = 1'b0
 )(
 	input  I_P,
 	input  I_N,
@@ -125,7 +125,7 @@ module CPE_LVDS_OBUF #(
 	parameter SLEW = 1'b0,
 	parameter DRIVE = 2'b0,
 	parameter LVDS_EN = 1'b1,
-	parameter SEL_OUT_CLOCK = 1'b0,
+	parameter SEL_OUT_CLOCK = 1'b0
 )(
 	input  OUT1,
 	input  OUT2,
@@ -189,7 +189,7 @@ module CPE_MX4 #(
 	parameter [3:0] INIT_L03 = 4'b0000,
 	parameter [3:0] INIT_L11 = 4'b0000,
 	parameter [3:0] INIT_L20 = 4'b0, // Unused
-    parameter [2:0] C_FUNCTION = 3'b000,
+    parameter [2:0] C_FUNCTION = 3'b000
 )(
 	input  IN1,
 	input  IN2,
@@ -244,7 +244,7 @@ module CPE_FF #(
     parameter [1:0] C_CPE_RES = 2'b0,
     parameter [1:0] C_CPE_SET = 2'b0,
     parameter [1:0] FF_INIT = 2'b0,
-	parameter C_EN_SR = 1'b0,
+	parameter C_EN_SR = 1'b0
 )(
 	input DIN,
 	input EN,
@@ -299,7 +299,7 @@ module CPE_LATCH #(
     parameter [1:0] C_CPE_SET = 2'b0,
     parameter [1:0] FF_INIT = 2'b0,
 	parameter C_EN_SR = 1'b0,
-	parameter C_L_D = 1'b1,
+	parameter C_L_D = 1'b1
 )(
 	input DIN,
 	input EN,
@@ -402,7 +402,7 @@ module CPE_ADDF #(
     parameter [3:0] INIT_L03 = 4'b0000,
     parameter [3:0] INIT_L10 = 4'b0000,
     parameter [3:0] INIT_L11 = 4'b0000,
-    parameter [3:0] INIT_L20 = 4'b0000,
+    parameter [3:0] INIT_L20 = 4'b0000
 )(
     input CINY1,
     output COUTY1,
@@ -439,7 +439,7 @@ module CPE_ADDF2 #(
     parameter [3:0] INIT_L03 = 4'b0000,
     parameter [3:0] INIT_L10 = 4'b0000,
     parameter [3:0] INIT_L11 = 4'b0000,
-    parameter [3:0] INIT_L20 = 4'b0000,
+    parameter [3:0] INIT_L20 = 4'b0000
 )(
     input CINY1,
     output COUTY1,
@@ -486,7 +486,7 @@ module CPE_MULT #(
 	parameter C_I1 = 1'b0,
 	parameter C_I2 = 1'b0,
 	parameter C_I3 = 1'b0,
-	parameter C_I4 = 1'b0,
+	parameter C_I4 = 1'b0
 )(
 	input IN1,
 	input IN2,
@@ -503,17 +503,17 @@ module CPE_MULT #(
 	input CINY1,
 	input CINY2,
 	input PINY1,
-	input PINY2,
+	input PINY2
 );
 
 endmodule
 
 module CPE_COMP #(
-    parameter [3:0] INIT_L30 = 4'b0000,
+    parameter [3:0] INIT_L30 = 4'b0000
 )(
     input COMB1,
     input COMB2,
-    output COMPOUT,
+    output COMPOUT
 );
     wire [1:0] l30_s1 = COMB2 ? INIT_L30[3:2] : INIT_L30[1:0];
     assign COMPOUT = COMB1 ? l30_s1[1] : l30_s1[0];
@@ -527,7 +527,7 @@ module CLKIN #(
 	parameter [3:0] REF2 = 4'b0,
 	parameter REF2_INV = 1'b0,
 	parameter [3:0] REF3 = 4'b0,
-	parameter REF3_INV = 1'b0,
+	parameter REF3_INV = 1'b0
 )(
 	output CLK_REF0, CLK_REF1, CLK_REF2, CLK_REF3,
 	input  CLK0, CLK1, CLK2, CLK3,
@@ -565,7 +565,7 @@ module GLBOUT #(
 	parameter USR_FB0_EN = 1'b0,
 	parameter USR_FB1_EN = 1'b0,
 	parameter USR_FB2_EN = 1'b0,
-	parameter USR_FB3_EN = 1'b0,
+	parameter USR_FB3_EN = 1'b0
 )(
 	output GLB0, GLB1, GLB2, GLB3,
 	output CLK_FB0, CLK_FB1, CLK_FB2, CLK_FB3,

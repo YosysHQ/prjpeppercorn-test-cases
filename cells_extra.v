@@ -18,9 +18,14 @@ module CC_PLL #(
     assign CLK90 = CLK_REF;
     assign CLK180 = CLK_REF;
     assign CLK270 = CLK_REF;
-    assign USR_PLL_LOCKED = 1'b1;
-    assign USR_PLL_LOCKED_STDY = 1'b1;
 	assign CLK_REF_OUT = 1'b0;
+
+	initial
+	begin
+		USR_PLL_LOCKED = 1'b1;
+    	USR_PLL_LOCKED_STDY = 1'b1;
+	end
+
 endmodule
 
 module CC_USR_RSTN (
