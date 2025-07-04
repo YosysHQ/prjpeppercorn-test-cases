@@ -28,7 +28,8 @@ def build(board, logs_dir, dir, curr_seed, bar):
 @click.option('--seed', default=100, help='Max seed numbers.')
 @click.option('--base_dir', default=".", help='Base directory.')
 @click.option('--test', default=-1, type=int, help='Run specific test.')
-def stress(seed, base_dir, test):
+@click.option('--board', default="olimex", help='Selected board for stress test.')
+def stress(seed, base_dir, test, board):
     logs_dir = os.path.join(base_dir, "logs")
     if os.path.exists(logs_dir):
         shutil.rmtree(logs_dir)
@@ -54,9 +55,8 @@ def stress(seed, base_dir, test):
         if os.path.exists(os.path.join(base_dir,dir,"Makefile")):
             click.secho("Running ", nl=False)
             click.secho(f"{dir}", bold=True)
-            board = "olimex"
-            if not os.path.exists(os.path.join(base_dir,dir,"olimex.ccf")):
-                board = "evb"
+            if not os.path.exists(os.path.join(base_dir,dir,f"{board}.ccf")):
+                raise click.ClickException(f"{board}.ccf not found")
             try:
                 result = subprocess.run(
                     ["make", "-C", dir, f"BOARD={board}", "clean", "json"],
