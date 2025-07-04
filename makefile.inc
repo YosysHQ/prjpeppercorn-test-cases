@@ -118,10 +118,10 @@ clean:
 	@rm -rf *.refcomp *.pos *.pathes *.path_struc *.net *.id *.prn
 	@rm -rf *_00.v *.used *.sdf *.place *.pin *.cfg *.bit  *.cdf *.idh *.min *.json
 
-clean-bit:
-	@rm -rf $(TEST_CASE)_$(BOARD).txt $(TEST_CASE)_$(BOARD).bit
+force-nextpnr:
+	$(MAKE) $(TEST_CASE)_$(BOARD).txt --always-make
 
-.PHONY: synth json pr nextpnr jtag_pr jtag unpack check_yosys check_pnr check_pnr_post
+.PHONY: synth json pr nextpnr force-nextpnr jtag_pr jtag unpack check_yosys check_pnr check_pnr_post
 
 check_yosys.eqy: $(TEST_CASE)_ys.v ../$(BOARD).vh $(VERILOG_FILES)
 	@echo "Generating EQY file"

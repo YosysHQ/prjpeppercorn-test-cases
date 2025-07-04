@@ -11,7 +11,7 @@ def build(board, logs_dir, dir, curr_seed, bar):
     log_file = os.path.join(logs_dir, f"{dir}_{curr_seed}.log")
     try:
         result = subprocess.run(
-            ["make", "-C", dir, f"BOARD={board}", f"SEED={curr_seed}", "clean-bit", "nextpnr"],
+            ["make", "-C", dir, f"BOARD={board}", f"SEED={curr_seed}", "force-nextpnr"],
             check=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT
@@ -69,6 +69,7 @@ def stress(seed, base_dir, test):
 
             items = list(range(0,seed))
             count = 0
+            ok_seeds = []
             failed_seeds = []
             with click.progressbar(items, label='Processing items', length=len(items)) as bar:
                 with concurrent.futures.ThreadPoolExecutor(max_workers=os.process_cpu_count()) as executor:
@@ -77,6 +78,7 @@ def stress(seed, base_dir, test):
                         bar.update(1)
                         if future.result():
                             count += 1
+                            ok_seeds.append(tasks[future])
                         else:
                             failed_seeds.append(tasks[future])
 
@@ -89,6 +91,8 @@ def stress(seed, base_dir, test):
             if len(failed_seeds) > 0:
                 click.secho("Failed seeds:")
                 click.secho(failed_seeds)
+                click.secho("OK seeds:")
+                click.secho(ok_seeds)
 
 if __name__ == "__main__":
     stress()
