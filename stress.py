@@ -56,7 +56,9 @@ def stress(seed, base_dir, test, board):
             click.secho("Running ", nl=False)
             click.secho(f"{dir}", bold=True)
             if not os.path.exists(os.path.join(base_dir,dir,f"{board}.ccf")):
-                raise click.ClickException(f"{board}.ccf not found")
+                click.secho(f"{board}.ccf not found", fg="red")
+                click.secho("")
+                continue
             try:
                 result = subprocess.run(
                     ["make", "-C", dir, f"BOARD={board}", "clean", "json"],
