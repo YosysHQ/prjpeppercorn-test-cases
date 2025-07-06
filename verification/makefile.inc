@@ -87,45 +87,9 @@ clean:
 	@rm -rf *.log *_synth.v *.history *.txt *.refwire *.refparam *_ys.v
 	@rm -rf *.refcomp *.pos *.pathes *.path_struc *.net *.id *.prn
 	@rm -rf *_00.v *.used *.sdf *.place *.pin *.cfg *.bit  *.cdf *.idh *.min *.json
-	@rm -rf *_pnr.v check_yosys check_yosys.eqy check_pnr check_pnr.eqy check_pnr_post check_pnr_post.eqy
+	@rm -rf *_pnr.v check_pnr check_pnr.eqy
 
-force-nextpnr:
-	$(NEXTPNR) --device $(FPGA) --json $(TEST_CASE).json --vopt out=../logs/$(TEST_CASE)_$(SEED).txt --vopt allow-unconstrained --router router2 $(SEED_OPT) $(SDC_OPT)
-
-.PHONY: synth json pr nextpnr force-nextpnr jtag_pr jtag unpack check_yosys check_pnr check_pnr_post
-
-check_yosys.eqy: $(TEST_CASE)_ys.v $(VERILOG_FILES)
-	@echo "Generating EQY file"
-	@{ \
-	  echo "[gold]"; \
-	  echo "$(YOSYS_DEFS_OPT)"; \
-	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v ../../cells_extra.v"; \
-	  echo "read_verilog -defer -sv $(VERILOG_FILES)"; \
-	  echo "$(YOSYS_CMDS)"; \
-	  echo "prep -top $(TOP)"; \
-	  echo "flatten";\
-	  echo "$(EQY_CLOCK)";\
-	  echo "memory_map";\
-	  echo ""; \
-	  echo "[gate]"; \
-	  echo "$(YOSYS_DEFS_OPT)"; \
-	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v ../../cells_extra.v"; \
-	  echo "read_verilog $(TEST_CASE)_ys.v"; \
-	  echo "prep -top $(TOP)"; \
-	  echo "flatten";\
-	  echo "$(EQY_CLOCK)";\
-	  echo "memory_map";\
-	  echo ""; \
-	  echo "[collect *]"; \
-	  echo "bind *"; \
-	  echo ""; \
-	  echo "[strategy pdr]"; \
-	  echo "use sby"; \
-	  echo "engine abc scorr; pdr"; \
-	} > $@
-
-check_yosys: check_yosys.eqy
-	@eqy -f $^
+.PHONY: synth json pr nextpnr unpack check_pnr
 
 check_pnr.eqy: $(TEST_CASE)_pnr.v $(VERILOG_FILES)
 	@echo "Generating EQY file"
@@ -161,35 +125,3 @@ check_pnr.eqy: $(TEST_CASE)_pnr.v $(VERILOG_FILES)
 check_pnr: check_pnr.eqy
 	@eqy -f $^
 
-check_pnr_post.eqy: $(TEST_CASE)_pnr.v $(TEST_CASE)_ys.v
-	@echo "Generating EQY file"
-	@{ \
-	  echo "[gold]"; \
-	  echo "$(YOSYS_DEFS_OPT)"; \
-	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v ../../cells_extra.v"; \
-	  echo "read_verilog $(TEST_CASE)_ys.v"; \
-	  echo "prep -top $(TOP)"; \
-	  echo "flatten";\
-	  echo "$(EQY_CLOCK)";\
-	  echo "memory_map";\
-	  echo ""; \
-	  echo "[gate]"; \
-	  echo "$(YOSYS_DEFS_OPT)"; \
-	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v ../../cpesim.v"; \
-	  echo "read_verilog $(TEST_CASE)_pnr.v"; \
-	  echo "rename top $(TOP)";\
-	  echo "prep -top $(TOP)"; \
-	  echo "flatten";\
-	  echo "$(EQY_CLOCK)";\
-	  echo "memory_map";\
-	  echo ""; \
-	  echo "[collect *]"; \
-	  echo "bind *"; \
-	  echo ""; \
-	  echo "[strategy pdr]"; \
-	  echo "use sby"; \
-	  echo "engine abc scorr; pdr"; \
-	} > $@
-
-check_pnr_post: check_pnr_post.eqy
-	@eqy -f $^
