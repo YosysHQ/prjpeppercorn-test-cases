@@ -177,7 +177,7 @@ module CPE_L2T4 #(
 	wire l10 = l00 ? l10_s1[1] : l10_s1[0];
 
 	wire [1:0] l20_s1 = l10 ? INIT_L20[3:2] : INIT_L20[1:0];
-	wire OUT_int = L2T4_UPPER ? l10 : (COMBIN ? l20_s1[1] : l20_s1[0]);
+	wire OUT_int = L2T4_UPPER ? l10 : (INIT_L20==4'b1100 ? l10 : (COMBIN ? l20_s1[1] : l20_s1[0]));
 	assign OUT = (L2T4_UPPER == 1'b0 && C_FUNCTION == 3'b111) ? CIN_int ^ OUT_int : OUT_int;
 endmodule
 
@@ -415,7 +415,7 @@ module CPE_ADDF #(
     input IN7,
 	input IN8,
     output OUT1,
-    output OUT2
+    output CPOUT2
 );
 
 	wire [1:0] l00_s1 = IN2 ? INIT_L00[3:2] : INIT_L00[1:0];
@@ -424,9 +424,9 @@ module CPE_ADDF #(
 	wire [1:0] l01_s1 = IN4 ? INIT_L01[3:2] : INIT_L01[1:0];
 	wire B = IN3 ? l01_s1[1] : l01_s1[0];
 
-	assign { OUT2, OUT1 } = A + B + CINY1;
+	assign { CPOUT2, OUT1 } = A + B + CINY1;
 
-	assign COUTY1 = OUT2;
+	assign COUTY1 = CPOUT2;
 
 endmodule
 
@@ -467,9 +467,9 @@ module CPE_ADDF2 #(
 	wire [1:0] l03_s1 = IN8 ? INIT_L03[3:2] : INIT_L03[1:0];
 	wire B1 = IN7 ? l03_s1[1] : l03_s1[0];
 
-	wire CO;
-	assign { CO, OUT1 } = A1 + B1 + CINY1;
-	assign { COUTY1, OUT2 } = A2 + B2 + CO;
+    wire CO1;
+    assign { CO1, OUT1 } = A1 + B1 + CINY1;
+    assign { COUTY1, OUT2 } = A2 + B2 + CO1;
 
 endmodule
 
@@ -486,7 +486,8 @@ module CPE_MULT #(
 	parameter C_I1 = 1'b0,
 	parameter C_I2 = 1'b0,
 	parameter C_I3 = 1'b0,
-	parameter C_I4 = 1'b0
+	parameter C_I4 = 1'b0,
+	parameter C_PY1_I = 1'b0
 )(
 	input IN1,
 	input IN2,
@@ -503,7 +504,13 @@ module CPE_MULT #(
 	input CINY1,
 	input CINY2,
 	input PINY1,
-	input PINY2
+	input PINY2,
+	output COUTX,
+	output POUTX,
+	output COUTY1,
+	output POUTY1,
+	output COUTY2,
+	output POUTY2
 );
 
 endmodule
