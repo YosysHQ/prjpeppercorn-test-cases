@@ -2,9 +2,6 @@ module top(
   input d, clk, en, sr,
   output [63:0] q
 );
-
-  wire const1 = 1'b1;
-
   genvar i, j;
   generate
     for (i = 0; i < 32; i = i + 1) begin : param_loop
