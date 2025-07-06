@@ -94,6 +94,150 @@ module CPE_OBUF #(
 
 endmodule
 
+module CPE_TOBUF #(
+	parameter [15:0] DELAY_OBF = 15'b0,
+	parameter OE_ENABLE = 1'b0,
+	parameter OUT_SIGNAL = 1'b0,
+	parameter OUT23_14_SEL = 1'b0,
+	parameter SLEW = 1'b0,
+	parameter DRIVE = 2'b0,
+	parameter SEL_OUT_CLOCK = 1'b0,
+	parameter OUT1_FF = 1'b0,
+	parameter OUT2_FF = 1'b0,
+	parameter INV_OUT1_CLOCK = 1'b0,
+	parameter INV_OUT2_CLOCK = 1'b0,
+	parameter USE_DDR = 1'b0,
+	parameter [1:0] OE_SIGNAL = 2'b0
+)(
+	input  OUT1,
+	input  OUT2,
+	input  OUT3,
+	input  OUT4,
+	input  DDR,
+	output O
+);
+  wire oe_int = OE_SIGNAL==2'b00 ? 1'b1 : ((OE_SIGNAL==2'b01 ? OUT2 : (OE_SIGNAL==2'b10 ? OUT3 : OUT4 )));
+  if (USE_DDR) begin
+	reg q1_i;
+	wire clk1 = INV_OUT1_CLOCK ? ~OUT4 : OUT4;
+	always @(posedge clk1)
+	begin
+		q1_i <= OUT1;
+	end
+	reg q2_i;
+	wire clk2 = INV_OUT2_CLOCK ? ~OUT4 : OUT4;
+	always @(posedge clk2)
+	begin
+		q2_i <= OUT2;
+	end
+	wire out_int = OE_ENABLE ? (~oe_int ? 1'bz: DDR ? q2_i : q1_i): 1'bz;
+	assign O = out_int;
+  end else begin
+	if (OUT1_FF) begin
+		reg q1_i;
+		wire clk1 = INV_OUT1_CLOCK ? ~OUT4 : OUT4;
+		always @(posedge clk1)
+		begin
+			q1_i <= OUT1;
+		end
+		wire out_int = OE_ENABLE ? (~oe_int ? 1'bz: q1_i): 1'bz;
+		assign O = out_int;
+	end else begin
+		wire out_int = OE_ENABLE ? (~oe_int ? 1'bz: OUT1): 1'bz;
+		assign O = (OUT_SIGNAL == 1'b0) ? OUT23_14_SEL : out_int;
+	end
+  end
+endmodule
+
+
+module CPE_IOBUF #(
+	parameter [15:0] DELAY_IBF = 15'b0,
+	parameter INPUT_ENABLE = 1'b1,
+	parameter [15:0] DELAY_OBF = 15'b0,
+	parameter OE_ENABLE = 1'b0,
+	parameter OUT_SIGNAL = 1'b0,
+	parameter OUT23_14_SEL = 1'b0,
+	parameter SLEW = 1'b0,
+	parameter DRIVE = 2'b0,
+	parameter SEL_OUT_CLOCK = 1'b0,
+	parameter OUT1_FF = 1'b0,
+	parameter OUT2_FF = 1'b0,
+	parameter INV_OUT1_CLOCK = 1'b0,
+	parameter INV_OUT2_CLOCK = 1'b0,
+	parameter USE_DDR = 1'b0,
+	parameter [1:0] OE_SIGNAL = 2'b0,
+	parameter IN1_FF = 1'b0,
+	parameter IN2_FF = 1'b0,
+	parameter INV_IN1_CLOCK = 1'b0,
+	parameter INV_IN2_CLOCK = 1'b0
+)(
+	input  OUT1,
+	input  OUT2,
+	input  OUT3,
+	input  OUT4,
+	input  DDR,
+	output IN1,
+	output IN2,
+	inout IO
+);
+
+  wire oe_int = OE_SIGNAL==2'b00 ? 1'b1 : ((OE_SIGNAL==2'b01 ? OUT2 : (OE_SIGNAL==2'b10 ? OUT3 : OUT4 )));
+  if (IN1_FF) begin
+	reg q1_i;
+	wire clk1 = INV_IN1_CLOCK ? ~OUT4 : OUT4;
+	always @(posedge clk1)
+	begin
+		q1_i <= IO;
+	end
+	assign IN1 = q1_i;
+  end else begin
+	assign IN1 = IO;
+  end
+  if (IN2_FF) begin
+	reg q2_i;
+	wire clk2 = INV_IN2_CLOCK ? ~OUT4 : OUT4;
+	always @(posedge clk2)
+	begin
+		q2_i <= IO;
+	end
+	assign IN2 = q2_i;
+  end else begin
+	assign IN2 = IO;
+  end
+  if (USE_DDR) begin
+	reg q1_i;
+	wire clk1 = INV_OUT1_CLOCK ? ~OUT4 : OUT4;
+	always @(posedge clk1)
+	begin
+		q1_i <= OUT1;
+	end
+	reg q2_i;
+	wire clk2 = INV_OUT2_CLOCK ? ~OUT4 : OUT4;
+	always @(posedge clk2)
+	begin
+		q2_i <= OUT2;
+	end
+	wire out_int = OE_ENABLE ? (~oe_int ? 1'bz: DDR ? q2_i : q1_i): 1'bz;
+	assign IO = out_int;
+  end else begin
+	if (OUT1_FF) begin
+		reg q1_i;
+		wire clk1 = INV_OUT1_CLOCK ? ~OUT4 : OUT4;
+		always @(posedge clk1)
+		begin
+			q1_i <= OUT1;
+		end
+		wire out_int = OE_ENABLE ? (~oe_int ? 1'bz: q1_i): 1'bz;
+		assign IO = out_int;
+	end else begin
+		wire out_int = OE_ENABLE ? (~oe_int ? 1'bz: OUT1): 1'bz;
+		assign IO = (OUT_SIGNAL == 1'b0) ? OUT23_14_SEL : out_int;
+	end
+  end
+endmodule
+
+
+
 module CPE_LVDS_IBUF #(
 	parameter [15:0] DELAY_IBF = 15'b0,
 	parameter INPUT_ENABLE = 1'b1,
