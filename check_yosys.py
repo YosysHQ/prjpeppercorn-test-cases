@@ -7,7 +7,7 @@ import check_common
 @click.option('--test', default=-1, type=int, help='Run specific test.')
 @click.option('--freq', is_flag=True, help='Display max frequency.')
 def run(base_dir, test, freq):
-    return check_common.run_eqy(base_dir, test, freq, "check_yosys")
+    return check_common.run_eqy(base_dir, test, freq, "check_yosys", True)
 
 if __name__ == "__main__":
     run()
