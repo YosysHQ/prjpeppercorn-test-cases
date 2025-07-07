@@ -43,6 +43,8 @@ def run(base_dir, test, freq):
             board = "olimex"
             if not os.path.exists(os.path.join(base_dir,dir,"olimex.ccf")):
                 board = "evb"
+                if not os.path.exists(os.path.join(base_dir,dir,"evb.ccf")):
+                    board = "kolsch"
             try:
                 result = subprocess.run(
                     ["make", "-C", dir, f"BOARD={board}", "clean", "json"],
