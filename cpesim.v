@@ -657,6 +657,50 @@ module CPE_MULT #(
 	output POUTY2
 );
 
+	wire [8:1] cpe_i;
+
+	assign cpe_i[1] = IN1;
+	assign cpe_i[2] = PINY1;
+	assign cpe_i[4] = CINX;
+	assign cpe_i[5] = IN5;
+	assign cpe_i[6] = PINY1;
+	assign cpe_i[8] = PINX;
+
+	wire L10 = ~((&cpe_i[2:1]) ^ CINX);
+	wire L11 = ~((&cpe_i[6:5]) ^ PINX);
+	wire L02OUT = &cpe_i[6:5];
+	wire NOROUT = ~((&cpe_i[2:1]) | CINX);
+
+	// COMB02 ADDF2
+	wire CADD_A = ((~NOROUT | ~L10) & ~(~L02OUT & ~L10));
+	wire CADD_S = (~L10) & (~L11);
+	wire ADDF2 = ~(~(~L11 & ~CINY1) & ~(~L02OUT & L11));
+
+	// COMB02 MULT
+	wire nand2_0 = ~(PINY2 & IN5);
+	wire nand2_1 = ~(PINY2 & IN8);
+	wire xnor3_0 = ~(nand2_0 ^ ~L10 ^ ~ADDF2);
+	wire xnor3_1 = ~(nand2_1 ^ CINY1 ^ ~L11);
+	wire mx2_0 = ~(( nand2_0 | xnor3_0) & (nand2_1 | ~xnor3_0));
+	wire mx2_1 = ~((~nand2_1 | xnor3_1) & (CINY2 | ~xnor3_1));
+
+	wire COY2_A = mx2_0;
+	wire COY2_S = ~(~xnor3_0 | ~xnor3_1);
+	wire MULTO1 = ~(xnor3_1 ^ ~CINY2);
+	wire MULTO2 = ~(xnor3_0 ^ mx2_1);
+
+	// COMB03
+	assign COUTX  = MULTO2;
+	assign COUTY1 = CADD_S ? CINY1 : CADD_A;
+	assign COUTY2 = COY2_S ? CINY2 : COY2_A;
+	assign CPOUT2   = COUTX;
+
+	// COMB04
+	assign POUTX  = MULTO1;
+	assign POUTY1 = C_PY1_I ? COUTX : PINY1;
+	assign POUTY2 = PINY2;
+	assign CPOUT1 = C_C_P ? COUTX : POUTX;
+
 endmodule
 
 module CPE_COMP #(
