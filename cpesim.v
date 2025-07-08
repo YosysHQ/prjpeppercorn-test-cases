@@ -333,7 +333,7 @@ module CPE_MX4 #(
 	parameter [3:0] INIT_L03 = 4'b0000,
 	parameter [3:0] INIT_L11 = 4'b0000,
 	parameter [3:0] INIT_L20 = 4'b0, // Unused
-    parameter [2:0] C_FUNCTION = 3'b000
+	parameter [2:0] C_FUNCTION = 3'b000
 )(
 	input  IN1,
 	input  IN2,
@@ -384,10 +384,10 @@ endmodule
 
 module CPE_FF #(
 	parameter [1:0] C_CPE_CLK = 2'b0,
-    parameter [1:0] C_CPE_EN = 2'b0,
-    parameter [1:0] C_CPE_RES = 2'b0,
-    parameter [1:0] C_CPE_SET = 2'b0,
-    parameter [1:0] FF_INIT = 2'b0,
+	parameter [1:0] C_CPE_EN = 2'b0,
+	parameter [1:0] C_CPE_RES = 2'b0,
+	parameter [1:0] C_CPE_SET = 2'b0,
+	parameter [1:0] FF_INIT = 2'b0,
 	parameter C_EN_SR = 1'b0
 )(
 	input DIN,
@@ -401,21 +401,21 @@ module CPE_FF #(
 	
 	assign CP_i = (C_CPE_CLK == 2'b00) ? 1'b0 :
 				  (C_CPE_CLK == 2'b01) ? ~CLK :
-                  (C_CPE_CLK == 2'b10) ? CLK :
-                  1'b1;
+				  (C_CPE_CLK == 2'b10) ? CLK :
+				  1'b1;
 	assign EN_i = (C_CPE_EN == 2'b00) ? 1'b0 :
 				  (C_CPE_EN == 2'b01) ? ~EN :
-                  (C_CPE_EN == 2'b10) ? EN :
-                  1'b1;
+				  (C_CPE_EN == 2'b10) ? EN :
+				  1'b1;
 	assign RES_i = (C_CPE_RES == 2'b00) ? 1'b1 :
 				   (C_CPE_RES == 2'b01) ? SR :
-                   (C_CPE_RES == 2'b10) ? ~SR :
-                   1'b0;
+				   (C_CPE_RES == 2'b10) ? ~SR :
+				   1'b0;
 
 	assign SET_i = (C_CPE_SET == 2'b00) ? 1'b1 :
 				   (C_CPE_SET == 2'b01) ? (C_EN_SR ? SR : EN) :
-                   (C_CPE_SET == 2'b10) ? ~(C_EN_SR ? SR : EN) :
-                   1'b0;
+				   (C_CPE_SET == 2'b10) ? ~(C_EN_SR ? SR : EN) :
+				   1'b0;
 
 	initial q_i = (FF_INIT[1] == 1'b1) ? FF_INIT[0] : 1'bx;
 
@@ -438,10 +438,10 @@ endmodule
 
 module CPE_LATCH #(
 	parameter [1:0] C_CPE_CLK = 2'b0,
-    parameter [1:0] C_CPE_EN = 2'b0,
-    parameter [1:0] C_CPE_RES = 2'b0,
-    parameter [1:0] C_CPE_SET = 2'b0,
-    parameter [1:0] FF_INIT = 2'b0,
+	parameter [1:0] C_CPE_EN = 2'b0,
+	parameter [1:0] C_CPE_RES = 2'b0,
+	parameter [1:0] C_CPE_SET = 2'b0,
+	parameter [1:0] FF_INIT = 2'b0,
 	parameter C_EN_SR = 1'b0,
 	parameter C_L_D = 1'b1
 )(
@@ -456,21 +456,21 @@ module CPE_LATCH #(
 	
 	assign CP_i = (C_CPE_CLK == 2'b00) ? 1'b0 :
 				  (C_CPE_CLK == 2'b01) ? ~CLK :
-                  (C_CPE_CLK == 2'b10) ? CLK :
-                  1'b1;
+				  (C_CPE_CLK == 2'b10) ? CLK :
+				  1'b1;
 	assign EN_i = (C_CPE_EN == 2'b00) ? 1'b0 :
 				  (C_CPE_EN == 2'b01) ? ~EN :
-                  (C_CPE_EN == 2'b10) ? EN :
-                  1'b1;
+				  (C_CPE_EN == 2'b10) ? EN :
+				  1'b1;
 	assign RES_i = (C_CPE_RES == 2'b00) ? 1'b1 :
 				   (C_CPE_RES == 2'b01) ? SR :
-                   (C_CPE_RES == 2'b10) ? ~SR :
-                   1'b0;
+				   (C_CPE_RES == 2'b10) ? ~SR :
+				   1'b0;
 
 	assign SET_i = (C_CPE_SET == 2'b00) ? 1'b1 :
 				   (C_CPE_SET == 2'b01) ? (C_EN_SR ? SR : EN) :
-                   (C_CPE_SET == 2'b10) ? ~(C_EN_SR ? SR : EN) :
-                   1'b0;
+				   (C_CPE_SET == 2'b10) ? ~(C_EN_SR ? SR : EN) :
+				   1'b0;
 
 	initial q_i = (FF_INIT[1] == 1'b1) ? FF_INIT[0] : 1'bx;
 
@@ -491,18 +491,18 @@ endmodule
 
 
 module CPE_CPLINES #(
-    parameter C_SELX  = 1'b0,
-    parameter C_SELY1 = 1'b0,
-    parameter C_SELY2 = 1'b0,
-    parameter C_SEL_C = 1'b0,
-    parameter C_SEL_P = 1'b0,
-    parameter C_Y12   = 1'b0,
-    parameter C_CX_I  = 1'b0,
-    parameter C_CY1_I = 1'b0,
-    parameter C_CY2_I = 1'b0,
-    parameter C_PX_I  = 1'b0,
-    parameter C_PY1_I = 1'b0,
-    parameter C_PY2_I = 1'b0
+	parameter C_SELX  = 1'b0,
+	parameter C_SELY1 = 1'b0,
+	parameter C_SELY2 = 1'b0,
+	parameter C_SEL_C = 1'b0,
+	parameter C_SEL_P = 1'b0,
+	parameter C_Y12   = 1'b0,
+	parameter C_CX_I  = 1'b0,
+	parameter C_CY1_I = 1'b0,
+	parameter C_CY2_I = 1'b0,
+	parameter C_PX_I  = 1'b0,
+	parameter C_PY1_I = 1'b0,
+	parameter C_PY2_I = 1'b0
 )(
 	input OUT1,
 	input OUT2,
@@ -514,11 +514,11 @@ module CPE_CPLINES #(
 	input CINY2,
 	input PINY2,
 	output COUTX,
-    output POUTX,
-    output COUTY1,
-    output POUTY1,
-    output COUTY2,
-    output POUTY2
+	output POUTX,
+	output COUTY1,
+	output POUTY1,
+	output COUTY2,
+	output POUTY2
 );
 	wire CIY12 = C_Y12 ? CINY2 : CINY1;
 	wire PIY12 = C_Y12 ? PINY2 : PINY1;
@@ -539,27 +539,27 @@ module CPE_CPLINES #(
 endmodule
 
 module CPE_ADDF #(
-    parameter [2:0] C_FUNCTION = 3'b000,
-    parameter [3:0] INIT_L00 = 4'b0000,
-    parameter [3:0] INIT_L01 = 4'b0000,
-    parameter [3:0] INIT_L02 = 4'b0000,
-    parameter [3:0] INIT_L03 = 4'b0000,
-    parameter [3:0] INIT_L10 = 4'b0000,
-    parameter [3:0] INIT_L11 = 4'b0000,
-    parameter [3:0] INIT_L20 = 4'b0000
+	parameter [2:0] C_FUNCTION = 3'b000,
+	parameter [3:0] INIT_L00 = 4'b0000,
+	parameter [3:0] INIT_L01 = 4'b0000,
+	parameter [3:0] INIT_L02 = 4'b0000,
+	parameter [3:0] INIT_L03 = 4'b0000,
+	parameter [3:0] INIT_L10 = 4'b0000,
+	parameter [3:0] INIT_L11 = 4'b0000,
+	parameter [3:0] INIT_L20 = 4'b0000
 )(
-    input CINY1,
-    output COUTY1,
+	input CINY1,
+	output COUTY1,
 	input IN1,
 	input IN2,
-    input IN3,
+	input IN3,
 	input IN4,
 	input IN5,
 	input IN6,
-    input IN7,
+	input IN7,
 	input IN8,
-    output OUT1,
-    output CPOUT2
+	output OUT1,
+	output CPOUT2
 );
 
 	wire [1:0] l00_s1 = IN2 ? INIT_L00[3:2] : INIT_L00[1:0];
@@ -576,27 +576,27 @@ endmodule
 
 
 module CPE_ADDF2 #(
-    parameter [2:0] C_FUNCTION = 3'b000,
-    parameter [3:0] INIT_L00 = 4'b0000,
-    parameter [3:0] INIT_L01 = 4'b0000,
-    parameter [3:0] INIT_L02 = 4'b0000,
-    parameter [3:0] INIT_L03 = 4'b0000,
-    parameter [3:0] INIT_L10 = 4'b0000,
-    parameter [3:0] INIT_L11 = 4'b0000,
-    parameter [3:0] INIT_L20 = 4'b0000
+	parameter [2:0] C_FUNCTION = 3'b000,
+	parameter [3:0] INIT_L00 = 4'b0000,
+	parameter [3:0] INIT_L01 = 4'b0000,
+	parameter [3:0] INIT_L02 = 4'b0000,
+	parameter [3:0] INIT_L03 = 4'b0000,
+	parameter [3:0] INIT_L10 = 4'b0000,
+	parameter [3:0] INIT_L11 = 4'b0000,
+	parameter [3:0] INIT_L20 = 4'b0000
 )(
-    input CINY1,
-    output COUTY1,
+	input CINY1,
+	output COUTY1,
 	input IN1,
 	input IN2,
-    input IN3,
+	input IN3,
 	input IN4,
 	input IN5,
 	input IN6,
-    input IN7,
+	input IN7,
 	input IN8,
-    output OUT1,
-    output OUT2
+	output OUT1,
+	output OUT2
 );
 
 	wire [1:0] l00_s1 = IN2 ? INIT_L00[3:2] : INIT_L00[1:0];
@@ -611,22 +611,22 @@ module CPE_ADDF2 #(
 	wire [1:0] l03_s1 = IN8 ? INIT_L03[3:2] : INIT_L03[1:0];
 	wire B1 = IN7 ? l03_s1[1] : l03_s1[0];
 
-    wire CO1;
-    assign { CO1, OUT1 } = A1 + B1 + CINY1;
-    assign { COUTY1, OUT2 } = A2 + B2 + CO1;
+	wire CO1;
+	assign { CO1, OUT1 } = A1 + B1 + CINY1;
+	assign { COUTY1, OUT2 } = A2 + B2 + CO1;
 
 endmodule
 
 module CPE_MULT #(
-    parameter C_C_P = 1'b0,
-    parameter [2:0] C_FUNCTION = 3'b000,
-    parameter [3:0] INIT_L00 = 4'b0000,
-    parameter [3:0] INIT_L01 = 4'b0000,
-    parameter [3:0] INIT_L02 = 4'b0000,
-    parameter [3:0] INIT_L03 = 4'b0000,
-    parameter [3:0] INIT_L10 = 4'b0000,
-    parameter [3:0] INIT_L11 = 4'b0000,
-    parameter [3:0] INIT_L20 = 4'b0000,
+	parameter C_C_P = 1'b0,
+	parameter [2:0] C_FUNCTION = 3'b000,
+	parameter [3:0] INIT_L00 = 4'b0000,
+	parameter [3:0] INIT_L01 = 4'b0000,
+	parameter [3:0] INIT_L02 = 4'b0000,
+	parameter [3:0] INIT_L03 = 4'b0000,
+	parameter [3:0] INIT_L10 = 4'b0000,
+	parameter [3:0] INIT_L11 = 4'b0000,
+	parameter [3:0] INIT_L20 = 4'b0000,
 	parameter C_I1 = 1'b0,
 	parameter C_I2 = 1'b0,
 	parameter C_I3 = 1'b0,
@@ -635,14 +635,14 @@ module CPE_MULT #(
 )(
 	input IN1,
 	input IN2,
-    input IN3,
+	input IN3,
 	input IN4,
 	input IN5,
 	input IN6,
-    input IN7,
+	input IN7,
 	input IN8,
-    output CPOUT1,
-    output CPOUT2,
+	output CPOUT1,
+	output CPOUT2,
 	input CINX,
 	input PINX,
 	input CINY1,
@@ -704,14 +704,14 @@ module CPE_MULT #(
 endmodule
 
 module CPE_COMP #(
-    parameter [3:0] INIT_L30 = 4'b0000
+	parameter [3:0] INIT_L30 = 4'b0000
 )(
-    input COMB1,
-    input COMB2,
-    output COMPOUT
+	input COMB1,
+	input COMB2,
+	output COMPOUT
 );
-    wire [1:0] l30_s1 = COMB2 ? INIT_L30[3:2] : INIT_L30[1:0];
-    assign COMPOUT = COMB1 ? l30_s1[1] : l30_s1[0];
+	wire [1:0] l30_s1 = COMB2 ? INIT_L30[3:2] : INIT_L30[1:0];
+	assign COMPOUT = COMB1 ? l30_s1[1] : l30_s1[0];
 endmodule
 
 module CLKIN #(
@@ -795,36 +795,36 @@ module GLBOUT #(
 endmodule
 
 module PLL #(
-    parameter [4:0] CFG_A_AO_SW = 5'd0,
-    parameter [4:0] CFG_A_CI_FILTER_CONST = 5'd0,
-    parameter [2:0] CFG_A_COARSE_TUNE = 3'd0,
-    parameter [4:0] CFG_A_CP_FILTER_CONST = 5'd0,
-    parameter CFG_A_ENFORCE_LOCK = 1'b0,
-    parameter CFG_A_EN_COARSE_TUNE = 1'b0,
-    parameter CFG_A_EN_USR_CFG = 1'b0,
-    parameter CFG_A_FAST_LOCK = 1'b0,
-    parameter [1:0] CFG_A_FILTER_SHIFT = 2'd0,
-    parameter [10:0] CFG_A_FINE_TUNE = 11'd0,
-    parameter [11:0] CFG_A_K = 12'd0,
-    parameter CFG_A_LOCK_DETECT_WIN = 1'b0,
-    parameter [5:0] CFG_A_M1 = 6'd0,
-    parameter [9:0] CFG_A_M2 = 10'd0,
-    parameter [5:0] CFG_A_N1 = 6'd0,
-    parameter [9:0] CFG_A_N2 = 10'd0,
-    parameter CFG_A_OPEN_LOOP = 1'b0,
-    parameter CFG_A_OP_LOCK = 1'b0,
-    parameter CFG_A_PDIV0_MUX = 1'b0,
-    parameter CFG_A_PDIV1_SEL = 1'b0,
-    parameter CFG_A_PFD_SEL = 1'b0,
-    parameter CFG_A_PLL_EN_SEL = 1'b0,
-    parameter [2:0] CFG_A_SAR_LIMIT = 3'b000,
-    parameter CFG_A_SYNC_BYPASS = 1'b0,
-    parameter CLK180_DOUB = 1'b0,
-    parameter CLK270_DOUB = 1'b0,
-    parameter CLK_OUT_EN = 1'b1,
-    parameter LOCK_REQ = 1'b0,
-    parameter PLL_EN = 1'b1,
-    parameter PLL_RST = 1'b1
+	parameter [4:0] CFG_A_AO_SW = 5'd0,
+	parameter [4:0] CFG_A_CI_FILTER_CONST = 5'd0,
+	parameter [2:0] CFG_A_COARSE_TUNE = 3'd0,
+	parameter [4:0] CFG_A_CP_FILTER_CONST = 5'd0,
+	parameter CFG_A_ENFORCE_LOCK = 1'b0,
+	parameter CFG_A_EN_COARSE_TUNE = 1'b0,
+	parameter CFG_A_EN_USR_CFG = 1'b0,
+	parameter CFG_A_FAST_LOCK = 1'b0,
+	parameter [1:0] CFG_A_FILTER_SHIFT = 2'd0,
+	parameter [10:0] CFG_A_FINE_TUNE = 11'd0,
+	parameter [11:0] CFG_A_K = 12'd0,
+	parameter CFG_A_LOCK_DETECT_WIN = 1'b0,
+	parameter [5:0] CFG_A_M1 = 6'd0,
+	parameter [9:0] CFG_A_M2 = 10'd0,
+	parameter [5:0] CFG_A_N1 = 6'd0,
+	parameter [9:0] CFG_A_N2 = 10'd0,
+	parameter CFG_A_OPEN_LOOP = 1'b0,
+	parameter CFG_A_OP_LOCK = 1'b0,
+	parameter CFG_A_PDIV0_MUX = 1'b0,
+	parameter CFG_A_PDIV1_SEL = 1'b0,
+	parameter CFG_A_PFD_SEL = 1'b0,
+	parameter CFG_A_PLL_EN_SEL = 1'b0,
+	parameter [2:0] CFG_A_SAR_LIMIT = 3'b000,
+	parameter CFG_A_SYNC_BYPASS = 1'b0,
+	parameter CLK180_DOUB = 1'b0,
+	parameter CLK270_DOUB = 1'b0,
+	parameter CLK_OUT_EN = 1'b1,
+	parameter LOCK_REQ = 1'b0,
+	parameter PLL_EN = 1'b1,
+	parameter PLL_RST = 1'b1
 )(
 	input CLK_REF,
 	output CLK0,
@@ -838,7 +838,7 @@ module PLL #(
 endmodule
 
 module USR_RSTN (
-    output USR_RSTN
+	output USR_RSTN
 );
-    assign USR_RSTN = 1'b1;
+	assign USR_RSTN = 1'b1;
 endmodule
