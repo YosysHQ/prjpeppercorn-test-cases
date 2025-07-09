@@ -345,10 +345,18 @@ module CPE_MX4 #(
 	input  IN8,
 	output OUT1
 );
-	wire s1 = IN8;
-	wire s0 = IN6;
+	wire [1:0] l02_s1 = IN6 ? INIT_L02[3:2] : INIT_L02[1:0];
+	wire s0 = IN5 ? l02_s1[1] : l02_s1[0];
 
-	assign OUT1 = s1 ? (s0 ? IN4 : IN3) : (s0 ? IN2 : IN1);
+	wire [1:0] l03_s1 = IN8 ? INIT_L03[3:2] : INIT_L03[1:0];
+	wire s1 = IN7 ? l03_s1[1] : l03_s1[0];
+
+	wire in4_int = (INIT_L10[3] ? IN4 : 1'b0) ^ INIT_L11[3];
+	wire in3_int = (INIT_L10[2] ? IN3 : 1'b0) ^ INIT_L11[2];
+	wire in2_int = (INIT_L10[1] ? IN2 : 1'b0) ^ INIT_L11[1];
+	wire in1_int = (INIT_L10[0] ? IN1 : 1'b0) ^ INIT_L11[0];
+
+	assign OUT1 = s1 ? (s0 ? in4_int : in3_int) : (s0 ? in2_int : in1_int);
 endmodule
 
 module CPE_RAMO #(
