@@ -326,13 +326,13 @@ module CPE_L2T4 #(
 endmodule
 
 module CPE_MX4 #(
-	parameter [3:0] INIT_L00 = 4'b0,
-	parameter [3:0] INIT_L01 = 4'b0,
-	parameter [3:0] INIT_L10 = 4'b0,
+	parameter [3:0] INIT_L00 = 4'b0000,
+	parameter [3:0] INIT_L01 = 4'b0000,
+	parameter [3:0] INIT_L10 = 4'b0000,
 	parameter [3:0] INIT_L02 = 4'b0000,
 	parameter [3:0] INIT_L03 = 4'b0000,
 	parameter [3:0] INIT_L11 = 4'b0000,
-	parameter [3:0] INIT_L20 = 4'b0, // Unused
+	parameter [3:0] INIT_L20 = 4'b0000, // Unused
 	parameter [2:0] C_FUNCTION = 3'b000
 )(
 	input  IN1,
@@ -391,11 +391,11 @@ module CPE_RAMIO #(
 endmodule
 
 module CPE_FF #(
-	parameter [1:0] C_CPE_CLK = 2'b0,
-	parameter [1:0] C_CPE_EN = 2'b0,
-	parameter [1:0] C_CPE_RES = 2'b0,
-	parameter [1:0] C_CPE_SET = 2'b0,
-	parameter [1:0] FF_INIT = 2'b0,
+	parameter [1:0] C_CPE_CLK = 2'b00,
+	parameter [1:0] C_CPE_EN = 2'b00,
+	parameter [1:0] C_CPE_RES = 2'b00,
+	parameter [1:0] C_CPE_SET = 2'b00,
+	parameter [1:0] FF_INIT = 2'b00,
 	parameter C_EN_SR = 1'b0
 )(
 	input DIN,
@@ -445,11 +445,11 @@ module CPE_FF #(
 endmodule
 
 module CPE_LATCH #(
-	parameter [1:0] C_CPE_CLK = 2'b0,
-	parameter [1:0] C_CPE_EN = 2'b0,
-	parameter [1:0] C_CPE_RES = 2'b0,
-	parameter [1:0] C_CPE_SET = 2'b0,
-	parameter [1:0] FF_INIT = 2'b0,
+	parameter [1:0] C_CPE_CLK = 2'b00,
+	parameter [1:0] C_CPE_EN = 2'b00,
+	parameter [1:0] C_CPE_RES = 2'b00,
+	parameter [1:0] C_CPE_SET = 2'b00,
+	parameter [1:0] FF_INIT = 2'b00,
 	parameter C_EN_SR = 1'b0,
 	parameter C_L_D = 1'b1
 )(
@@ -719,7 +719,8 @@ module CPE_COMP #(
 	output COMPOUT
 );
 	wire [1:0] l30_s1 = COMB2 ? INIT_L30[3:2] : INIT_L30[1:0];
-	assign COMPOUT = COMB1 ? l30_s1[1] : l30_s1[0];
+	wire comp = COMB1 ? l30_s1[1] : l30_s1[0];
+	assign COMPOUT = ~comp;
 endmodule
 
 module CLKIN #(
