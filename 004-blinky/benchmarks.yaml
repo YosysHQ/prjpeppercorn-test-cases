@@ -1,0 +1,14 @@
+all:
+  top_module: top
+  source:
+    - top.v
+  output_files:
+    - $(SOURCE)
+  output_format: Verilog
+
+gatemate . device:
+  pnr_constraints: "{device}.ccf"
+  pnr_format: ccf
+
+sweepgatemate:
+  parameters: ["evb", "olimex"]
