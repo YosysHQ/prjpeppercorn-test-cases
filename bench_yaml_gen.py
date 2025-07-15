@@ -33,26 +33,23 @@ def run(paths: list[Path], config: bool, debug: bool):
             
             # dry-run Make to get tool options
             result = subprocess.run(
-                ["make", "-C", path, f"BOARD={board}", "nextpnr", f"P_R=p_r", "pr", "--dry-run"],
+                ["make", "-C", path, f"BOARD={board}", "nextpnr", "--dry-run"],
                 check=True,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
             )
             yosys = None
             nextpnr = None
-            p_r = None
             for line in result.stdout.decode().splitlines():
                 if line.startswith("yosys"):
                     yosys = line.split(' ', 1)[1]
                 elif line.startswith("nextpnr"):
                     nextpnr = line.split(' ', 1)[1]
-                elif line.startswith("p_r"):
-                    p_r = line.split(' ', 1)[1]
 
             # extracting options from Yosys script
             _, yoscrypt, _ = yosys.split("'")
             d = re.match(
-                r"(?P<defs>.*) read_verilog -defer -sv (?P<inputs>.*?); (?P<cmds>.*?) synth_gatemate (?P<synth_args1>.*?) -top (?P<top>\S+) (?P<synth_args2>[^;\n]*)?",
+                r"(?P<defs>.*) read_verilog -defer -sv (?P<inputs>.*?); (?P<cmds>.*?) synth_gatemate (?P<synth_args1>.*?) -top (?P<top>\S+)",
                 yoscrypt
             ).groupdict()
             board_args["source"] = d["inputs"].split()
@@ -68,7 +65,7 @@ def run(paths: list[Path], config: bool, debug: bool):
             board_args["verilog_defines"] = verilog_defines
 
             synth_args: set[str] = set()
-            for arg_m in re.finditer(r"(-\S+)( [^-]\S+)?", f'{d["synth_args1"]} {d["synth_args2"]}'):
+            for arg_m in re.finditer(r"(-\S+)( [^-]\S+)?", d["synth_args1"]):
                 synth_arg = arg_m.group()
                 if synth_arg.startswith("-vlog"):
                     continue
@@ -77,9 +74,8 @@ def run(paths: list[Path], config: bool, debug: bool):
 
             board_args["yosys_cmds"] = d["cmds"]
 
-            # nextpnr and p_r currently unused
+            # nextpnr is currently unused
             # click.echo(f"    nextpnr options: {nextpnr}")
-            # click.echo(f"    p_r options: {p_r}")
 
         # collect common configurations
         first_board: str | None = None
@@ -157,7 +153,10 @@ def run(paths: list[Path], config: bool, debug: bool):
             if verilog_defines:
                 synth_args.add("-hasdefines")
             if yosys_cmds:
-                synth_args.add("-hascmds")
+                # so long as the cmd is just "setattr -unset ram_style a:ram_style=distributed"
+                # then yosys-gatemate does that by default
+                # synth_args.add("-hascmds")
+                pass
             try:
                 synth_args_paths_map = synth_args_map[tuple(synth_args)]
             except KeyError:
@@ -183,21 +182,23 @@ def run(paths: list[Path], config: bool, debug: bool):
 
             # all the benchmarks here use readsv to load the .vh
             arg_list.append("readsv")
-
-            # so long as the cmd is just "setattr -unset ram_style a:ram_style=distributed"
-            # then yosys-gatemate does that by default
-            try: arg_list.remove("hascmds")
-            except ValueError: pass
             arg_list.sort()
-            yosys_flow = "yosys-shell-gatemate+" + "+".join(arg_list)
+            nextpnr_flow = "yosys-shell-gatemate+" + "+".join(arg_list)
+
+            # we don't need -luttree for ccpr, but we do need -nomx8 if we don't already
+            arg_list.remove("luttree")
+            if "nomx8" not in arg_list:
+                arg_list.append("nomx8")
+            arg_list.sort()
+            ccpr_flow = "yosys-shell-gatemate+" + "+".join(arg_list)
 
             # format yaml
             this_config = config_yaml[config_name] = {
                 "benchmark_dirs": ["benchmarks/peppercorn"],
                 "benchmarks": {},
                 "flows": [
-                    [yosys_flow, "ccpr-toolchain"],
-                    [yosys_flow, "nextpnr-shell-gatemate"],
+                    [ccpr_flow, "ccpr-toolchain"],
+                    [nextpnr_flow, "nextpnr-shell-gatemate"],
                 ],
             }
             for group, targets in synth_args_paths_map.items():
