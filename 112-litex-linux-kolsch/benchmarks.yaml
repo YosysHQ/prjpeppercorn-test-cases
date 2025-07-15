@@ -1,0 +1,17 @@
+all:
+  includes:
+  - kolsch_mem.init
+  - kolsch_rom.init
+  - kolsch_sram.init
+  output_files:
+  - $(SOURCE)
+  output_format: Verilog
+  pnr_constraints: kolsch.ccf
+  pnr_format: ccf
+  source:
+  - ../kolsch.vh
+  - Ram_1w_1rs_Generic.v
+  - VexRiscvLitexSmpCluster_Cc1_Iw32Is4096Iy1_Dw32Ds4096Dy1_ITs4DTs4_Ldw16_Ood_Hb1.v
+  - kolsch.v
+  top_module: kolsch
+  yosys_cmds: hierarchy -top kolsch; setattr -unset ram_style a:ram_style=distributed;

@@ -1,0 +1,39 @@
+all:
+  output_files:
+  - $(SOURCE)
+  output_format: Verilog
+  pnr_format: ccf
+  top_module: top_graphing
+evb:
+  pnr_constraints: evb.ccf
+  source:
+  - ../evb.vh
+  - top_graphing.sv
+  - func_circle.sv
+  - func_cubed.sv
+  - func_polynomial.sv
+  - func_squared.sv
+  - ../lib/clock/gatemate/clock_480p.sv
+  - ../lib/display/display_480p.sv
+kolsch:
+  pnr_constraints: kolsch.ccf
+  source:
+  - ../kolsch.vh
+  - top_graphing.sv
+  - func_circle.sv
+  - func_cubed.sv
+  - func_polynomial.sv
+  - func_squared.sv
+  - ../lib/clock/gatemate/clock_480p.sv
+  - ../lib/display/display_480p.sv
+olimex:
+  pnr_constraints: olimex.ccf
+  source:
+  - ../olimex.vh
+  - top_graphing.sv
+  - func_circle.sv
+  - func_cubed.sv
+  - func_polynomial.sv
+  - func_squared.sv
+  - ../lib/clock/gatemate/clock_480p.sv
+  - ../lib/display/display_480p.sv

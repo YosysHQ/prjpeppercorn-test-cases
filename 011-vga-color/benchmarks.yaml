@@ -4,18 +4,26 @@ all:
   output_format: Verilog
   pnr_format: ccf
   top_module: top
+  verilog_defines:
+  - DISP_640x480_60Hz=1;
 evb:
   pnr_constraints: evb.ccf
   source:
   - ../evb.vh
   - top.v
+  - ../lib/fpgalibs/graphics/vga_core.v
+  - ../lib/fpgalibs/clocks/gatemate_25MHz_pll.v
 kolsch:
   pnr_constraints: kolsch.ccf
   source:
   - ../kolsch.vh
   - top.v
+  - ../lib/fpgalibs/graphics/vga_core.v
+  - ../lib/fpgalibs/clocks/gatemate_25MHz_pll.v
 olimex:
   pnr_constraints: olimex.ccf
   source:
   - ../olimex.vh
   - top.v
+  - ../lib/fpgalibs/graphics/vga_core.v
+  - ../lib/fpgalibs/clocks/gatemate_25MHz_pll.v

@@ -1,0 +1,13 @@
+all:
+  output_files:
+  - $(SOURCE)
+  output_format: Verilog
+  pnr_constraints: olimex.ccf
+  pnr_format: ccf
+  source:
+  - ../olimex.vh
+  - dvi-12bit.v
+  - gatemate_40MHz_pll.v
+  - vga_core.v
+  - vga_timing.v
+  top_module: top

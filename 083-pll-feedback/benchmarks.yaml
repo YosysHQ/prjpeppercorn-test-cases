@@ -3,19 +3,14 @@ all:
   - $(SOURCE)
   output_format: Verilog
   pnr_format: ccf
-  top_module: top
+  top_module: pll
 evb:
   pnr_constraints: evb.ccf
   source:
   - ../evb.vh
-  - top.v
-kolsch:
-  pnr_constraints: kolsch.ccf
-  source:
-  - ../kolsch.vh
-  - top.v
+  - pll.v
 olimex:
   pnr_constraints: olimex.ccf
   source:
   - ../olimex.vh
-  - top.v
+  - pll.v

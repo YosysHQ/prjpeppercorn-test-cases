@@ -1,0 +1,19 @@
+all:
+  output_files:
+  - $(SOURCE)
+  output_format: Verilog
+  pnr_constraints: olimex.ccf
+  pnr_format: ccf
+  source:
+  - ../olimex.vh
+  - top.v
+  - pll.v
+  - pll25.v
+  - vga.v
+  - ps2.v
+  - cpu.v
+  - alu.v
+  - ram.v
+  - rom.v
+  - kbd.v
+  top_module: top

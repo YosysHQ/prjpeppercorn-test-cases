@@ -1,0 +1,36 @@
+all:
+  output_files:
+  - $(SOURCE)
+  output_format: Verilog
+  pnr_format: ccf
+  top_module: darksocv
+  verilog_defines:
+  - OLIMEX_GATEMATE=1;
+evb:
+  pnr_constraints: evb.ccf
+  source:
+  - ../evb.vh
+  - rtl/darksocv.v
+  - rtl/darkbridge.v
+  - rtl/darkcache.v
+  - rtl/darkio.v
+  - rtl/darkpll.v
+  - rtl/darkram.v
+  - rtl/darkriscv.v
+  - rtl/darkspi.v
+  - rtl/darkuart.v
+  - gatemate_25MHz_pll.v
+olimex:
+  pnr_constraints: olimex.ccf
+  source:
+  - ../olimex.vh
+  - rtl/darksocv.v
+  - rtl/darkbridge.v
+  - rtl/darkcache.v
+  - rtl/darkio.v
+  - rtl/darkpll.v
+  - rtl/darkram.v
+  - rtl/darkriscv.v
+  - rtl/darkspi.v
+  - rtl/darkuart.v
+  - gatemate_25MHz_pll.v

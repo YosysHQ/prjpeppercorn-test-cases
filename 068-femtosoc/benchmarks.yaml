@@ -3,19 +3,16 @@ all:
   - $(SOURCE)
   output_format: Verilog
   pnr_format: ccf
-  top_module: top
+  top_module: femtosoc
 evb:
   pnr_constraints: evb.ccf
   source:
   - ../evb.vh
-  - top.v
-kolsch:
-  pnr_constraints: kolsch.ccf
-  source:
-  - ../kolsch.vh
-  - top.v
+  - ../lib/femtosoc/CONFIGS/gatemate_config.v
+  - ../lib/femtosoc/femtosoc.v
 olimex:
   pnr_constraints: olimex.ccf
   source:
   - ../olimex.vh
-  - top.v
+  - ../lib/femtosoc/CONFIGS/gatemate_config.v
+  - ../lib/femtosoc/femtosoc.v

@@ -1,4 +1,6 @@
 all:
+  includes:
+  - firmware.hex
   output_files:
   - $(SOURCE)
   output_format: Verilog
@@ -8,14 +10,11 @@ evb:
   pnr_constraints: evb.ccf
   source:
   - ../evb.vh
-  - top.v
-kolsch:
-  pnr_constraints: kolsch.ccf
-  source:
-  - ../kolsch.vh
-  - top.v
+  - attosoc.v
+  - picorv32.v
 olimex:
   pnr_constraints: olimex.ccf
   source:
   - ../olimex.vh
-  - top.v
+  - attosoc.v
+  - picorv32.v

@@ -9,13 +9,10 @@ evb:
   source:
   - ../evb.vh
   - top.v
-kolsch:
-  pnr_constraints: kolsch.ccf
-  source:
-  - ../kolsch.vh
-  - top.v
+  - ../lib/fpgalibs/clocks/gatemate_25MHz_125MHz_pll.v
 olimex:
   pnr_constraints: olimex.ccf
   source:
   - ../olimex.vh
   - top.v
+  - ../lib/fpgalibs/clocks/gatemate_25MHz_125MHz_pll.v
