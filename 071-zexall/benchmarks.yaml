@@ -4,6 +4,8 @@ all:
   output_format: Verilog
   pnr_format: ccf
   top_module: top
+  dir_structure: hybrid
+  includes: ["roms/zexall/*.mem"]
 evb:
   pnr_constraints: evb.ccf
   source:

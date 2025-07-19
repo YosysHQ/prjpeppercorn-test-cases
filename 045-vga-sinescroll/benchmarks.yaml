@@ -4,6 +4,8 @@ all:
   output_format: Verilog
   pnr_format: ccf
   top_module: top_sinescroll
+  dir_structure: hybrid
+  includes: ["res/text/*.mem"]
 evb:
   pnr_constraints: evb.ccf
   source:

@@ -1,18 +1,24 @@
-all:
-  output_files:
-  - $(SOURCE)
-  output_format: Verilog
-  pnr_format: ccf
+gatemate . device:
   top_module: femtosoc
-evb:
-  pnr_constraints: evb.ccf
   source:
-  - ../evb.vh
-  - gatemate_config.v
-  - ../lib/femtosoc/femtosoc.v
-olimex:
-  pnr_constraints: olimex.ccf
-  source:
-  - ../olimex.vh
-  - gatemate_config.v
-  - ../lib/femtosoc/femtosoc.v
+    - "../{device}.vh"
+    - gatemate_config.v
+  includes: ["FIRMWARE/*.hex"]
+  output_files:
+    - "{device}.vh"
+    - gatemate_config.v
+    - femtosoc.v
+  output_format: Verilog
+  pnr_constraints: "{device}.ccf"
+  pnr_format: ccf
+  make_targets:
+    "all: $(OUTPUT_FILES) $(PNR_CONSTRAINTS)": []
+    "$(OUTPUT_FILES): $(addprefix $(ROOT_DIR)/,$(SOURCE))":
+    - "cp $^ -t ."
+    - "cp -r $(ROOT_DIR)/FIRMWARE -t ."
+    - "cp -r $(ROOT_DIR)/../lib/femtosoc/* -t ."
+    "$(PNR_CONSTRAINTS): $(addprefix $(ROOT_DIR)/,$(PNR_CONSTRAINTS))":
+    - "cp $< $@"
+
+sweepgatemate:
+  parameters: ["evb", "olimex"]

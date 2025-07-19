@@ -16,3 +16,4 @@ all:
   - shifter.v
   - mem.v
   top_module: top
+  includes: ["code.bin"]

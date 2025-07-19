@@ -25,3 +25,5 @@ all:
   - boards/olimex_gatemate/apple1_vga.v
   - boards/olimex_gatemate/gatemate_10MHz_25MHz_pll.v
   top_module: apple1_top
+  dir_structure: hybrid
+  includes: ["roms/*.hex", "roms/*.bin"]

@@ -1,0 +1,217 @@
+# peppercorn_hasdefines_luttree_noaddf:
+#   benchmark_dirs:
+#   - benchmarks/peppercorn
+#   benchmarks:
+#     011-vga-color: all
+#   flows:
+#   - - yosys-shell-gatemate+hasdefines+noaddf+nomx8+readsv
+#     - ccpr-toolchain
+#   - - yosys-shell-gatemate+hasdefines+luttree+noaddf+readsv
+#     - nextpnr-shell-gatemate
+
+# peppercorn_hasdefines_luttree_nomult_nomx8:
+#   benchmark_dirs:
+#   - benchmarks/peppercorn
+#   benchmarks:
+#     041-vga-image: all
+#     072-dvi-lvds: all
+#     074-usb: all
+#     080-ps2: all
+#     094-darkriscv: all
+#     110-bounce-dvi: all
+#   flows:
+#   - - yosys-shell-gatemate+hasdefines+nomult+nomx8+readsv
+#     - ccpr-toolchain
+#   - - yosys-shell-gatemate+hasdefines+luttree+nomult+nomx8+readsv
+#     - nextpnr-shell-gatemate
+
+peppercorn_luttree:
+  benchmark_dirs:
+  - benchmarks/peppercorn
+  benchmarks:
+    000-constant: all
+    001-propagate: all
+    002-inverter: all
+    004-blinky: all
+    006-serial: all
+    008-counter: all
+    013-mult: all
+    014-multi-pll: all
+    015-multi-adv-pll: all
+    016-bram-20k: all
+    017-bram-40k: all
+    019-propagate-multi: all
+    021-propagate-lvds: all
+    022-buttons: all
+    027-mux2: all
+    028-mux4: all
+    031-oled-color: all
+    033-oled-wall: all
+    039-fifo-40k: all
+    040-cfg_ctrl: all
+    083-pll-feedback: all
+    084-serdes-loopback: all
+    100-pll-mixed: all
+    109-blinky-serdes: all
+    111-pll-divider: all
+  flows:
+  - - yosys-shell-gatemate+nomx8+readsv
+    - ccpr-toolchain
+  - - yosys-shell-gatemate+luttree+readsv
+    - nextpnr-shell-gatemate
+
+peppercorn_luttree_noaddf:
+  benchmark_dirs:
+  - benchmarks/peppercorn
+  benchmarks:
+    003-blinky-noaddf: all
+    005-serial-noaddf: all
+    007-counter-noaddf: all
+    009-blinky-pll: all
+    010-counter-rst: all
+    012-mux: all
+  flows:
+  - - yosys-shell-gatemate+noaddf+nomx8+readsv
+    - ccpr-toolchain
+  - - yosys-shell-gatemate+luttree+noaddf+readsv
+    - nextpnr-shell-gatemate
+
+peppercorn_luttree_nobram_nomx8:
+  benchmark_dirs:
+  - benchmarks/peppercorn
+  benchmarks:
+    029-attosoc-count: all
+  flows:
+  - - yosys-shell-gatemate+nobram+nomx8+readsv
+    - ccpr-toolchain
+  - - yosys-shell-gatemate+luttree+nobram+nomx8+readsv
+    - nextpnr-shell-gatemate
+
+peppercorn_luttree_noclkbuf:
+  benchmark_dirs:
+  - benchmarks/peppercorn
+  benchmarks:
+    023-dff: all
+    024-counter-manual: all
+    025-counter-noclkbuf: all
+    026-blinky-noclkbuf: all
+    030-serial-noclkbuf: all
+    034-dlt: all
+    035-dff-ffobf: all
+    036-dff-ffibf: all
+    037-iddr: all
+    038-oddr: all
+    065-dff-dst: all
+    066-dff-drs: all
+  flows:
+  - - yosys-shell-gatemate+noclkbuf+nomx8+readsv
+    - ccpr-toolchain
+  - - yosys-shell-gatemate+luttree+noclkbuf+readsv
+    - nextpnr-shell-gatemate
+
+peppercorn_luttree_noclkbuf_nomult_nomx8:
+  benchmark_dirs:
+  - benchmarks/peppercorn
+  benchmarks:
+    095-litex-serv-noclkbuf: all
+  flows:
+  - - yosys-shell-gatemate+noclkbuf+nomult+nomx8+readsv
+    - ccpr-toolchain
+  - - yosys-shell-gatemate+luttree+noclkbuf+nomult+nomx8+readsv
+    - nextpnr-shell-gatemate
+
+peppercorn_luttree_noiopad:
+  benchmark_dirs:
+  - benchmarks/peppercorn
+  benchmarks:
+    020-propagate-noiopad: all
+  flows:
+  - - yosys-shell-gatemate+noiopad+nomx8+readsv
+    - ccpr-toolchain
+  - - yosys-shell-gatemate+luttree+noiopad+readsv
+    - nextpnr-shell-gatemate
+
+peppercorn_luttree_nomult_nomx8:
+  benchmark_dirs:
+  - benchmarks/peppercorn
+  benchmarks:
+    # 042-vga-rasterbar: all # ../lib
+    043-vga-ad-astra: all
+    # 044-vga-castle: all # ../lib
+    # 045-vga-sinescroll: all # ../lib
+    046-vga-mandelbrot: all
+    047-vga-pong: all
+    050-vga-graphics: all
+    # 051-vga-2dshapes: all # ../lib
+    # 052-vga-animated: all # ../lib
+    053-vga-sprites: all
+    # 054-vga-lines: all # ../lib
+    055-vga-math: all
+    056-galaksija: all
+    057-apple-one: all
+    058-litex-vexriscv: all
+    059-litex-femtorv: all
+    060-litex-picorv32: all
+    061-litex-serv: all
+    062-litex-neorv32: all
+    063-litex-kianv: all
+    064-altair: all
+    068-femtosoc: all
+    069-femtosoc-oled: all
+    070-femtosoc-ray: all
+    071-zexall: all
+    073-tetris: all
+    075-invaders: all
+    076-hack-pong: all
+    077-zx-spectrum: all
+    079-litex-femtorv-vga: all
+    081-nyan: all
+    # 082-acorn-atom: all # ../mem
+    # 085-colecovision: all # ../roms
+    # 086-msx: all # ../roms
+    087-mem-cascade: all
+    088-litex-firev: all
+    089-litex-fazyrv: all
+    090-litex-lm32: all
+    091-litex-mor1kx: all
+    092-litex-minerva: all
+    093-litex-sentinel: all
+    096-oled-st7789: all
+    097-litex-with-i2c: all
+    098-audio-opl2: all
+    099-dvi-12b: all
+    101-litex-hyperram: all
+    102-litex-sdcard: all
+    103-litex-eth: all
+    104-psram: all
+    105-litex-spi-flash: all
+    106-micropython: all
+    107-ov7670: all
+    108-litex-linux: all
+    # 112-litex-linux-kolsch: all # no valid mapping found
+  flows:
+  - - yosys-shell-gatemate+nomult+nomx8+readsv
+    - ccpr-toolchain
+  - - yosys-shell-gatemate+luttree+nomult+nomx8+readsv
+    - nextpnr-shell-gatemate
+
+peppercorn_luttree_nomx8:
+  benchmark_dirs:
+  - benchmarks/peppercorn
+  benchmarks:
+    018-attosoc: all
+    032-oled-sprite: all
+    048-vga-framebuffer: all
+    049-vga-racingbeam: all
+    067-attosoc: all
+    078-corescore: cores.olimex_10
+  flows:
+  - - yosys-shell-gatemate+nomx8+readsv
+    - ccpr-toolchain
+  - - yosys-shell-gatemate+luttree+nomx8+readsv
+    - nextpnr-shell-gatemate
+
+tools:
+  ccpr:
+    toolchain:
+      TOOL_DIR: ~/cc-toolchain-linux/bin/p_r/

@@ -17,3 +17,4 @@ all:
   - rom.v
   - kbd.v
   top_module: top
+  includes: ["code.hack"]

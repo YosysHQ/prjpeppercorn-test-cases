@@ -4,6 +4,8 @@ all:
   output_format: Verilog
   pnr_format: ccf
   top_module: top_hedgehog
+  dir_structure: hybrid
+  includes: ["res/sprites/*.mem", "res/palettes/*.mem"]
 evb:
   pnr_constraints: evb.ccf
   source:
