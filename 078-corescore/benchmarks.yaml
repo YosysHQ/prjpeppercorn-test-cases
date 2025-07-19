@@ -1,0 +1,58 @@
+cores . device, count:
+  top_module: "corescore_gatemate"
+  source:
+    - "../{device}.vh"
+    - "src/corescore.core"
+  output_files:
+      - serv_alu.v
+      - serv_bufreg.v
+      - serv_csr.v
+      - serv_ctrl.v
+      - serv_decode.v
+      - serv_mem_if.v
+      - serv_rf_if.v
+      - serv_rf_ram_if.v
+      - serv_rf_ram.v
+      - serv_rf_top.v
+      - serv_shift.v
+      - serv_state.v
+      - serv_top.v
+      - servant_arbiter.v
+      - servant_clock_gen.v
+      - servant_gpio.v
+      - servant_mux.v
+      - servant_ram.v
+      - servant_timer.v
+      - servant.v
+      - serving_arbiter.v
+      - serving_mux.v
+      - serving_ram.v
+      - serving.v
+      - arbiter.v
+      - axis_arb_mux.v
+      - axis_async_fifo.v
+      - priority_encoder.v
+      - wb2axis.v
+      - base.v
+      - axis2wb.v
+      - emitter_mux.v
+      - emitter_uart.v
+      - emitter.v
+      - "{device}.vh"
+      - corescore_gatemate_clock_gen.v
+      - corescore_gatemate.v
+      - gatemate_pll.v
+      - corescorecore.v
+      - "*.hex"
+  pnr_constraints: "{device}.ccf"
+  pnr_format: ccf
+  output_format: Verilog
+  make_targets:
+    "$(OUTPUT_FILES): $(addprefix $(ROOT_DIR)/,$(SOURCE) $(PNR_CONSTRAINTS))":
+    - "cp -r $(ROOT_DIR)/src -t ."
+    - "cp -r $(addprefix $(ROOT_DIR)/,serv_1.0.2 servant_1.0.2-r1 serving_1.0.2 verilog-axis_0-r3 corescore_0/rtl) -t src"
+    - "cp $(ROOT_DIR)/emitter.hex -t ./src/sw"
+    - "cp $(filter-out %.core,$^) -t ."
+    - "sed -e 's|##count##|{count}|' -i $(filter %.core,$(SOURCE))"
+    - "fusesoc --cores-root . run --work-root build --setup corescore "
+    - "find ./ -type f \\( -iname '*.v' -o -iname '*.vh' -o -iname '*.hex' \\) -exec mv '{{}}' -t . \\;"

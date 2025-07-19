@@ -10,8 +10,6 @@ all:
   pnr_format: ccf
   source:
   - ../evb.vh
-  - Ram_1w_1rs_Generic.v
-  - VexRiscvLitexSmpCluster_Cc1_Iw32Is4096Iy1_Dw32Ds4096Dy1_ITs4DTs4_Ood_Wm_Hb1.v
+  - ../lib/femtosoc/PROCESSOR/femtorv32_quark.v
   - colognechip_gatemate_evb.v
   top_module: colognechip_gatemate_evb
-  yosys_cmds: hierarchy -top colognechip_gatemate_evb; setattr -unset ram_style a:ram_style=distributed;

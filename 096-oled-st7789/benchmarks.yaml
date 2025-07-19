@@ -1,0 +1,25 @@
+all:
+  includes:
+  - st7789_linit.mem
+  - ssd1331_linit_xflip_16bit.mem
+  - waveshare_2_4_init.mem
+  - waveshare_2_8_init.mem
+  output_files:
+  - $(SOURCE)
+  output_format: Verilog
+  pnr_format: ccf
+  top_module: top_checkered
+evb:
+  pnr_constraints: evb.ccf
+  source:
+  - ../evb.vh
+  - top_checkered.v
+  - lcd_video.v
+  - pll.v
+olimex:
+  pnr_constraints: olimex.ccf
+  source:
+  - ../olimex.vh
+  - top_checkered.v
+  - lcd_video.v
+  - pll.v

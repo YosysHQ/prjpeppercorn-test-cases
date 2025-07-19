@@ -1,0 +1,18 @@
+all:
+  output_files:
+  - $(SOURCE)
+  output_format: Verilog
+  pnr_constraints: olimex.ccf
+  pnr_format: ccf
+  source:
+  - ../olimex.vh
+  - colorBarDVI.v
+  - color_bar_shade.v
+  - ../lib/fpgalibs/clocks/gatemate_25MHz_125MHz_pll.v
+  - ../lib/fpgalibs/graphics/vga_core.v
+  - ../lib/fpgalibs/graphics/dvi_core.v
+  - ../lib/fpgalibs/graphics/tmds_encoder.v
+  - ../lib/fpgalibs/ios/serializer_gatemate_10_to_1_generic_ddr.v
+  top_module: colorBarDVI
+  verilog_defines:
+  - DISP_640x480_60Hz=1;

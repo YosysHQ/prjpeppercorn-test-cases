@@ -1,0 +1,16 @@
+all:
+  output_files:
+  - $(SOURCE)
+  output_format: Verilog
+  pnr_format: ccf
+  top_module: pll
+evb:
+  pnr_constraints: evb.ccf
+  source:
+  - ../evb.vh
+  - pll.v
+olimex:
+  pnr_constraints: olimex.ccf
+  source:
+  - ../olimex.vh
+  - pll.v

@@ -1,0 +1,30 @@
+all:
+  output_files:
+  - $(SOURCE)
+  output_format: Verilog
+  pnr_format: ccf
+  top_module: colorBarDVI
+  verilog_defines:
+  - DISP_640x480_60Hz=1;
+evb:
+  pnr_constraints: evb.ccf
+  source:
+  - ../evb.vh
+  - colorBarDVI.v
+  - ../lib/fpgalibs/graphics/color_bar_shade.v
+  - ../lib/fpgalibs/clocks/gatemate_25MHz_125MHz_pll.v
+  - ../lib/fpgalibs/graphics/vga_core.v
+  - ../lib/fpgalibs/graphics/dvi_core.v
+  - ../lib/fpgalibs/graphics/tmds_encoder.v
+  - ../lib/fpgalibs/ios/serializer_gatemate_10_to_1_generic_ddr.v
+olimex:
+  pnr_constraints: olimex.ccf
+  source:
+  - ../olimex.vh
+  - colorBarDVI.v
+  - ../lib/fpgalibs/graphics/color_bar_shade.v
+  - ../lib/fpgalibs/clocks/gatemate_25MHz_125MHz_pll.v
+  - ../lib/fpgalibs/graphics/vga_core.v
+  - ../lib/fpgalibs/graphics/dvi_core.v
+  - ../lib/fpgalibs/graphics/tmds_encoder.v
+  - ../lib/fpgalibs/ios/serializer_gatemate_10_to_1_generic_ddr.v

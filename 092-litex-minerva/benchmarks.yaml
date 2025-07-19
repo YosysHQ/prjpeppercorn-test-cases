@@ -1,0 +1,28 @@
+all:
+  includes:
+  - olimex_gatemate_a1_evb_sram.init
+  - olimex_gatemate_a1_evb_mem.init
+  - olimex_gatemate_a1_evb_rom.init
+  output_files:
+  - $(SOURCE)
+  output_format: Verilog
+  pnr_format: ccf
+  top_module: olimex_gatemate_a1_evb
+evb:
+  pnr_constraints: evb.ccf
+  source:
+  - ../evb.vh
+  - minerva.v
+  - olimex_gatemate_a1_evb.v
+kolsch:
+  pnr_constraints: kolsch.ccf
+  source:
+  - ../kolsch.vh
+  - minerva.v
+  - olimex_gatemate_a1_evb.v
+olimex:
+  pnr_constraints: olimex.ccf
+  source:
+  - ../olimex.vh
+  - minerva.v
+  - olimex_gatemate_a1_evb.v

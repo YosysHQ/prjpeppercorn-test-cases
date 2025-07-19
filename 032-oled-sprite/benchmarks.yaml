@@ -1,0 +1,22 @@
+all:
+  includes:
+  - sprite.mem
+  output_files:
+  - $(SOURCE)
+  output_format: Verilog
+  pnr_format: ccf
+  top_module: top
+evb:
+  pnr_constraints: evb.ccf
+  source:
+  - ../evb.vh
+  - top.v
+  - spi_video.v
+  - sprite_rom.v
+olimex:
+  pnr_constraints: olimex.ccf
+  source:
+  - ../olimex.vh
+  - top.v
+  - spi_video.v
+  - sprite_rom.v

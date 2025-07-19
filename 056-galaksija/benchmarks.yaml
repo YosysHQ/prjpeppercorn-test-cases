@@ -1,0 +1,27 @@
+all:
+  includes:
+  - galrom1.bin.mem
+  - galchr.mem
+  - galrom2.bin.mem
+  output_files:
+  - $(SOURCE)
+  output_format: Verilog
+  pnr_constraints: olimex.ccf
+  pnr_format: ccf
+  source:
+  - ../olimex.vh
+  - galaksija_olimex_gatemate.v
+  - gatemate_10MHz_25MHz_pll.v
+  - galaksija.v
+  - rom_memory.v
+  - font_rom.v
+  - video.v
+  - ps2.v
+  - galaksija_keyboard.v
+  - ../lib/Z80/tv80_core.v
+  - ../lib/Z80/tv80n.v
+  - ../lib/Z80/tv80_mcode.v
+  - ../lib/Z80/tv80_reg.v
+  - ../lib/Z80/tv80_alu.v
+  - bram_true2p_2clk.v
+  top_module: galaksija_olimex_gatemate

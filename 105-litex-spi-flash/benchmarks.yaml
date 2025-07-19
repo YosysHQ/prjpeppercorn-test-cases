@@ -1,0 +1,22 @@
+all:
+  includes:
+  - colognechip_gatemate_evb_mem.init
+  - colognechip_gatemate_evb_sram.init
+  - colognechip_gatemate_evb_rom.init
+  output_files:
+  - $(SOURCE)
+  output_format: Verilog
+  pnr_format: ccf
+  top_module: colognechip_gatemate_evb
+evb:
+  pnr_constraints: evb.ccf
+  source:
+  - ../evb.vh
+  - ../lib/femtosoc/PROCESSOR/femtorv32_quark.v
+  - colognechip_gatemate_evb.v
+olimex:
+  pnr_constraints: olimex.ccf
+  source:
+  - ../olimex.vh
+  - ../lib/femtosoc/PROCESSOR/femtorv32_quark.v
+  - colognechip_gatemate_evb.v

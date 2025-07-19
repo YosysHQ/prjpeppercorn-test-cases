@@ -1,0 +1,32 @@
+all:
+  includes:
+  - turnmon.bin.mem
+  output_files:
+  - $(SOURCE)
+  output_format: Verilog
+  pnr_format: ccf
+  top_module: top
+evb:
+  pnr_constraints: evb.ccf
+  source:
+  - ../evb.vh
+  - top_altair.v
+  - altair.v
+  - i8080.v
+  - mc6850.v
+  - jmp_boot.v
+  - ram_memory.v
+  - rom_memory.v
+  - simpleuart.v
+olimex:
+  pnr_constraints: olimex.ccf
+  source:
+  - ../olimex.vh
+  - top_altair.v
+  - altair.v
+  - i8080.v
+  - mc6850.v
+  - jmp_boot.v
+  - ram_memory.v
+  - rom_memory.v
+  - simpleuart.v
