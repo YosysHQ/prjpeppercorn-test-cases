@@ -201,7 +201,7 @@ peppercorn_luttree_nomx8:
   benchmarks:
     018-attosoc: all
     032-oled-sprite: all
-    048-vga-framebuffer: all
+    # 048-vga-framebuffer: all # ../lib
     049-vga-racingbeam: all
     067-attosoc: all
     078-corescore: cores.olimex_10

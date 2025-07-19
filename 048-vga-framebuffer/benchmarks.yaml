@@ -5,7 +5,7 @@ all:
   pnr_format: ccf
   top_module: top_david_scale
   dir_structure: hybrid
-  includes: ["res/*.mem"]
+  includes: ["res/david/*.mem"]
 evb:
   pnr_constraints: evb.ccf
   source:
