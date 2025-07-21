@@ -1,0 +1,37 @@
+#CLK
+Net  "clk_i"  Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+
+## BTN
+#Net "btn[0]" Loc = "IO_EA_B4" | PULLDOWN=true; 
+#Net "btn[1]" Loc = "IO_EA_A4" | PULLDOWN=true;
+#Net "btn[2]" Loc = "IO_EA_B3" | PULLDOWN=true; 
+
+#LED
+Net "led[0]" Loc = "IO_SB_A0";
+Net "led[1]" Loc = "IO_SB_B0";
+Net "led[2]" Loc = "IO_SB_A1";
+Net "led[3]" Loc = "IO_SB_B1";
+Net "led[4]" Loc = "IO_SB_B2";
+Net "led[5]" Loc = "IO_SB_A2";
+Net "led[6]" Loc = "IO_SB_B3";
+Net "led[7]" Loc = "IO_SB_A3";
+
+Net "TMDS_0_data_p[2]" Loc = "IO_SB_A6" | LVDS_BOOST=true;
+Net "TMDS_0_data_n[2]" Loc = "IO_SB_B6" | LVDS_BOOST=true;
+Net "TMDS_0_data_p[1]" Loc = "IO_SB_A5" | LVDS_BOOST=true;
+Net "TMDS_0_data_n[1]" Loc = "IO_SB_B5" | LVDS_BOOST=true;
+Net "TMDS_0_data_p[0]" Loc = "IO_SB_A4" | LVDS_BOOST=true;
+Net "TMDS_0_data_n[0]" Loc = "IO_SB_B4" | LVDS_BOOST=true;
+Net "TMDS_0_clk_p"     Loc = "IO_SB_A7" | LVDS_BOOST=true; 
+Net "TMDS_0_clk_n"     Loc = "IO_SB_B7" | LVDS_BOOST=true;
+
+# USB EA
+#Net "usb_fpga_dp"	Loc = "IO_EA_A0";
+#Net "usb_fpga_dn"	Loc = "IO_EA_B0";
+#Net "usb_fpga_bd_dp"	Loc = "IO_EA_A1";
+#Net "usb_fpga_bd_dn"	Loc = "IO_EA_B1";
+#Net "usb_fpga_pu_dp"	Loc = "IO_EA_A2";
+#Net "usb_fpga_pu_dn"	Loc = "IO_EA_B2";
+
+
+
