@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import os
 import re
 import subprocess
@@ -7,11 +5,7 @@ import time
 import shutil
 import click
 
-@click.command()
-@click.option('--base_dir', default=".", help='Base directory.')
-@click.option('--test', default=-1, type=int, help='Run specific test.')
-@click.option('--freq', is_flag=True, help='Display max frequency.')
-def run(base_dir, test, freq):
+def run_eqy(base_dir, test, freq, check_task, filter):
     logs_dir = os.path.join(base_dir, "logs")
     if os.path.exists(logs_dir):
         shutil.rmtree(logs_dir)
@@ -32,6 +26,16 @@ def run(base_dir, test, freq):
         subdirs = filtered_subdirs
         if len(subdirs)==0:
             raise click.ClickException("Test not found")
+    else:
+        if filter:
+            allowed = [0,1,2,3,4,5,6,7,8,9,10,12,14,19,20,21,22,23,24,25,26,
+                    27,28,30,31,32,33,34,35,36,37,38,65,66,111]
+            filtered_subdirs = []
+            for d in subdirs:
+                match = pattern.match(d)
+                if match and int(match.group(1)) in allowed:
+                    filtered_subdirs.append(d)
+            subdirs = filtered_subdirs
 
     for dir in subdirs:
         if os.path.exists(os.path.join(base_dir,dir,"Makefile")):
@@ -43,11 +47,9 @@ def run(base_dir, test, freq):
             board = "olimex"
             if not os.path.exists(os.path.join(base_dir,dir,"olimex.ccf")):
                 board = "evb"
-                if not os.path.exists(os.path.join(base_dir,dir,"evb.ccf")):
-                    board = "kolsch"
             try:
                 result = subprocess.run(
-                    ["make", "-C", dir, f"BOARD={board}", "clean", "synth"],
+                    ["make", "-C", dir, f"BOARD={board}", "clean", "json"],
                     check=True,
                     stdout=subprocess.PIPE,
                     stderr=subprocess.STDOUT
@@ -60,7 +62,7 @@ def run(base_dir, test, freq):
             start_time = time.time()
             try:
                 result = subprocess.run(
-                    ["make", "-C", dir, f"BOARD={board}", "pr"],
+                    ["make", "-C", dir, f"BOARD={board}", check_task],
                     check=True,
                     stdout=subprocess.PIPE,
                     stderr=subprocess.STDOUT
@@ -73,7 +75,7 @@ def run(base_dir, test, freq):
                 report = set()
                 if freq:
                     for line in result.stdout.decode().splitlines():
-                        if line.startswith("Maximum Clock Frequency"):
+                        if line.startswith("Info: Max frequency"):
                             report.add(line)
                     for line in report:
                         click.secho(line)
@@ -87,6 +89,3 @@ def run(base_dir, test, freq):
                     click.secho("Failure ", fg="red")
                 with open(log_file, "w") as out_f:
                     out_f.write(e.stdout.decode() if e.stdout else "")
-
-if __name__ == "__main__":
-    run()

@@ -32,5 +32,8 @@ environment.sh
 *_ys.v
 # EQY
 *.eqy
+*.pyc
 check_yosys/
 check_pnr/
+check_pnr_post/
+

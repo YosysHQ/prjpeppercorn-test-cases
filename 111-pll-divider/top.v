@@ -5,7 +5,7 @@ module top (
     output  wire  [7:0] led         // to LEDs
 );
 
-	wire clk_dvi, lock;
+	wire clk_pix, clk_dvi, lock;
     pll pll_inst (
 		.clock_in(clk),       //  10 MHz reference
 		.clock_out(clk_pix),  //  25 MHz, 0 deg

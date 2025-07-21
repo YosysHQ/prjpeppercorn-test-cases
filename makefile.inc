@@ -76,7 +76,7 @@ $(TEST_CASE)_synth.v: ../$(BOARD).vh $(VERILOG_FILES)
 
 $(TEST_CASE).json $(TEST_CASE)_ys.v: ../$(BOARD).vh $(VERILOG_FILES)
 	@echo "Running Yosys"
-	@$(YOSYS) -ql synth.log -p '$(YOSYS_DEFS_OPT) read_verilog -defer -sv $^; $(YOSYS_CMDS) synth_gatemate $(YOSYS_PARAM) -luttree -top $(TOP) -json $(TEST_CASE).json -vlog $(TEST_CASE)_ys.v'
+	@$(YOSYS) -ql synth.log -p '$(YOSYS_DEFS_OPT) read_verilog -defer -sv $^; $(YOSYS_CMDS) synth_gatemate $(YOSYS_PARAM) -luttree -top $(TOP) -json $(TEST_CASE).json; write_verilog -norename -noattr $(TEST_CASE)_ys.v'
 
 $(TEST_CASE)_$(BOARD)_00.cfg: $(TEST_CASE)_synth.v $(BOARD).ccf
 	$(call check_cc_tool)
@@ -110,7 +110,7 @@ jtag: $(TEST_CASE)_$(BOARD).txt
 
 $(TEST_CASE)_$(BOARD)_pnr.v: $(TEST_CASE)_$(BOARD).txt
 	@echo "Generate post PnR Verilog netlist"
-	@$(YOSYS) -q -p 'read_json $(TEST_CASE)_$(BOARD)_pnr.json; write_verilog -noattr $(TEST_CASE)_$(BOARD)_pnr.v'
+	@$(YOSYS) -q -p 'read_json $(TEST_CASE)_$(BOARD)_pnr.json; write_verilog -norename -noattr $(TEST_CASE)_$(BOARD)_pnr.v'
 
 firmware: $(FIRMWARE)
 	@echo "Running openFPGALoader to program '$(FIRMWARE)' on '$(BOARD)' board"
@@ -120,18 +120,19 @@ clean:
 	@rm -rf *.log *_synth.v *.history *.txt *.refwire *.refparam *_ys.v
 	@rm -rf *.refcomp *.pos *.pathes *.path_struc *.net *.id *.prn
 	@rm -rf *_00.v *.used *.sdf *.place *.pin *.cfg *.bit  *.cdf *.idh *.min *.json
+	@rm -rf *_pnr.v check_yosys check_yosys.eqy check_pnr check_pnr.eqy check_pnr_post check_pnr_post.eqy
 
-clean-bit:
-	@rm -rf $(TEST_CASE)_$(BOARD).txt $(TEST_CASE)_$(BOARD).bit
+force-nextpnr:
+	$(NEXTPNR) --device $(FPGA) --json $(TEST_CASE).json --vopt ccf=$(BOARD).ccf --vopt out=../logs/$(TEST_CASE)_$(BOARD)_$(SEED).txt --router router2 --freq $(FREQ) $(SEED_OPT) $(SDC_OPT)
 
-.PHONY: synth json pr nextpnr jtag_pr jtag unpack check_yosys check_pnr
+.PHONY: synth json pr nextpnr force-nextpnr jtag_pr jtag unpack check_yosys check_pnr check_pnr_post
 
 check_yosys.eqy: $(TEST_CASE)_ys.v ../$(BOARD).vh $(VERILOG_FILES)
 	@echo "Generating EQY file"
 	@{ \
 	  echo "[gold]"; \
 	  echo "$(YOSYS_DEFS_OPT)"; \
-	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v +/gatemate/cells_bb.v"; \
+	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v ../cells_extra.v"; \
 	  echo "read_verilog -defer -sv ../$(BOARD).vh $(VERILOG_FILES)"; \
 	  echo "$(YOSYS_CMDS)"; \
 	  echo "prep -top $(TOP)"; \
@@ -141,7 +142,7 @@ check_yosys.eqy: $(TEST_CASE)_ys.v ../$(BOARD).vh $(VERILOG_FILES)
 	  echo ""; \
 	  echo "[gate]"; \
 	  echo "$(YOSYS_DEFS_OPT)"; \
-	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v +/gatemate/cells_bb.v"; \
+	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v ../cells_extra.v"; \
 	  echo "read_verilog $(TEST_CASE)_ys.v"; \
 	  echo "prep -top $(TOP)"; \
 	  echo "flatten";\
@@ -164,7 +165,7 @@ check_pnr.eqy: $(TEST_CASE)_$(BOARD)_pnr.v ../$(BOARD).vh $(VERILOG_FILES)
 	@{ \
 	  echo "[gold]"; \
 	  echo "$(YOSYS_DEFS_OPT)"; \
-	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v +/gatemate/cells_bb.v"; \
+	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v ../cells_extra.v"; \
 	  echo "read_verilog -defer -sv ../$(BOARD).vh $(VERILOG_FILES)"; \
 	  echo "$(YOSYS_CMDS)"; \
 	  echo "prep -top $(TOP)"; \
@@ -174,8 +175,9 @@ check_pnr.eqy: $(TEST_CASE)_$(BOARD)_pnr.v ../$(BOARD).vh $(VERILOG_FILES)
 	  echo ""; \
 	  echo "[gate]"; \
 	  echo "$(YOSYS_DEFS_OPT)"; \
-	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v +/gatemate/cells_bb.v ../cpesim.v"; \
+	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v ../cpesim.v"; \
 	  echo "read_verilog $(TEST_CASE)_$(BOARD)_pnr.v"; \
+	  echo "rename top $(TOP)";\
 	  echo "prep -top $(TOP)"; \
 	  echo "flatten";\
 	  echo "$(EQY_CLOCK)";\
@@ -190,4 +192,37 @@ check_pnr.eqy: $(TEST_CASE)_$(BOARD)_pnr.v ../$(BOARD).vh $(VERILOG_FILES)
 	} > $@
 
 check_pnr: check_pnr.eqy
+	@eqy -f $^
+
+check_pnr_post.eqy: $(TEST_CASE)_$(BOARD)_pnr.v ../$(BOARD).vh $(TEST_CASE)_ys.v
+	@echo "Generating EQY file"
+	@{ \
+	  echo "[gold]"; \
+	  echo "$(YOSYS_DEFS_OPT)"; \
+	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v ../cells_extra.v"; \
+	  echo "read_verilog $(TEST_CASE)_ys.v"; \
+	  echo "prep -top $(TOP)"; \
+	  echo "flatten";\
+	  echo "$(EQY_CLOCK)";\
+	  echo "memory_map";\
+	  echo ""; \
+	  echo "[gate]"; \
+	  echo "$(YOSYS_DEFS_OPT)"; \
+	  echo "read_verilog -nowb -noblackbox +/gatemate/cells_sim.v ../cpesim.v"; \
+	  echo "read_verilog $(TEST_CASE)_$(BOARD)_pnr.v"; \
+	  echo "rename top $(TOP)";\
+	  echo "prep -top $(TOP)"; \
+	  echo "flatten";\
+	  echo "$(EQY_CLOCK)";\
+	  echo "memory_map";\
+	  echo ""; \
+	  echo "[collect *]"; \
+	  echo "bind *"; \
+	  echo ""; \
+	  echo "[strategy pdr]"; \
+	  echo "use sby"; \
+	  echo "engine abc scorr; pdr"; \
+	} > $@
+
+check_pnr_post: check_pnr_post.eqy
 	@eqy -f $^
