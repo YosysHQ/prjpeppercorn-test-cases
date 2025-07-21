@@ -1,0 +1,22 @@
+all:
+  includes:
+  - spectrum48.mem
+  output_files:
+  - $(SOURCE)
+  output_format: Verilog
+  pnr_constraints: olimex.ccf
+  pnr_format: ccf
+  source:
+  - ../olimex.vh
+  - spectrum.v
+  - video.v
+  - ps2.v
+  - dpram.v
+  - keyboard.v
+  - ../lib/Z80/tv80_core.v
+  - ../lib/Z80/tv80n.v
+  - ../lib/Z80/tv80_mcode.v
+  - ../lib/Z80/tv80_reg.v
+  - ../lib/Z80/tv80_alu.v
+  - ../lib/fpgalibs/clocks/gatemate_25MHz_pll.v
+  top_module: spectrum

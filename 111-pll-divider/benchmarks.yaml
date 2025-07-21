@@ -1,0 +1,18 @@
+all:
+  output_files:
+  - $(SOURCE)
+  output_format: Verilog
+  pnr_format: ccf
+  top_module: top
+evb:
+  pnr_constraints: evb.ccf
+  source:
+  - ../evb.vh
+  - top.v
+  - ../lib/fpgalibs/clocks/gatemate_25MHz_125MHz_pll.v
+olimex:
+  pnr_constraints: olimex.ccf
+  source:
+  - ../olimex.vh
+  - top.v
+  - ../lib/fpgalibs/clocks/gatemate_25MHz_125MHz_pll.v

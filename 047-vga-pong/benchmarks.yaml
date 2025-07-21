@@ -1,0 +1,15 @@
+all:
+  output_files:
+  - $(SOURCE)
+  output_format: Verilog
+  pnr_constraints: olimex.ccf
+  pnr_format: ccf
+  source:
+  - ../olimex.vh
+  - top_pong.sv
+  - simple_480p.sv
+  - simple_score.sv
+  - ../lib/clock/gatemate/clock_480p.sv
+  - ../lib/display/display_480p.sv
+  - ../lib/essential/debounce.sv
+  top_module: top_pong

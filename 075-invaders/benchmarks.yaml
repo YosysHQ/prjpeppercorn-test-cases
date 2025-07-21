@@ -1,0 +1,19 @@
+all:
+  output_files:
+  - $(SOURCE)
+  output_format: Verilog
+  pnr_constraints: olimex.ccf
+  pnr_format: ccf
+  source:
+  - ../olimex.vh
+  - top.v
+  - pll.v
+  - soc.v
+  - i8080.v
+  - alu.v
+  - vga.v
+  - ps2.v
+  - shifter.v
+  - mem.v
+  top_module: top
+  includes: ["code.bin"]

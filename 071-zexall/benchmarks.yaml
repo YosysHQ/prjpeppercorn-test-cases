@@ -1,0 +1,36 @@
+all:
+  output_files:
+  - $(SOURCE)
+  output_format: Verilog
+  pnr_format: ccf
+  top_module: top
+  dir_structure: hybrid
+  includes: ["roms/zexall/*.mem"]
+evb:
+  pnr_constraints: evb.ccf
+  source:
+  - ../evb.vh
+  - top_zexall.v
+  - zexall.v
+  - rom_memory.v
+  - ram_memory.v
+  - simpleuart.v
+  - ../lib/Z80/tv80n.v
+  - ../lib/Z80/tv80_reg.v
+  - ../lib/Z80/tv80_mcode.v
+  - ../lib/Z80/tv80_core.v
+  - ../lib/Z80/tv80_alu.v
+olimex:
+  pnr_constraints: olimex.ccf
+  source:
+  - ../olimex.vh
+  - top_zexall.v
+  - zexall.v
+  - rom_memory.v
+  - ram_memory.v
+  - simpleuart.v
+  - ../lib/Z80/tv80n.v
+  - ../lib/Z80/tv80_reg.v
+  - ../lib/Z80/tv80_mcode.v
+  - ../lib/Z80/tv80_core.v
+  - ../lib/Z80/tv80_alu.v

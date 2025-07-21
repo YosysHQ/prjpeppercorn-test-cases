@@ -1,0 +1,88 @@
+CAPI=2:
+
+name: ::corescore:0
+
+filesets:
+  serv:
+    files:
+      - serv_1.0.2/rtl/serv_alu.v
+      - serv_1.0.2/rtl/serv_bufreg.v
+      - serv_1.0.2/rtl/serv_csr.v
+      - serv_1.0.2/rtl/serv_ctrl.v
+      - serv_1.0.2/rtl/serv_decode.v
+      - serv_1.0.2/rtl/serv_mem_if.v
+      - serv_1.0.2/rtl/serv_params.vh
+      - serv_1.0.2/rtl/serv_rf_if.v
+      - serv_1.0.2/rtl/serv_rf_ram_if.v
+      - serv_1.0.2/rtl/serv_rf_ram.v
+      - serv_1.0.2/rtl/serv_rf_top.v
+      - serv_1.0.2/rtl/serv_shift.v
+      - serv_1.0.2/rtl/serv_state.v
+      - serv_1.0.2/rtl/serv_top.v
+    file_type: verilogSource
+
+  servant:
+    files:
+      - servant_1.0.2-r1/servant/servant_arbiter.v
+      - servant_1.0.2-r1/servant/servant_clock_gen.v
+      - servant_1.0.2-r1/servant/servant_gpio.v
+      - servant_1.0.2-r1/servant/servant_mux.v
+      - servant_1.0.2-r1/servant/servant_ram.v
+      - servant_1.0.2-r1/servant/servant_timer.v
+      - servant_1.0.2-r1/servant/servant.v
+    file_type: verilogSource
+
+  serving:
+    files:
+      - serving_1.0.2/serving/serving_arbiter.v
+      - serving_1.0.2/serving/serving_mux.v
+      - serving_1.0.2/serving/serving_ram.v
+      - serving_1.0.2/serving/serving.v
+    file_type: verilogSource
+
+  verilog-axis:
+    files:
+      - verilog-axis_0-r3/rtl/arbiter.v
+      - verilog-axis_0-r3/rtl/axis_arb_mux.v
+      - verilog-axis_0-r3/rtl/axis_async_fifo.v
+      - verilog-axis_0-r3/rtl/priority_encoder.v
+    file_type: verilogSource
+
+  base:
+    files:
+      - rtl/wb2axis.v
+      - rtl/base.v
+    file_type: verilogSource
+
+  emitter_serv:
+    files:
+      - sw/emitter.hex: { file_type: user, copyto: emitter.hex }
+      - rtl/axis2wb.v
+      - rtl/emitter_mux.v
+      - rtl/emitter_uart.v
+      - rtl/emitter.v
+    file_type: verilogSource
+
+  gatemate:
+    files:
+      - rtl/corescore_gatemate_clock_gen.v: { file_type: verilogSource }
+      - rtl/corescore_gatemate.v: { file_type: verilogSource }
+      - rtl/gatemate_pll.v: { file_type: verilogSource }
+
+targets:
+  default:
+    default_tool: icarus
+    filesets: [serv, servant, serving, verilog-axis, base, emitter_serv, gatemate]
+    generate: [corescorecore]
+    toplevel: corescore_gatemate
+
+generate:
+  corescorecore:
+    generator: corescorecore
+    parameters:
+      count: ##count##
+
+generators:
+  corescorecore:
+    interpreter: python3
+    command: sw/corescorecore_gen.py

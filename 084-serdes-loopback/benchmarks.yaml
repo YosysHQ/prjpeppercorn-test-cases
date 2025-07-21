@@ -1,0 +1,16 @@
+all:
+  output_files:
+  - $(SOURCE)
+  output_format: Verilog
+  pnr_format: ccf
+  top_module: serdes_lb
+evb:
+  pnr_constraints: evb.ccf
+  source:
+  - ../evb.vh
+  - serdes_lb.v
+olimex:
+  pnr_constraints: olimex.ccf
+  source:
+  - ../olimex.vh
+  - serdes_lb.v

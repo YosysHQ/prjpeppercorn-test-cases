@@ -1,0 +1,62 @@
+all:
+  output_files:
+  - $(SOURCE)
+  output_format: Verilog
+  pnr_format: ccf
+  top_module: top_hedgehog
+  dir_structure: hybrid
+  includes: ["res/sprites/*.mem", "res/palettes/*.mem"]
+evb:
+  pnr_constraints: evb.ccf
+  source:
+  - ../evb.vh
+  - top_hedgehog.sv
+  - top_hourglass.sv
+  - top_tinyf_inline.sv
+  - top_tinyf_move.sv
+  - top_tinyf_rom.sv
+  - top_tinyf_scale.sv
+  - sprite.sv
+  - sprite_inline.sv
+  - sprite_rom.sv
+  - ../lib/clock/gatemate/clock_480p.sv
+  - ../lib/display/clut_simple.sv
+  - ../lib/display/display_480p.sv
+  - ../lib/memory/bram_sdp.sv
+  - ../lib/memory/rom_async.sv
+kolsch:
+  pnr_constraints: kolsch.ccf
+  source:
+  - ../kolsch.vh
+  - top_hedgehog.sv
+  - top_hourglass.sv
+  - top_tinyf_inline.sv
+  - top_tinyf_move.sv
+  - top_tinyf_rom.sv
+  - top_tinyf_scale.sv
+  - sprite.sv
+  - sprite_inline.sv
+  - sprite_rom.sv
+  - ../lib/clock/gatemate/clock_480p.sv
+  - ../lib/display/clut_simple.sv
+  - ../lib/display/display_480p.sv
+  - ../lib/memory/bram_sdp.sv
+  - ../lib/memory/rom_async.sv
+olimex:
+  pnr_constraints: olimex.ccf
+  source:
+  - ../olimex.vh
+  - top_hedgehog.sv
+  - top_hourglass.sv
+  - top_tinyf_inline.sv
+  - top_tinyf_move.sv
+  - top_tinyf_rom.sv
+  - top_tinyf_scale.sv
+  - sprite.sv
+  - sprite_inline.sv
+  - sprite_rom.sv
+  - ../lib/clock/gatemate/clock_480p.sv
+  - ../lib/display/clut_simple.sv
+  - ../lib/display/display_480p.sv
+  - ../lib/memory/bram_sdp.sv
+  - ../lib/memory/rom_async.sv

@@ -1,0 +1,39 @@
+all:
+  output_files:
+  - $(SOURCE)
+  output_format: Verilog
+  pnr_format: ccf
+  top_module: top
+evb:
+  pnr_constraints: evb.ccf
+  source:
+  - ../evb.vh
+  - top_rasterbars.sv
+  - render_rasterbars.sv
+  - rasterbar.sv
+  - ../lib/clock/gatemate/clock_480p.sv
+  - ../lib/display/display_480p.sv
+  - ../lib/maths/sine_table.sv
+  - ../lib/memory/rom_async.sv
+kolsch:
+  pnr_constraints: kolsch.ccf
+  source:
+  - ../kolsch.vh
+  - top_rasterbars.sv
+  - render_rasterbars.sv
+  - rasterbar.sv
+  - ../lib/clock/gatemate/clock_480p.sv
+  - ../lib/display/display_480p.sv
+  - ../lib/maths/sine_table.sv
+  - ../lib/memory/rom_async.sv
+olimex:
+  pnr_constraints: olimex.ccf
+  source:
+  - ../olimex.vh
+  - top_rasterbars.sv
+  - render_rasterbars.sv
+  - rasterbar.sv
+  - ../lib/clock/gatemate/clock_480p.sv
+  - ../lib/display/display_480p.sv
+  - ../lib/maths/sine_table.sv
+  - ../lib/memory/rom_async.sv

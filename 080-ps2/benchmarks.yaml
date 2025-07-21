@@ -1,0 +1,20 @@
+all:
+  output_files:
+  - $(SOURCE)
+  output_format: Verilog
+  pnr_constraints: olimex.ccf
+  pnr_format: ccf
+  source:
+  - ../olimex.vh
+  - colorBarVGAPS2.v
+  - ../lib/fpgalibs/hdl/ps2kbd.v
+  - ../lib/fpgalibs/hdl/vga.v
+  - ../lib/fpgalibs/hdl/hex_decoder_v.v
+  - ../lib/fpgalibs/hdl/ps2mouse.v
+  - ../lib/fpgalibs/hdl/mousem_v.v
+  - ../lib/fpgalibs/graphics/vga_core.v
+  - ../lib/fpgalibs/graphics/color_bar.v
+  - ../lib/fpgalibs/clocks/gatemate_25MHz_pll.v
+  top_module: colorBarVGAPS2
+  verilog_defines:
+  - DISP_640x480_60Hz=1;

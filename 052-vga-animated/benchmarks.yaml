@@ -1,0 +1,69 @@
+all:
+  output_files:
+  - $(SOURCE)
+  output_format: Verilog
+  pnr_format: ccf
+  top_module: top_demo
+evb:
+  pnr_constraints: evb.ccf
+  source:
+  - ../evb.vh
+  - top_demo.sv
+  - top_demo_sb.sv
+  - render_cube_shatter.sv
+  - render_square_colr.sv
+  - render_teleport.sv
+  - ../lib/clock/gatemate/clock_480p.sv
+  - ../lib/clock/gatemate/clock_sys.sv
+  - ../lib/clock/xd.sv
+  - ../lib/display/bitmap_addr.sv
+  - ../lib/display/clut_simple.sv
+  - ../lib/display/display_480p.sv
+  - ../lib/display/linebuffer_simple.sv
+  - ../lib/graphics/draw_line.sv
+  - ../lib/graphics/draw_line_1d.sv
+  - ../lib/graphics/draw_rectangle_fill.sv
+  - ../lib/graphics/draw_triangle_fill.sv
+  - ../lib/memory/bram_sdp.sv
+kolsch:
+  pnr_constraints: kolsch.ccf
+  source:
+  - ../kolsch.vh
+  - top_demo.sv
+  - top_demo_sb.sv
+  - render_cube_shatter.sv
+  - render_square_colr.sv
+  - render_teleport.sv
+  - ../lib/clock/gatemate/clock_480p.sv
+  - ../lib/clock/gatemate/clock_sys.sv
+  - ../lib/clock/xd.sv
+  - ../lib/display/bitmap_addr.sv
+  - ../lib/display/clut_simple.sv
+  - ../lib/display/display_480p.sv
+  - ../lib/display/linebuffer_simple.sv
+  - ../lib/graphics/draw_line.sv
+  - ../lib/graphics/draw_line_1d.sv
+  - ../lib/graphics/draw_rectangle_fill.sv
+  - ../lib/graphics/draw_triangle_fill.sv
+  - ../lib/memory/bram_sdp.sv
+olimex:
+  pnr_constraints: olimex.ccf
+  source:
+  - ../olimex.vh
+  - top_demo.sv
+  - top_demo_sb.sv
+  - render_cube_shatter.sv
+  - render_square_colr.sv
+  - render_teleport.sv
+  - ../lib/clock/gatemate/clock_480p.sv
+  - ../lib/clock/gatemate/clock_sys.sv
+  - ../lib/clock/xd.sv
+  - ../lib/display/bitmap_addr.sv
+  - ../lib/display/clut_simple.sv
+  - ../lib/display/display_480p.sv
+  - ../lib/display/linebuffer_simple.sv
+  - ../lib/graphics/draw_line.sv
+  - ../lib/graphics/draw_line_1d.sv
+  - ../lib/graphics/draw_rectangle_fill.sv
+  - ../lib/graphics/draw_triangle_fill.sv
+  - ../lib/memory/bram_sdp.sv
