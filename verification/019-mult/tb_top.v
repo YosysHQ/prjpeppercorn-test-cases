@@ -14,6 +14,9 @@ module tb_top;
   integer i, j;
 
   initial begin
+    $dumpfile("out.vcd");
+    $dumpvars(0, tb_top);
+
     $display("    A    B |    P");
     $display("===================");
     $monitor(" %4d %4d | %4d", A, B, P);
