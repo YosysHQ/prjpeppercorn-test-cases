@@ -1,0 +1,3 @@
+Net  "clk"  Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+Net  "uart_rx"  Loc = "IO_NA_A4";
+Net  "uart_tx"  Loc = "IO_NA_B4";

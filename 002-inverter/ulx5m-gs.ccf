@@ -1,0 +1,2 @@
+Pin_in   "rst"  Loc = "IO_EA_B4" | PULLUP=true; # BTN1
+Pin_out  "led"  Loc = "IO_SB_A0"; # LED D0
