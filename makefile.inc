@@ -25,16 +25,16 @@ $(error BOARD variable is not set)
 endif
 
 ifeq ($(BOARD), olimex)
-OFL_BOARD=-b olimex_gatemateevb -r
+OFL_BOARD=-b olimex_gatemateevb
 FREQ = 10
 else ifeq ($(BOARD), ulx5m-gs)
-OFL_BOARD=-b olimex_gatemateevb -r -f
+OFL_BOARD=-b dirtyJtag -r -f
 FREQ = 25
 else ifeq ($(BOARD), kolsch)
-OFL_BOARD=-c dirtyJtag -r
+OFL_BOARD=-c dirtyJtag
 FREQ = 48
 else
-OFL_BOARD=-b gatemate_evb_jtag -f
+OFL_BOARD=-b gatemate_evb_jtag
 FREQ = 10
 endif
 
