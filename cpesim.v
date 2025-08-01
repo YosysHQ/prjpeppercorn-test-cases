@@ -639,7 +639,8 @@ module CPE_MULT #(
 	parameter C_I2 = 1'b0,
 	parameter C_I3 = 1'b0,
 	parameter C_I4 = 1'b0,
-	parameter C_PY1_I = 1'b0
+	parameter C_PY1_I = 1'b0,
+	parameter MULT_INVERT = 1'b0
 )(
 	input IN1,
 	input IN2,
@@ -667,10 +668,10 @@ module CPE_MULT #(
 
 	wire [8:1] cpe_i;
 
-	assign cpe_i[1] = IN1;
+	assign cpe_i[1] = IN1 ^ MULT_INVERT;
 	assign cpe_i[2] = PINY1;
 	assign cpe_i[4] = CINX;
-	assign cpe_i[5] = IN5;
+	assign cpe_i[5] = IN5 ^ MULT_INVERT;
 	assign cpe_i[6] = PINY1;
 	assign cpe_i[8] = PINX;
 
@@ -685,8 +686,8 @@ module CPE_MULT #(
 	wire ADDF2 = ~(~(~L11 & ~CINY1) & ~(~L02OUT & L11));
 
 	// COMB02 MULT
-	wire nand2_0 = ~(PINY2 & IN5);
-	wire nand2_1 = ~(PINY2 & IN8);
+	wire nand2_0 = ~(PINY2 & (IN5 ^ MULT_INVERT));
+	wire nand2_1 = ~(PINY2 & (IN8 ^ MULT_INVERT));
 	wire xnor3_0 = ~(nand2_0 ^ ~L10 ^ ~ADDF2);
 	wire xnor3_1 = ~(nand2_1 ^ CINY1 ^ ~L11);
 	wire mx2_0 = ~(( nand2_0 | xnor3_0) & (nand2_1 | ~xnor3_0));
