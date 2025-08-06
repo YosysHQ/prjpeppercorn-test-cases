@@ -1,6 +1,6 @@
 TEST_CASE := litex-kianv
 TOP := olimex_gatemate_a1_evb
-YOSYS_PARAM := -nomx8 -nomult
+YOSYS_PARAM := -nomx8
 VERILOG_FILES := \
 	kianv_harris_edition/multiplier.v \
 	kianv_harris_edition/misa.vh \

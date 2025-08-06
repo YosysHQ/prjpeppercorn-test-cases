@@ -1,7 +1,7 @@
 TEST_CASE := vga-animated
 TOP := top_demo
 #TOP := top_demo_sb
-YOSYS_PARAM := -nomx8 -nomult
+YOSYS_PARAM := -nomx8
 VERILOG_FILES := \
 	top_demo.sv \
 	top_demo_sb.sv \

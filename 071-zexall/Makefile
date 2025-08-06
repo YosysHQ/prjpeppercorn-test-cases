@@ -1,6 +1,6 @@
 TEST_CASE := zexall
 TOP := top
-YOSYS_PARAM := -nomx8 -nomult
+YOSYS_PARAM := -nomx8
 VERILOG_FILES := \
 	top_zexall.v \
 	zexall.v \

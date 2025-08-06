@@ -1,6 +1,6 @@
 TEST_CASE := vga-mandelbrot
 TOP := top_mandel
-YOSYS_PARAM := -nomult -nomx8
+YOSYS_PARAM := -nomx8
 VERILOG_FILES := \
 	top_mandel.sv \
 	render_mandel.sv \

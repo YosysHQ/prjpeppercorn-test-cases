@@ -1,6 +1,6 @@
 TEST_CASE := micropython
 TOP := gatemate
-YOSYS_PARAM := -nomx8 -nomult
+YOSYS_PARAM := -nomx8
 PR_OPTS := +uCIO
 FIRMWARE := build/firmware.bin
 VERILOG_FILES := \

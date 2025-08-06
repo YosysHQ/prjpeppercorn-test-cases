@@ -1,6 +1,6 @@
 TEST_CASE := litex-mor1kx
 TOP := olimex_gatemate_a1_evb
-YOSYS_PARAM := -nomx8 -nomult
+YOSYS_PARAM := -nomx8
 VERILOG_FILES := \
 	mor1kx_icache.v \
 	mor1kx_fetch_tcm_prontoespresso.v \

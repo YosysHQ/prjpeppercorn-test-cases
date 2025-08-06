@@ -1,6 +1,6 @@
 TEST_CASE := galaksija
 TOP := galaksija_olimex_gatemate
-YOSYS_PARAM := -nomx8 -nomult
+YOSYS_PARAM := -nomx8
 VERILOG_FILES := \
 	galaksija_olimex_gatemate.v \
 	gatemate_10MHz_25MHz_pll.v \

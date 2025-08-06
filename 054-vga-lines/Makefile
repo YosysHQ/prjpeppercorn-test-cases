@@ -1,6 +1,6 @@
 TEST_CASE := vga-lines
 TOP := top_demo
-YOSYS_PARAM := -nomx8 -nomult
+YOSYS_PARAM := -nomx8
 VERILOG_FILES := \
 	top_demo.sv \
 	render_cube.sv \

@@ -1,5 +1,5 @@
 TEST_CASE := vga-ad-astra
-YOSYS_PARAM := -nomult -nomx8
+YOSYS_PARAM := -nomx8
 #TOP := top_greet_v1
 TOP := top_greet
 #TOP := top_hello_en

@@ -1,6 +1,6 @@
 TEST_CASE := tetris
 TOP := top
-YOSYS_PARAM := -nomx8 -nomult
+YOSYS_PARAM := -nomx8
 VERILOG_FILES := \
 	top.v \
 	uart_rx.v \

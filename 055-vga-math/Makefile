@@ -1,6 +1,6 @@
 TEST_CASE := vga-math
 TOP := top_graphing
-YOSYS_PARAM := -nomx8 -nomult
+YOSYS_PARAM := -nomx8
 VERILOG_FILES := \
 	top_graphing.sv \
 	func_circle.sv \

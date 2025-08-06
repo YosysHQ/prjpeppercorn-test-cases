@@ -1,6 +1,6 @@
 TEST_CASE := ps2
 TOP := colorBarVGAPS2
-YOSYS_PARAM := -nomx8 -nomult
+YOSYS_PARAM := -nomx8
 YOSYS_DEFS := -DDISP_640x480_60Hz=1
 VERILOG_FILES := \
 	colorBarVGAPS2.v \

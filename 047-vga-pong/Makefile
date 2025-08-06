@@ -1,6 +1,6 @@
 TEST_CASE := vga-pong
 TOP := top_pong
-YOSYS_PARAM := -nomult -nomx8
+YOSYS_PARAM := -nomx8
 VERILOG_FILES := \
 	top_pong.sv \
 	simple_480p.sv \

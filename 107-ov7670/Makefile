@@ -1,5 +1,5 @@
 TEST_CASE := ov7670
-YOSYS_PARAM := -nomx8 -nomult
+YOSYS_PARAM := -nomx8
 VERILOG_FILES := \
     top.v \
 	camera_configure.v \
