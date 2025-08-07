@@ -1,0 +1,34 @@
+#CLK
+NET  "clk_i"  Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+
+## BTN
+NET "rstn_i" Loc = "IO_EB_A6" | PULLUP=true; # For now we can use RGMII_MDIO as this pin has PULLUP
+
+NET "o_led" Loc = "IO_SB_A0"; # LED0
+#NET "o_clk" Loc = "IO_SB_A3"; # LED7
+
+## VGA
+NET "o_hsync" Loc = "IO_NA_B5" | DRIVE=6; # GPIO2
+NET "o_vsync" Loc = "IO_NA_A5" | DRIVE=6; # GPIO3
+NET "o_r[0]" Loc = "IO_NB_B8" | DRIVE=6; # GPIO19
+NET "o_r[1]" Loc = "IO_NA_A7" | DRIVE=6; # GPIO18
+NET "o_r[2]" Loc = "IO_NA_B8" | DRIVE=6; # GPIO22
+NET "o_r[3]" Loc = "IO_NA_B7" | DRIVE=6; # GPIO23
+
+NET "o_g[0]" Loc = "IO_NB_B7" | DRIVE=6; # GPIO20
+NET "o_g[1]" Loc = "IO_NB_B1" | DRIVE=6; # GPIO10
+NET "o_g[2]" Loc = "IO_NB_A1" | DRIVE=6; # GPIO9
+NET "o_g[3]" Loc = "IO_NB_B3" | DRIVE=6; # GPIO11
+
+NET "o_b[0]" Loc = "IO_NB_A7" | DRIVE=6; # GPIO21
+NET "o_b[1]" Loc = "IO_NB_B6" | DRIVE=6; # GPIO6
+NET "o_b[2]" Loc = "IO_NB_A2" | DRIVE=6; # GPIO7
+NET "o_b[3]" Loc = "IO_NB_B2" | DRIVE=6; # GPIO8
+
+## PS2
+NET  "ps2clk" Loc = "IO_EA_A0";
+NET  "ps2data" Loc = "IO_EA_B0";
+
+# SERIAL
+NET  "i_uart_rx"  Loc = "IO_NA_B6";
+NET "o_uart_tx"  Loc = "IO_NB_B5";
