@@ -534,12 +534,7 @@ module CPE_MULT #(
 	parameter C_O2 = 1'b0  // Unused
 )(
 	input IN1,
-	input IN2,
-	input IN3,
-	input IN4,
 	input IN5,
-	input IN6,
-	input IN7,
 	input IN8,
 	output CPOUT1,
 	output CPOUT2,
