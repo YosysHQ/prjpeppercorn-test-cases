@@ -5,6 +5,6 @@ all:
   pnr_constraints: olimex.ccf
   pnr_format: ccf
   source:
-  - ../olimex.vh
+  - ../olimex.v
   - top.v
   top_module: top

@@ -11,7 +11,7 @@ all:
   pnr_constraints: olimex.ccf
   pnr_format: ccf
   source:
-  - ../olimex.vh
+  - ../olimex.v
   - ../lib/femtosoc/PROCESSOR/femtorv32_quark.v
   - olimex_gatemate_a1_evb.v
   top_module: olimex_gatemate_a1_evb

@@ -11,18 +11,18 @@ all:
 evb:
   pnr_constraints: evb.ccf
   source:
-  - ../evb.vh
+  - ../evb.v
   - neorv32_litex_core_complex.v
   - olimex_gatemate_a1_evb.v
 kolsch:
   pnr_constraints: kolsch.ccf
   source:
-  - ../kolsch.vh
+  - ../kolsch.v
   - neorv32_litex_core_complex.v
   - olimex_gatemate_a1_evb.v
 olimex:
   pnr_constraints: olimex.ccf
   source:
-  - ../olimex.vh
+  - ../olimex.v
   - neorv32_litex_core_complex.v
   - olimex_gatemate_a1_evb.v

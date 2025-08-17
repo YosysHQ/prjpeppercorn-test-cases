@@ -11,18 +11,18 @@ all:
 evb:
   pnr_constraints: evb.ccf
   source:
-  - ../evb.vh
+  - ../evb.v
   - firev.v
   - olimex_gatemate_a1_evb.v
 kolsch:
   pnr_constraints: kolsch.ccf
   source:
-  - ../kolsch.vh
+  - ../kolsch.v
   - firev.v
   - olimex_gatemate_a1_evb.v
 olimex:
   pnr_constraints: olimex.ccf
   source:
-  - ../olimex.vh
+  - ../olimex.v
   - firev.v
   - olimex_gatemate_a1_evb.v

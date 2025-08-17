@@ -9,7 +9,7 @@ all:
 evb:
   pnr_constraints: evb.ccf
   source:
-  - ../evb.vh
+  - ../evb.v
   - rtl/darksocv.v
   - rtl/darkbridge.v
   - rtl/darkcache.v
@@ -23,7 +23,7 @@ evb:
 olimex:
   pnr_constraints: olimex.ccf
   source:
-  - ../olimex.vh
+  - ../olimex.v
   - rtl/darksocv.v
   - rtl/darkbridge.v
   - rtl/darkcache.v

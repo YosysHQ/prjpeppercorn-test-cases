@@ -7,10 +7,10 @@ all:
 evb:
   pnr_constraints: evb.ccf
   source:
-  - ../evb.vh
+  - ../evb.v
   - top.v
 olimex:
   pnr_constraints: olimex.ccf
   source:
-  - ../olimex.vh
+  - ../olimex.v
   - top.v

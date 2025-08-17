@@ -11,7 +11,7 @@ all:
 evb:
   pnr_constraints: evb.ccf
   source:
-  - ../evb.vh
+  - ../evb.v
   - serv/serv_immdec.v
   - serv/serv_rf_ram.v
   - serv/serv_synth_wrapper.v
@@ -33,7 +33,7 @@ evb:
 olimex:
   pnr_constraints: olimex.ccf
   source:
-  - ../olimex.vh
+  - ../olimex.v
   - serv/serv_immdec.v
   - serv/serv_rf_ram.v
   - serv/serv_synth_wrapper.v

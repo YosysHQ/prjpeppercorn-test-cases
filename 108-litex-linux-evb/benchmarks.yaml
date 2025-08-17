@@ -9,7 +9,7 @@ all:
   pnr_constraints: evb.ccf
   pnr_format: ccf
   source:
-  - ../evb.vh
+  - ../evb.v
   - Ram_1w_1rs_Generic.v
   - VexRiscvLitexSmpCluster_Cc1_Iw32Is4096Iy1_Dw32Ds4096Dy1_ITs4DTs4_Ood_Wm_Hb1.v
   - colognechip_gatemate_evb.v

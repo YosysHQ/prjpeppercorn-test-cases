@@ -9,7 +9,7 @@ all:
   pnr_constraints: kolsch.ccf
   pnr_format: ccf
   source:
-  - ../kolsch.vh
+  - ../kolsch.v
   - Ram_1w_1rs_Generic.v
   - VexRiscvLitexSmpCluster_Cc1_Iw32Is4096Iy1_Dw32Ds4096Dy1_ITs4DTs4_Ldw16_Ood_Hb1.v
   - kolsch.v

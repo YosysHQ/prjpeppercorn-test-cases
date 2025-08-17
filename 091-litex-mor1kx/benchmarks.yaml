@@ -11,7 +11,7 @@ all:
 evb:
   pnr_constraints: evb.ccf
   source:
-  - ../evb.vh
+  - ../evb.v
   - mor1kx_icache.v
   - mor1kx_fetch_tcm_prontoespresso.v
   - mor1kx_branch_prediction.v
@@ -65,7 +65,7 @@ evb:
 kolsch:
   pnr_constraints: kolsch.ccf
   source:
-  - ../kolsch.vh
+  - ../kolsch.v
   - mor1kx_icache.v
   - mor1kx_fetch_tcm_prontoespresso.v
   - mor1kx_branch_prediction.v
@@ -119,7 +119,7 @@ kolsch:
 olimex:
   pnr_constraints: olimex.ccf
   source:
-  - ../olimex.vh
+  - ../olimex.v
   - mor1kx_icache.v
   - mor1kx_fetch_tcm_prontoespresso.v
   - mor1kx_branch_prediction.v

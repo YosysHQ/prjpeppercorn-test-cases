@@ -9,7 +9,7 @@ all:
   pnr_constraints: evb.ccf
   pnr_format: ccf
   source:
-  - ../evb.vh
+  - ../evb.v
   - ../lib/femtosoc/PROCESSOR/femtorv32_quark.v
   - colognechip_gatemate_evb.v
   top_module: colognechip_gatemate_evb

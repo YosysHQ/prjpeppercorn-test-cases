@@ -12,14 +12,14 @@ all:
 evb:
   pnr_constraints: evb.ccf
   source:
-  - ../evb.vh
+  - ../evb.v
   - top_checkered.v
   - lcd_video.v
   - pll.v
 olimex:
   pnr_constraints: olimex.ccf
   source:
-  - ../olimex.vh
+  - ../olimex.v
   - top_checkered.v
   - lcd_video.v
   - pll.v

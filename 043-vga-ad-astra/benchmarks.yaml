@@ -9,7 +9,7 @@ all:
 evb:
   pnr_constraints: evb.ccf
   source:
-  - ../evb.vh
+  - ../evb.v
   - top_greet_v1.sv
   - top_greet.sv
   - top_hello_en.sv
@@ -26,7 +26,7 @@ evb:
 kolsch:
   pnr_constraints: kolsch.ccf
   source:
-  - ../kolsch.vh
+  - ../kolsch.v
   - top_greet_v1.sv
   - top_greet.sv
   - top_hello_en.sv
@@ -43,7 +43,7 @@ kolsch:
 olimex:
   pnr_constraints: olimex.ccf
   source:
-  - ../olimex.vh
+  - ../olimex.v
   - top_greet_v1.sv
   - top_greet.sv
   - top_hello_en.sv

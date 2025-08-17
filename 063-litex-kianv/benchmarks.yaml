@@ -11,7 +11,7 @@ all:
 evb:
   pnr_constraints: evb.ccf
   source:
-  - ../evb.vh
+  - ../evb.v
   - kianv_harris_edition/multiplier.v
   - kianv_harris_edition/misa.vh
   - kianv_harris_edition/mcause.vh
@@ -42,7 +42,7 @@ evb:
 kolsch:
   pnr_constraints: kolsch.ccf
   source:
-  - ../kolsch.vh
+  - ../kolsch.v
   - kianv_harris_edition/multiplier.v
   - kianv_harris_edition/misa.vh
   - kianv_harris_edition/mcause.vh
@@ -73,7 +73,7 @@ kolsch:
 olimex:
   pnr_constraints: olimex.ccf
   source:
-  - ../olimex.vh
+  - ../olimex.v
   - kianv_harris_edition/multiplier.v
   - kianv_harris_edition/misa.vh
   - kianv_harris_edition/mcause.vh

@@ -9,7 +9,7 @@ all:
 evb:
   pnr_constraints: evb.ccf
   source:
-  - ../evb.vh
+  - ../evb.v
   - top_sinescroll.sv
   - render_sinescroll.sv
   - ../lib/clock/gatemate/clock_480p.sv
@@ -28,7 +28,7 @@ evb:
 kolsch:
   pnr_constraints: kolsch.ccf
   source:
-  - ../kolsch.vh
+  - ../kolsch.v
   - top_sinescroll.sv
   - render_sinescroll.sv
   - ../lib/clock/gatemate/clock_480p.sv
@@ -47,7 +47,7 @@ kolsch:
 olimex:
   pnr_constraints: olimex.ccf
   source:
-  - ../olimex.vh
+  - ../olimex.v
   - top_sinescroll.sv
   - render_sinescroll.sv
   - ../lib/clock/gatemate/clock_480p.sv
