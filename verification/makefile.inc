@@ -65,7 +65,7 @@ $(TEST_CASE)_00.cfg: $(TEST_CASE)_synth.v
 
 $(TEST_CASE).txt $(TEST_CASE)_pnr.json: $(TEST_CASE).json
 	@echo "Running nextpnr"
-	$(NEXTPNR) --device $(FPGA) --json $(TEST_CASE).json --vopt out=$(TEST_CASE).txt --vopt allow-unconstrained --router router2 $(SEED_OPT) $(SDC_OPT) --write $(TEST_CASE)_pnr.json
+	$(NEXTPNR) --device $(FPGA) --json $(TEST_CASE).json --vopt out=$(TEST_CASE).txt --vopt allow-unconstrained --router router2 $(SEED_OPT) $(SDC_OPT) --write $(TEST_CASE)_pnr.json --sdf $(TEST_CASE).sdf
 
 $(TEST_CASE)_00.txt: $(TEST_CASE)_00.cfg
 	@echo "Running unpack"
