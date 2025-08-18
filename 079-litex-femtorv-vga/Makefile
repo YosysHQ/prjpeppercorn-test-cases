@@ -1,6 +1,6 @@
 TEST_CASE := litex-femtorv
 TOP := olimex_gatemate_a1_evb
-YOSYS_PARAM := -nomx8 -nomult
+YOSYS_PARAM := -nomx8
 VERILOG_FILES := \
 	../lib/femtosoc/PROCESSOR/femtorv32_quark.v \
 	olimex_gatemate_a1_evb.v

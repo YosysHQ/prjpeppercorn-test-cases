@@ -1,6 +1,6 @@
 TEST_CASE := apple1_top
 TOP := apple1_top
-YOSYS_PARAM := -nomx8 -nomult
+YOSYS_PARAM := -nomx8
 VERILOG_FILES := \
 	apple1.v \
 	clock.v \

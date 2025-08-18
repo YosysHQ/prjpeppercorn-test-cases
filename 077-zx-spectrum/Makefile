@@ -1,6 +1,6 @@
 TEST_CASE := zx_spectrum
 TOP := spectrum
-YOSYS_PARAM := -nomx8 -nomult
+YOSYS_PARAM := -nomx8
 VERILOG_FILES := \
 	spectrum.v \
 	video.v \

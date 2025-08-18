@@ -1,7 +1,7 @@
 TEST_CASE := darkriscv
 TOP := darksocv
 YOSYS_DEFS := -DOLIMEX_GATEMATE=1
-YOSYS_PARAM := -nomx8 -nomult
+YOSYS_PARAM := -nomx8
 VERILOG_FILES := \
 	rtl/darksocv.v \
 	rtl/darkbridge.v \

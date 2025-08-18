@@ -1,6 +1,6 @@
 TEST_CASE := litex-serv
 TOP := olimex_gatemate_a1_evb
-YOSYS_PARAM := -nomx8 -nomult -noclkbuf
+YOSYS_PARAM := -nomx8 -noclkbuf
 VERILOG_FILES := \
 	serv/serv_immdec.v \
 	serv/serv_rf_ram.v \

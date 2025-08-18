@@ -1,6 +1,6 @@
 TEST_CASE := colecovision
 TOP := coleco
-YOSYS_PARAM := -nomx8 -nomult
+YOSYS_PARAM := -nomx8
 VERILOG_FILES := \
 	src/coleco.v \
 	src/dac.v \

@@ -1,6 +1,6 @@
 TEST_CASE := litex-fazyrv
 TOP := olimex_gatemate_a1_evb
-YOSYS_PARAM := -nomx8 -nomult
+YOSYS_PARAM := -nomx8
 VERILOG_FILES := \
 	FazyRV/rtl/fazyrv_top.sv \
 	FazyRV/rtl/fazyrv_pc.sv \

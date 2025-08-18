@@ -1,5 +1,5 @@
 TEST_CASE := audio-opl2
-YOSYS_PARAM := -nomx8 -nomult
+YOSYS_PARAM := -nomx8
 TOP := OPL2_demo
 VERILOG_FILES := \
 	OPL2_demo.v  \

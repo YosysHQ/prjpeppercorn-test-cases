@@ -1,6 +1,6 @@
 TEST_CASE := invaders
 TOP := top
-YOSYS_PARAM := -nomx8 -nomult
+YOSYS_PARAM := -nomx8
 VERILOG_FILES := \
 	top.v \
 	pll.v \

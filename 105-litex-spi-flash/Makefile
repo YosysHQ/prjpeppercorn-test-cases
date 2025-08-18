@@ -1,6 +1,6 @@
 TEST_CASE := litex-flash-4x
 TOP := colognechip_gatemate_evb
-YOSYS_PARAM := -nomx8 -nomult
+YOSYS_PARAM := -nomx8
 PR_OPTS := +uCIO
 VERILOG_FILES := \
 	../lib/femtosoc/PROCESSOR/femtorv32_quark.v \

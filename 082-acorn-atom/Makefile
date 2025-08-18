@@ -1,6 +1,6 @@
 TEST_CASE := atom
 TOP := atom
-YOSYS_PARAM := -nomx8 -nomult
+YOSYS_PARAM := -nomx8
 VERILOG_FILES := \
 	src/atom.v \
 	src/cpu.v \

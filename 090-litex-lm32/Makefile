@@ -1,6 +1,6 @@
 TEST_CASE := litex-lm32
 TOP := olimex_gatemate_a1_evb
-YOSYS_PARAM := -nomx8 -nomult
+YOSYS_PARAM := -nomx8
 VERILOG_FILES := \
 	lm32/lm32_cpu.v \
 	lm32/lm32_instruction_unit.v \

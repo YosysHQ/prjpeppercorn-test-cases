@@ -1,6 +1,6 @@
 TEST_CASE := msx
 TOP := msx
-YOSYS_PARAM := -nomx8 -nomult
+YOSYS_PARAM := -nomx8
 VERILOG_FILES := \
 	src/msx.v \
 	src/gamerom.v \
