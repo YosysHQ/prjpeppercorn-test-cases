@@ -738,3 +738,22 @@ module USR_RSTN (
 );
 	assign USR_RSTN = 1'b1;
 endmodule
+
+module CPE_BRIDGE #(
+    parameter C_BR = 1'b1,
+    parameter C_SN = 3'b000
+)(
+    output MUXOUT,
+    input  IN1, IN2, IN3, IN4,
+    input  IN5, IN6, IN7, IN8
+);
+	assign MUXOUT =
+		(C_SN == 3'h0) ? IN1 :
+		(C_SN == 3'h1) ? IN2 :
+		(C_SN == 3'h2) ? IN3 :
+		(C_SN == 3'h3) ? IN4 :
+		(C_SN == 3'h4) ? IN5 :
+		(C_SN == 3'h5) ? IN6 :
+		(C_SN == 3'h6) ? IN7 :
+						 IN8 ;
+endmodule
