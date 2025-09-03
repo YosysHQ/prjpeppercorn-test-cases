@@ -8,8 +8,8 @@
 //
 // Filename   : olimex_gatemate_a1_evb.v
 // Device     : CCGM1A1
-// LiteX sha1 : d70a3cf67
-// Date       : 2025-04-08 08:27:14
+// LiteX sha1 : 51e4f2e65
+// Date       : 2025-09-03 14:27:39
 //------------------------------------------------------------------------------
 
 `timescale 1ns / 1ps
@@ -19,6 +19,7 @@
 //------------------------------------------------------------------------------
 
 module olimex_gatemate_a1_evb (
+    (* keep = "true" *)
     input  wire          clk0,
     input  wire          serial_rx,
     output reg           serial_tx,
@@ -253,10 +254,9 @@ wire   [31:0] builder_interface1_dat_r;
 reg    [31:0] builder_interface1_dat_w = 32'd0;
 reg           builder_interface1_re = 1'd0;
 reg           builder_interface1_we = 1'd0;
-reg     [2:0] builder_master = 3'd0;
+reg           builder_multiregimpl0 = 1'd0;
+reg           builder_multiregimpl1 = 1'd0;
 reg           builder_next_state = 1'd0;
-reg           builder_regs0 = 1'd0;
-reg           builder_regs1 = 1'd0;
 wire          builder_request;
 reg           builder_rs232phyrx_next_state = 1'd0;
 reg           builder_rs232phyrx_state = 1'd0;
@@ -282,7 +282,8 @@ wire          builder_shared_err;
 wire    [3:0] builder_shared_sel;
 wire          builder_shared_stb;
 wire          builder_shared_we;
-reg     [2:0] builder_slaves = 3'd0;
+reg     [2:0] builder_slave_sel = 3'd0;
+reg     [2:0] builder_slave_sel_r = 3'd0;
 reg           builder_state = 1'd0;
 wire          builder_wait;
 wire          main_adapted_interface_ack;
@@ -318,7 +319,7 @@ wire          main_bus_errors_we;
 reg           main_chaser = 1'd0;
 wire          main_clkin;
 wire          main_clkout;
-reg    [23:0] main_count = 24'd12000000;
+reg    [22:0] main_count = 23'd7500000;
 wire          main_cpu_rst;
 wire          main_done;
 wire          main_kianv;
@@ -557,6 +558,7 @@ wire    [7:0] main_uart_uart_source_payload_data;
 wire          main_uart_uart_source_ready;
 wire          main_uart_uart_source_valid;
 wire          main_wait;
+(* keep = "true" *)
 wire          sys_clk;
 wire          sys_rst;
 
@@ -595,10 +597,10 @@ assign main_adapted_interface_err = (builder_shared_err & (builder_grant == 1'd0
 assign builder_request = {main_adapted_interface_cyc};
 assign builder_grant = 1'd0;
 always @(*) begin
-    builder_master <= 3'd0;
-    builder_master[0] <= (builder_shared_adr[29:15] == 1'd0);
-    builder_master[1] <= (builder_shared_adr[29:11] == 12'd2048);
-    builder_master[2] <= (builder_shared_adr[29:14] == 16'd33280);
+    builder_slave_sel <= 3'd0;
+    builder_slave_sel[0] <= (builder_shared_adr[29:15] == 1'd0);
+    builder_slave_sel[1] <= (builder_shared_adr[29:11] == 12'd2048);
+    builder_slave_sel[2] <= (builder_shared_adr[29:14] == 16'd33280);
 end
 assign main_basesoc_ram_bus_adr = builder_shared_adr;
 assign main_basesoc_ram_bus_dat_w = builder_shared_dat_w;
@@ -621,9 +623,9 @@ assign builder_interface0_stb = builder_shared_stb;
 assign builder_interface0_we = builder_shared_we;
 assign builder_interface0_cti = builder_shared_cti;
 assign builder_interface0_bte = builder_shared_bte;
-assign main_basesoc_ram_bus_cyc = (builder_shared_cyc & builder_master[0]);
-assign main_ram_bus_ram_bus_cyc = (builder_shared_cyc & builder_master[1]);
-assign builder_interface0_cyc = (builder_shared_cyc & builder_master[2]);
+assign main_basesoc_ram_bus_cyc = (builder_shared_cyc & builder_slave_sel[0]);
+assign main_ram_bus_ram_bus_cyc = (builder_shared_cyc & builder_slave_sel[1]);
+assign builder_interface0_cyc = (builder_shared_cyc & builder_slave_sel[2]);
 assign builder_shared_err = ((main_basesoc_ram_bus_err | main_ram_bus_ram_bus_err) | builder_interface0_err);
 assign builder_wait = ((builder_shared_stb & builder_shared_cyc) & (~builder_shared_ack));
 always @(*) begin
@@ -631,7 +633,7 @@ always @(*) begin
     builder_shared_ack <= 1'd0;
     builder_shared_dat_r <= 32'd0;
     builder_shared_ack <= ((main_basesoc_ram_bus_ack | main_ram_bus_ram_bus_ack) | builder_interface0_ack);
-    builder_shared_dat_r <= ((({32{builder_slaves[0]}} & main_basesoc_ram_bus_dat_r) | ({32{builder_slaves[1]}} & main_ram_bus_ram_bus_dat_r)) | ({32{builder_slaves[2]}} & builder_interface0_dat_r));
+    builder_shared_dat_r <= ((({32{builder_slave_sel_r[0]}} & main_basesoc_ram_bus_dat_r) | ({32{builder_slave_sel_r[1]}} & main_ram_bus_ram_bus_dat_r)) | ({32{builder_slave_sel_r[2]}} & builder_interface0_dat_r));
     if (builder_done) begin
         builder_shared_dat_r <= 32'd4294967295;
         builder_shared_ack <= 1'd1;
@@ -1226,7 +1228,7 @@ always @(*) begin
         end
     endcase
 end
-assign main_rx_rx = builder_regs1;
+assign main_rx_rx = builder_multiregimpl1;
 
 
 //------------------------------------------------------------------------------
@@ -1234,7 +1236,7 @@ assign main_rx_rx = builder_regs1;
 //------------------------------------------------------------------------------
 
 always @(posedge sys_clk) begin
-    builder_slaves <= builder_master;
+    builder_slave_sel_r <= builder_slave_sel;
     if (builder_wait) begin
         if ((~builder_done)) begin
             builder_count <= (builder_count - 1'd1);
@@ -1255,9 +1257,9 @@ always @(posedge sys_clk) begin
     if (((main_ram_bus_ram_bus_cyc & main_ram_bus_ram_bus_stb) & ((~main_ram_bus_ram_bus_ack) | main_ram_adr_burst))) begin
         main_ram_bus_ram_bus_ack <= 1'd1;
     end
-    {main_tx_tick, main_tx_phase} <= 25'd20615843;
+    {main_tx_tick, main_tx_phase} <= 25'd32985348;
     if (main_tx_enable) begin
-        {main_tx_tick, main_tx_phase} <= (main_tx_phase + 25'd20615843);
+        {main_tx_tick, main_tx_phase} <= (main_tx_phase + 25'd32985348);
     end
     builder_rs232phytx_state <= builder_rs232phytx_next_state;
     if (main_tx_count_rs232phytx_next_value_ce0) begin
@@ -1272,7 +1274,7 @@ always @(posedge sys_clk) begin
     main_rx_rx_d <= main_rx_rx;
     {main_rx_tick, main_rx_phase} <= 32'd2147483648;
     if (main_rx_enable) begin
-        {main_rx_tick, main_rx_phase} <= (main_rx_phase + 25'd20615843);
+        {main_rx_tick, main_rx_phase} <= (main_rx_phase + 25'd32985348);
     end
     builder_rs232phyrx_state <= builder_rs232phyrx_next_state;
     if (main_rx_count_rs232phyrx_next_value_ce0) begin
@@ -1369,7 +1371,7 @@ always @(posedge sys_clk) begin
             main_count <= (main_count - 1'd1);
         end
     end else begin
-        main_count <= 24'd12000000;
+        main_count <= 23'd7500000;
     end
     builder_state <= builder_next_state;
     builder_csr_bankarray_interface0_bank_bus_dat_r <= 1'd0;
@@ -1561,16 +1563,16 @@ always @(posedge sys_clk) begin
         main_re <= 1'd0;
         main_chaser <= 1'd0;
         main_mode <= 1'd0;
-        main_count <= 24'd12000000;
-        builder_slaves <= 3'd0;
+        main_count <= 23'd7500000;
+        builder_slave_sel_r <= 3'd0;
         builder_count <= 20'd1000000;
         builder_csr_bankarray_sel_r <= 1'd0;
         builder_rs232phytx_state <= 1'd0;
         builder_rs232phyrx_state <= 1'd0;
         builder_state <= 1'd0;
     end
-    builder_regs0 <= serial_rx;
-    builder_regs1 <= builder_regs0;
+    builder_multiregimpl0 <= serial_rx;
+    builder_multiregimpl1 <= builder_multiregimpl0;
 end
 
 
@@ -1587,10 +1589,10 @@ CC_USR_RSTN CC_USR_RSTN(
 );
 
 //------------------------------------------------------------------------------
-// Memory rom: 5831-words x 32-bit
+// Memory rom: 5841-words x 32-bit
 //------------------------------------------------------------------------------
 // Port 0 | Read: Sync  | Write: ---- | 
-reg [31:0] rom[0:5830];
+reg [31:0] rom[0:5840];
 initial begin
 	$readmemh("olimex_gatemate_a1_evb_rom.init", rom);
 end
@@ -1692,7 +1694,7 @@ CC_PLL #(
 	.CP_FILTER_CONST (3'd4),
 	.LOCK_REQ        (1'd1),
 	.LOW_JITTER      (1'd1),
-	.OUT_CLK         ("24.0"),
+	.OUT_CLK         ("15.0"),
 	.PERF_MD         ("ECONOMY"),
 	.REF_CLK         (`BOARD_FREQ_STR)
 ) CC_PLL (
@@ -1781,5 +1783,5 @@ CC_DFF #(
 endmodule
 
 // -----------------------------------------------------------------------------
-//  Auto-Generated by LiteX on 2025-04-08 08:27:14.
+//  Auto-Generated by LiteX on 2025-09-03 14:27:39.
 //------------------------------------------------------------------------------
