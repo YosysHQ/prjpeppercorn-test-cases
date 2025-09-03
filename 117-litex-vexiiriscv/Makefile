@@ -1,0 +1,11 @@
+TEST_CASE := litex-vexiiriscv
+TOP := olimex_gatemate_a1_evb
+YOSYS_PARAM := -nomx8
+YOSYS_CMDS := hierarchy -top $(TOP); setattr -unset keep_hierarchy;
+VERILOG_FILES := \
+	Ram_1w_1rs_Generic.v \
+	Ram_1w_1ra_Generic.v \
+	VexiiRiscvLitex_cce18dc2b0edc6f9ace5fc5fef4b69a5.v \
+	olimex_gatemate_a1_evb.v
+
+include ../makefile.inc
