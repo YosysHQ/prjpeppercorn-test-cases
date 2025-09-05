@@ -1,0 +1,10 @@
+verilog_defaults -push
+verilog_defaults -add -defer
+read_verilog -I/home/micko/src/litex/litex-boards/litex_boards/targets /home/micko/src/litex/litex-boards/litex_boards/targets/femtorv32_quark.v
+read_verilog -I/home/micko/src/litex/litex-boards/litex_boards/targets /home/micko/src/litex/litex-boards/litex_boards/targets/build/machdyne_kolsch/gateware/machdyne_kolsch.v
+verilog_defaults -pop
+attrmap -tocase keep -imap keep="true" keep=1 -imap keep="false" keep=0 -remove keep=0
+hierarchy -top machdyne_kolsch
+setattr -unset ram_style a:ram_style=distributed
+synth_gatemate -luttree -nomx8 -top machdyne_kolsch
+write_json  machdyne_kolsch.json
