@@ -724,11 +724,17 @@ module PLL #(
 )(
 	input CLK_REF,
 	output CLK0,
+	output CLK90,
+	output CLK180,
+	output CLK270,
 	output USR_PLL_LOCKED,
 	output USR_PLL_LOCKED_STDY,
 	input USR_LOCKED_STDY_RST
 );
 	assign CLK0 = CLK_REF;
+	assign CLK90 = CLK_REF;
+	assign CLK180 = CLK_REF;
+	assign CLK270 = CLK_REF;
 	assign USR_PLL_LOCKED = 1'b1;
 	assign USR_PLL_LOCKED_STDY = 1'b1;
 endmodule
