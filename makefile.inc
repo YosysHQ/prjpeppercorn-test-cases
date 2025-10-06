@@ -52,6 +52,11 @@ ifneq ($(wildcard constraints.sdc),)
 SDC_OPT = --sdc constraints.sdc
 endif
 
+NEXTPNR_PARAMS ?=
+ifdef DIE
+NEXTPNR_PARAMS = --vopt force_die=$(DIE)
+endif
+
 all:
 	@echo "Use one of targets for '$(BOARD)' board:"
 	@echo " - synth - running Yosys synthesys only"
@@ -82,7 +87,7 @@ $(TEST_CASE)_$(BOARD)_00.cfg: $(TEST_CASE)_synth.v $(BOARD).ccf
 
 $(TEST_CASE)_$(BOARD).txt $(TEST_CASE)_$(BOARD)_pnr.json: $(TEST_CASE).json $(BOARD).ccf
 	@echo "Running nextpnr for '$(BOARD)' board"
-	$(NEXTPNR) --device $(FPGA) --json $(TEST_CASE).json --vopt ccf=$(BOARD).ccf --vopt out=$(TEST_CASE)_$(BOARD).txt --router router2 --freq $(FREQ) $(SEED_OPT) $(SDC_OPT) --write $(TEST_CASE)_$(BOARD)_pnr.json --sdf $(TEST_CASE)_$(BOARD).sdf --placer-heap-beta 0.5 --vopt fpga_mode=typical
+	$(NEXTPNR) --device $(FPGA) --json $(TEST_CASE).json --vopt ccf=$(BOARD).ccf --vopt out=$(TEST_CASE)_$(BOARD).txt --router router2 --freq $(FREQ) $(SEED_OPT) $(SDC_OPT) --write $(TEST_CASE)_$(BOARD)_pnr.json --sdf $(TEST_CASE)_$(BOARD).sdf --placer-heap-beta 0.5 --vopt fpga_mode=typical $(NEXTPNR_PARAMS)
 
 $(TEST_CASE)_$(BOARD)_00.txt: $(TEST_CASE)_$(BOARD)_00.cfg
 	@echo "Running unpack for '$(BOARD)' board"
