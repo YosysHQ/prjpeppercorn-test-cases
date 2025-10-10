@@ -98,7 +98,7 @@ module IOSEL #(
 		q3_o <= GPIO_IN;
 	end
 
-	assign GPIO_EN = ~(OE_SIGNAL[1] ? (OE_SIGNAL[0] ? OUT4 : OUT3) : (OE_SIGNAL[0] ? OUT2 : ~OE_ENABLE));
+	assign GPIO_EN = ~(OE_SIGNAL[1] ? (OE_SIGNAL[0] ? OUT4 : OUT3) : (OE_SIGNAL[0] ? OUT2 : OE_ENABLE));
 endmodule
 
 module CPE_IBUF (
