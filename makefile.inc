@@ -57,7 +57,7 @@ ifdef DIE
 NEXTPNR_PARAMS = --vopt force_die=$(DIE)
 endif
 ifdef STRATEGY
-NEXTPNR_PARAMS = --vopt strategy=$(STRATEGY)
+NEXTPNR_PARAMS += --vopt strategy=$(STRATEGY)
 endif
 
 all:
