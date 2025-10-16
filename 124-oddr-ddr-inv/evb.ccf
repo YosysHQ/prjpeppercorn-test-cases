@@ -1,0 +1,7 @@
+Pin_out  "led"  Loc = "IO_EB_B1"; # LED D1
+Pin_in   "rst"  Loc = "IO_EB_B0" | PULLUP=true; # SW3
+Pin_in   "clk"  Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
+
+Pin_in   "btn0"     Loc = "IO_EB_A0"; # LED D0
+Pin_in   "btn1"     Loc = "IO_EB_A1"; # LED D1
+

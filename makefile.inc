@@ -56,6 +56,9 @@ NEXTPNR_PARAMS ?=
 ifdef DIE
 NEXTPNR_PARAMS = --vopt force_die=$(DIE)
 endif
+ifdef STRATEGY
+NEXTPNR_PARAMS = --vopt multi=$(STRATEGY)
+endif
 
 all:
 	@echo "Use one of targets for '$(BOARD)' board:"
