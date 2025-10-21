@@ -5,6 +5,8 @@ include ../makefile.inc
 
 BOOTADDR := 1048576 # user image starts at 1MB
 
+.PHONY: flash
+
 flash: $(TEST_CASE)_$(BOARD).txt
 	@echo "Running openFPGALoader for '$(BOARD)' board: secondary configuration at bootaddr $(BOOTADDR)"
 	@$(OFL) $(OFL_BOARD) --index-chain 0 -o $(BOOTADDR) -f flash/secondary-config.bit
