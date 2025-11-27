@@ -13,6 +13,7 @@ YOSYS = yosys
 GMPACK = gmpack
 GMUNPACK = gmunpack
 EQY_CLOCK = async2sync
+SCOPENAME ?=
 
 define check_cc_tool
   $(if $(CC_TOOL), \
@@ -81,7 +82,11 @@ $(TEST_CASE)_synth.v: ../$(BOARD).vh $(VERILOG_FILES)
 
 $(TEST_CASE).json $(TEST_CASE)_ys.v: ../$(BOARD).vh $(VERILOG_FILES)
 	@echo "Running Yosys"
+ifneq ($(strip $(SCOPENAME)),)
+	@$(YOSYS) -ql synth.log -p '$(YOSYS_DEFS_OPT) read_verilog -defer -sv $^; $(YOSYS_CMDS) synth_gatemate $(YOSYS_PARAM) -luttree -top $(TOP) -noflatten -noiopad; flatten -scopename; synth_gatemate $(YOSYS_PARAM) -luttree -top $(TOP); write_json $(TEST_CASE).json; write_verilog -norename -noattr $(TEST_CASE)_ys.v'
+else
 	@$(YOSYS) -ql synth.log -p '$(YOSYS_DEFS_OPT) read_verilog -defer -sv $^; $(YOSYS_CMDS) synth_gatemate $(YOSYS_PARAM) -luttree -top $(TOP) -json $(TEST_CASE).json; write_verilog -norename -noattr $(TEST_CASE)_ys.v'
+endif
 
 $(TEST_CASE)_$(BOARD)_00.cfg: $(TEST_CASE)_synth.v $(BOARD).ccf
 	$(call check_cc_tool)
