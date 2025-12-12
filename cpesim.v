@@ -350,7 +350,9 @@ module CPE_LATCH #(
 	parameter [1:0] C_CPE_SET = 2'b00,
 	parameter [1:0] FF_INIT = 2'b00,
 	parameter C_EN_SR = 1'b0,
-	parameter C_L_D = 1'b1
+	parameter C_L_D = 1'b1,
+	parameter C_CLKSEL = 1'b0, // used in routing
+	parameter C_ENSEL = 1'b0   // used in routing
 )(
 	input DIN,
 	input EN,
@@ -361,14 +363,22 @@ module CPE_LATCH #(
 	wire CP_i, EN_i, RES_i, SET_i;
 	reg  q_i;
 	
-	assign CP_i = (C_CPE_CLK == 2'b00) ? 1'b0 :
-				  (C_CPE_CLK == 2'b01) ? ~CLK :
-				  (C_CPE_CLK == 2'b10) ? CLK :
-				  1'b1;
-	assign EN_i = (C_CPE_EN == 2'b00) ? 1'b0 :
-				  (C_CPE_EN == 2'b01) ? ~EN :
-				  (C_CPE_EN == 2'b10) ? EN :
-				  1'b1;
+	if (C_CLKSEL)
+		// actual CLK signal is from CINY2
+		assign CP_i = (C_CPE_CLK == 2'b00) ? CLK : ~CLK;
+	else
+		assign CP_i = (C_CPE_CLK == 2'b00) ? 1'b0 :
+					(C_CPE_CLK == 2'b01) ? ~CLK :
+					(C_CPE_CLK == 2'b10) ? CLK :
+					1'b1;
+	if (C_ENSEL)
+		// actual EN signal is from PINY2
+		assign EN_i = (C_CPE_EN == 2'b00) ? EN : ~EN;
+	else
+		assign EN_i = (C_CPE_EN == 2'b00) ? 1'b0 :
+					(C_CPE_EN == 2'b01) ? ~EN :
+					(C_CPE_EN == 2'b10) ? EN :
+					1'b1;
 	assign RES_i = (C_CPE_RES == 2'b00) ? 1'b1 :
 				   (C_CPE_RES == 2'b01) ? SR :
 				   (C_CPE_RES == 2'b10) ? ~SR :
