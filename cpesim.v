@@ -164,7 +164,7 @@ module CPE_LVDS_IOBUF (
 	input T,
 	output Y,
 	inout IO_P,
-	inout IO_N,
+	inout IO_N
 );
   assign IO_P = T ? 1'bz: A;
   assign IO_N = T ? 1'bz: ~A;
