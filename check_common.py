@@ -29,7 +29,7 @@ def run_eqy(base_dir, test, freq, check_task, filter):
     else:
         if filter:
             allowed = [0,1,2,3,4,5,6,7,8,9,10,12,14,19,20,21,22,23,24,25,26,
-                    27,28,30,31,32,33,34,35,36,37,38,65,66,111]
+                    27,28,30,31,32,33,34,35,36,37,38,65,66,111,113,114,123,124,125]
             filtered_subdirs = []
             for d in subdirs:
                 match = pattern.match(d)
