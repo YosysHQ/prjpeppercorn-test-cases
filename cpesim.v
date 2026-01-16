@@ -221,8 +221,10 @@ module CPE_MX4 #(
 	parameter [3:0] INIT_L02 = 4'b0000,
 	parameter [3:0] INIT_L03 = 4'b0000,
 	parameter [3:0] INIT_L11 = 4'b0000,
-	parameter [3:0] INIT_L20 = 4'b0000, // Unused
+	parameter [3:0] INIT_L20 = 4'b0000,
 	parameter [2:0] C_FUNCTION = 3'b000,
+	parameter C_I1 = 1'b0,
+	parameter C_I2 = 1'b0,
 	parameter C_I3 = 1'b0,
 	parameter C_I4 = 1'b0
 )(
@@ -235,21 +237,38 @@ module CPE_MX4 #(
 	input  IN7,
 	input  IN8,
 	input  PINY1,
+	input  CINX,
 	input  PINX,
 	output OUT1
 );
+	wire [1:0] l00_s1 = (C_I1 ? PINY1 : IN2) ? INIT_L00[3:2] : INIT_L00[1:0];
+	wire s0_mx4a = IN1 ? l00_s1[1] : l00_s1[0];
+
+	wire [1:0] l01_s1 = (C_I2 ? CINX  : IN4) ? INIT_L01[3:2] : INIT_L01[1:0];
+	wire s1_mx4a = IN3 ? l01_s1[1] : l01_s1[0];
+
+	wire in8_int = (INIT_L11[3] ? IN8 : 1'b0) ^ INIT_L10[3];
+	wire in7_int = (INIT_L11[2] ? IN7 : 1'b0) ^ INIT_L10[2];
+	wire in6_int = (INIT_L11[1] ? IN6 : 1'b0) ^ INIT_L10[1];
+	wire in5_int = (INIT_L11[0] ? IN5 : 1'b0) ^ INIT_L10[0];
+
+	wire out_mx4a = s1_mx4a ? (s0_mx4a ? in8_int : in7_int) : (s0_mx4a ? in6_int : in5_int);
+
 	wire [1:0] l02_s1 = (C_I3 ? PINY1 : IN6) ? INIT_L02[3:2] : INIT_L02[1:0];
-	wire s0 = IN5 ? l02_s1[1] : l02_s1[0];
+	wire s0_mx4b = IN5 ? l02_s1[1] : l02_s1[0];
 
 	wire [1:0] l03_s1 = (C_I4 ? PINX  : IN8) ? INIT_L03[3:2] : INIT_L03[1:0];
-	wire s1 = IN7 ? l03_s1[1] : l03_s1[0];
+	wire s1_mx4b = IN7 ? l03_s1[1] : l03_s1[0];
 
 	wire in4_int = (INIT_L10[3] ? IN4 : 1'b0) ^ INIT_L11[3];
 	wire in3_int = (INIT_L10[2] ? IN3 : 1'b0) ^ INIT_L11[2];
 	wire in2_int = (INIT_L10[1] ? IN2 : 1'b0) ^ INIT_L11[1];
 	wire in1_int = (INIT_L10[0] ? IN1 : 1'b0) ^ INIT_L11[0];
 
-	assign OUT1 = s1 ? (s0 ? in4_int : in3_int) : (s0 ? in2_int : in1_int);
+	wire out_mx4b = s1_mx4b ? (s0_mx4b ? in4_int : in3_int) : (s0_mx4b ? in2_int : in1_int);
+
+	wire [1:0] l20_s1 = out_mx4b ? INIT_L20[3:2] : INIT_L20[1:0];
+	assign OUT1 = out_mx4a ? l20_s1[1] : l20_s1[0];
 endmodule
 
 module CPE_RAMO #(
