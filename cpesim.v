@@ -337,8 +337,8 @@ module CPE_FF #(
 				   1'b0;
 
 	assign SET_i = (C_CPE_SET == 2'b00) ? 1'b1 :
-				   (C_CPE_SET == 2'b01) ? (C_EN_SR ? SR : EN) :
-				   (C_CPE_SET == 2'b10) ? ~(C_EN_SR ? SR : EN) :
+				   (C_CPE_SET == 2'b01) ? (C_EN_SR ? SR : (C_ENSEL == 1 ? PINY2 : EN)) :
+				   (C_CPE_SET == 2'b10) ? ~(C_EN_SR ? SR : (C_ENSEL == 1 ? PINY2 : EN)) :
 				   1'b0;
 
 	initial q_i = (FF_INIT[1] == 1'b1) ? FF_INIT[0] : 1'bx;
@@ -396,8 +396,8 @@ module CPE_LATCH #(
 				   1'b0;
 
 	assign SET_i = (C_CPE_SET == 2'b00) ? 1'b1 :
-				   (C_CPE_SET == 2'b01) ? (C_EN_SR ? SR : EN) :
-				   (C_CPE_SET == 2'b10) ? ~(C_EN_SR ? SR : EN) :
+				   (C_CPE_SET == 2'b01) ? (C_EN_SR ? SR : (C_ENSEL == 1 ? PINY2 : EN)) :
+				   (C_CPE_SET == 2'b10) ? ~(C_EN_SR ? SR : (C_ENSEL == 1 ? PINY2 : EN)) :
 				   1'b0;
 
 	initial q_i = (FF_INIT[1] == 1'b1) ? FF_INIT[0] : 1'bx;
