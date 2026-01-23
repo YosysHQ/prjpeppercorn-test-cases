@@ -1,3 +1,7 @@
 Net  "clk"  Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
 Net  "uart_rx"  Loc = "IO_SA_A6";
 Net  "uart_tx"  Loc = "IO_SA_B6";
+// start floorplanning
+//     top uart_receive; pB:x5y32x20y80;
+//     top uart_transmit; pB:x80y9x120y30;
+// end floorplanning
