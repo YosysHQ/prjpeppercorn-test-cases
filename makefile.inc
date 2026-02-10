@@ -53,6 +53,8 @@ ifneq ($(wildcard constraints.sdc),)
 SDC_OPT = --sdc constraints.sdc
 endif
 
+//NEXTPNR_PARAMS ?= --vopt no-clk-cp
+//NEXTPNR_PARAMS ?= --vopt no-bridges --vopt no-clk-cp --vopt no-cpe-cp
 NEXTPNR_PARAMS ?=
 ifdef DIE
 NEXTPNR_PARAMS = --vopt force_die=$(DIE)
@@ -133,7 +135,7 @@ clean:
 	@rm -rf *_pnr.v check_yosys check_yosys.eqy check_pnr check_pnr.eqy check_pnr_post check_pnr_post.eqy
 
 force-nextpnr:
-	$(NEXTPNR) --device $(FPGA) --json $(TEST_CASE).json --vopt ccf=$(BOARD).ccf --vopt out=../logs/$(TEST_CASE)_$(BOARD)_$(SEED).txt --router router2 --freq $(FREQ) $(SEED_OPT) $(SDC_OPT)
+	$(NEXTPNR) --device $(FPGA) --json $(TEST_CASE).json --vopt ccf=$(BOARD).ccf --vopt out=../logs/$(TEST_CASE)_$(BOARD)_$(SEED).txt --router router2 --freq $(FREQ) $(SEED_OPT) $(SDC_OPT) --placer-heap-beta 0.5 --vopt time_mode=typical $(NEXTPNR_PARAMS)
 
 .PHONY: synth json pr nextpnr force-nextpnr jtag_pr jtag unpack check_yosys check_pnr check_pnr_post
 
