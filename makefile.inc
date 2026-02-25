@@ -53,8 +53,8 @@ ifneq ($(wildcard constraints.sdc),)
 SDC_OPT = --sdc constraints.sdc
 endif
 
-//NEXTPNR_PARAMS ?= --vopt no-clk-cp
-//NEXTPNR_PARAMS ?= --vopt no-bridges --vopt no-clk-cp --vopt no-cpe-cp
+//NEXTPNR_PARAMS ?= --vopt clk-cp
+//NEXTPNR_PARAMS ?= --vopt no-bridges --vopt clk-cp --vopt no-cpe-cp
 NEXTPNR_PARAMS ?=
 ifdef DIE
 NEXTPNR_PARAMS = --vopt force_die=$(DIE)
