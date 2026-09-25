@@ -1,0 +1,4 @@
+Net "clk25" Loc = "IO_SB_A8";
+Net "d"     Loc = "IO_EB_A8";
+Net "q_neg" Loc = "IO_EB_B2" | FF_OBF=true;
+Net "q_pos" Loc = "IO_EB_A2" | FF_OBF=true;
