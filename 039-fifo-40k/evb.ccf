@@ -1,3 +1,37 @@
 Net   "clk"  Loc = "IO_SB_A8" | SCHMITT_TRIGGER=true;
 Net  "uart_rx"  Loc = "IO_NB_A6";
 Net  "uart_tx"  Loc = "IO_NB_A5";
+
+Net  "rd_ptr[0]"   Loc = "IO_EB_A0";
+Net  "rd_ptr[1]"   Loc = "IO_EB_B0";
+Net  "rd_ptr[2]"   Loc = "IO_EB_A1";
+Net  "rd_ptr[3]"   Loc = "IO_EB_B1";
+Net  "rd_ptr[4]"   Loc = "IO_EB_A2";
+Net  "rd_ptr[5]"   Loc = "IO_EB_B2";
+Net  "rd_ptr[6]"   Loc = "IO_EB_A3";
+Net  "rd_ptr[7]"   Loc = "IO_EB_B3";
+Net  "rd_ptr[8]"   Loc = "IO_EB_A4";
+Net  "rd_ptr[9]"   Loc = "IO_EB_B4";
+Net  "rd_ptr[10]"  Loc = "IO_EB_A5";
+Net  "rd_ptr[11]"  Loc = "IO_EB_B5";
+Net  "rd_ptr[12]"  Loc = "IO_EB_A6";
+Net  "rd_ptr[13]"  Loc = "IO_EB_B6";
+Net  "rd_ptr[14]"  Loc = "IO_EB_A7";
+Net  "rd_ptr[15]"  Loc = "IO_EB_B7";
+
+Net  "wr_ptr[0]"   Loc = "IO_EA_A0";
+Net  "wr_ptr[1]"   Loc = "IO_EA_B0";
+Net  "wr_ptr[2]"   Loc = "IO_EA_A1";
+Net  "wr_ptr[3]"   Loc = "IO_EA_B1";
+Net  "wr_ptr[4]"   Loc = "IO_EA_A2";
+Net  "wr_ptr[5]"   Loc = "IO_EA_B2";
+Net  "wr_ptr[6]"   Loc = "IO_EA_A3";
+Net  "wr_ptr[7]"   Loc = "IO_EA_B3";
+Net  "wr_ptr[8]"   Loc = "IO_EA_A4";
+Net  "wr_ptr[9]"   Loc = "IO_EA_B4";
+Net  "wr_ptr[10]"  Loc = "IO_EA_A5";
+Net  "wr_ptr[11]"  Loc = "IO_EA_B5";
+Net  "wr_ptr[12]"  Loc = "IO_EA_A6";
+Net  "wr_ptr[13]"  Loc = "IO_EA_B6";
+Net  "wr_ptr[14]"  Loc = "IO_EA_A7";
+Net  "wr_ptr[15]"  Loc = "IO_EA_B7";
