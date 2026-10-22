@@ -104,7 +104,9 @@ endmodule
 module top (
     input clk,
     output uart_tx,
-    input uart_rx
+    input uart_rx,
+    output [15:0] rd_ptr,
+    output [15:0] wr_ptr
 );
 
     wire rx_valid;
@@ -207,7 +209,7 @@ module top (
         .F_ALMOST_EMPTY(),
         .F_RD_ERROR(),
         .F_WR_ERROR(),
-        .F_RD_PTR(),
-        .F_WR_PTR()
+        .F_RD_PTR(rd_ptr),
+        .F_WR_PTR(wr_ptr)
   );
 endmodule
