@@ -10,4 +10,5 @@ VERILOG_FILES := \
 	ram_memory.v \
 	rom_memory.v \
 	simpleuart.v
+NEXTPNR_PARAMS := --vopt ff-init-zero
 include ../makefile.inc

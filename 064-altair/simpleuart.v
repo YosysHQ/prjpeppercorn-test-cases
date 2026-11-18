@@ -35,6 +35,12 @@ module simpleuart (
 	output  reg   tdre
 );
 
+	// synchronize asynchronous RX input before it reaches the state machine
+	reg [1:0] rx_sync = 2'b11;
+	always @(posedge clk)
+		rx_sync <= {rx_sync[0], ser_rx};
+	wire rx_s = rx_sync[1];
+
 	reg [3:0] recv_state;
 	reg [31:0] recv_divcnt;
 	reg [7:0] recv_pattern;
@@ -61,7 +67,7 @@ module simpleuart (
 				recv_buf_valid <= 0;
 			case (recv_state)
 				0: begin
-					if (!ser_rx)
+					if (!rx_s)
 						recv_state <= 1;
 					recv_divcnt <= 0;
 				end
@@ -80,7 +86,7 @@ module simpleuart (
 				end
 				default: begin
 					if (recv_divcnt > cfg_divider) begin
-						recv_pattern <= {ser_rx, recv_pattern[7:1]};
+						recv_pattern <= {rx_s, recv_pattern[7:1]};
 						recv_state <= recv_state + 1;
 						recv_divcnt <= 0;
 					end

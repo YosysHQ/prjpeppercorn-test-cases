@@ -13,4 +13,5 @@ VERILOG_FILES := \
 	../lib/Z80/tv80_core.v \
 	../lib/Z80/tv80_alu.v
 
+NEXTPNR_PARAMS := --vopt ff-init-zero
 include ../makefile.inc
