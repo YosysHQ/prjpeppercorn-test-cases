@@ -1,6 +1,7 @@
 TEST_CASE := vga-castle
 YOSYS_PARAM := -nomx8
 TOP := top_castle
+NEXTPNR_PARAMS := --vopt ff-init-zero
 VERILOG_FILES := \
 	top_castle.sv \
 	render_castle.sv \
