@@ -105,6 +105,11 @@ module top (input  clk, output uart_tx, input uart_rx);
   wire rx_valid;
   wire [7:0] uart_out;
 
+  // synchronize asynchronous RX input before it reaches the state machine
+  reg [1:0] rx_sync = 2'b11;
+  always @(posedge clk)
+	rx_sync <= {rx_sync[0], uart_rx};
+
   reg [5:0] reset_cnt = 0;
   wire resetn = &reset_cnt;
 
@@ -115,7 +120,7 @@ module top (input  clk, output uart_tx, input uart_rx);
   uart_rx uart_receive(
     .clk(clk),
     .resetn(resetn),
-    .ser_rx(uart_rx),
+    .ser_rx(rx_sync[1]),
     .cfg_divider(`BOARD_FREQ/115200),
     .data(uart_out),
     .valid(rx_valid)
