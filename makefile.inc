@@ -57,7 +57,7 @@ endif
 //NEXTPNR_PARAMS ?= --vopt no-bridges --vopt clk-cp --vopt no-cpe-cp
 NEXTPNR_PARAMS ?=
 ifdef DIE
-NEXTPNR_PARAMS = --vopt force_die=$(DIE)
+NEXTPNR_PARAMS += --vopt force_die=$(DIE)
 endif
 ifdef STRATEGY
 NEXTPNR_PARAMS += --vopt strategy=$(STRATEGY)
